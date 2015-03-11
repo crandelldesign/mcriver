@@ -15,9 +15,20 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function getIndex()
 	{
-		return View::make('hello');
+        $vw = View::make('home.index');
+        $vw->title = "McRiver Raid 2015";
+        $vw->description = "";
+        return $vw;
+	}
+
+	public function getSignUp()
+	{
+        $vw = View::make('home.signup');
+        $vw->title = "McRiver Raid 2015";
+        $vw->description = "";
+        return $vw;
 	}
 
 }

@@ -1,0 +1,20 @@
+/* Main Stylesheet */
+
+/* Header */
+
+/* Page */
+
+/* Footer */
+.footer {
+	padding: 20px;
+	font-size: 12px;
+	text-align: center;
+}
+.footer p {
+	margin-bottom: 2px;
+}
+
+/* General Styling */
+.margin-top-10 {
+	margin-top: 10px;
+}

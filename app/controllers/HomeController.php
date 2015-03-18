@@ -26,8 +26,21 @@ class HomeController extends BaseController {
 	public function getSignUp()
 	{
         $vw = View::make('home.signup');
-        $vw->title = "McRiver Raid 2015";
+        $vw->title = "Sign Up to Party";
         $vw->description = "";
+        return $vw;
+	}
+
+	public function postSignUp()
+	{
+		$vw = View::make('home.confirm');
+        $vw->title = "Confirm Your Order";
+        $vw->description = "";
+
+        print_r(Input::all());
+
+        $vw->basic_info = Input::all();
+
         return $vw;
 	}
 

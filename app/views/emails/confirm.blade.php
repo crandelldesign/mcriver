@@ -231,7 +231,7 @@
 					<tbody>
 						<tr>
 							<td style="border-bottom:1px solid #e3e3e3; padding: 5px;">Camping</td>
-							<td style="border-bottom:1px solid #e3e3e3; padding: 5px;">$49</td>
+							<td style="border-bottom:1px solid #e3e3e3; padding: 5px;">$53</td>
 						</tr>
 						@foreach($items as $item)
 						<tr>

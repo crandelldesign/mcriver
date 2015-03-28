@@ -10,11 +10,11 @@
 <div class="row">
 	<div class="col-sm-8">
 
-		<h2>$49 per person for Fri &amp; Sat &quot;Camping Experience&quot;<br>
+		<h2>$53 per person for Fri &amp; Sat &quot;Camping Experience&quot;<br>
 		<small>Note: Additional days will be extra and due to the campground.</small></h2>
 		<form class="form-horizontal" method="post">
 			<div class="form-group full-width">
-				<label class="col-xs-12">Full Name : Please register each person individually! $49 per person *</label>
+				<label class="col-xs-12">Full Name : Please register each person individually! $53 per person *</label>
 				<div class="col-xs-12">
 					<input type="text" class="form-control" id="name" name="name" placeholder="First and Last Name" required="required">
 				</div>
@@ -178,9 +178,9 @@
 			<div class="form-group">
 				<label class="control-label col-xs-6 col-md-4">Total</label>
 				<div class="col-xs-6 price-total-container">
-					$<span class="price-total">49</span>
+					$<span class="price-total">53</span>
 				</div>
-				<input type="hidden" name="total" id="total" value="49">
+				<input type="hidden" name="total" id="total" value="53">
 			</div>
 			<hr>
 			<p>Do you agree to mail a Check or Money Order (for the above amount) to Jim McDonald before June 21, 2015? (There will be an email sent with this information to you following your submission for your records)<br>
@@ -309,7 +309,7 @@
 	});
 	function priceUpdate()
 	{
-		var total = 49;
+		var total = 53;
 		$('.price-control').each(function()
 		{
 			var quantity = $(this).children('option:selected').val();

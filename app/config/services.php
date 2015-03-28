@@ -15,8 +15,8 @@ return array(
 	*/
 
 	'mailgun' => array(
-		'domain' => '',
-		'secret' => '',
+		'domain' => '5inalldesign.com',
+		'secret' => 'key-a22863cfafd0e48ab28689251362f031',
 	),
 
 	'mandrill' => array(

@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', function()
+Route::controller('/', 'HomeController');
+
+App::missing(function($exception)
 {
-	return View::make('hello');
+	return Response::view('home.404', array(), 404);
 });

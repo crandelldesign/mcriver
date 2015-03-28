@@ -19,7 +19,7 @@
 	<tbody>
 		<tr>
 			<td>Camping</td>
-			<td>$49</td>
+			<td>$53</td>
 		</tr>
 		@foreach($items as $item)
 		<tr>

@@ -1,7 +1,39 @@
 /* Stylesheet for Small Width (Tablet) Devices */
 
-/* Header */
+/* Site */
+body {
+	background: #3e5daa url(../img/default-background1.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	padding: 0 20px;
+}
+.site-container {
+	max-width: 1100px;
+	margin: 20px auto;
+	border: 1px solid #010101;
+	border-radius: 25px;
+	overflow: hidden;
+	-webkit-box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+  	-moz-box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+  	box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+}
 
+/* Header */
+.header {
+	background-color: #010101;
+}
+.header .logo-container {
+	display: block;
+	padding: 20px;
+	background-color: #010101;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+}
+.header .navbar .navbar-brand {
+	display: none;
+}
 
 /* Sidebar */
 
@@ -12,6 +44,11 @@
 }
 
 /* Footer */
+
+/* Page Styling */
+.page h1 {
+	font-size: 45px;
+}
 
 /* General Styling */
 .price-total-container {

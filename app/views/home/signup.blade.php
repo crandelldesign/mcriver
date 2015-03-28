@@ -21,7 +21,7 @@
 			</div>
 			<h2>Tube Rental</h2>
 			<div class="form-group">
-				<label class="control-label col-sm-6 col-md-4">Regular Tube NO BOTTOM - $15 each</label>
+				<label class="control-label col-sm-6 col-lg-4">Regular Tube NO BOTTOM - $15 each</label>
 				<div class="col-sm-6">
 					<select class="form-control price-control" id="regTube" name="regTube" data-price="15">
 		  				<option value="0">0</option>
@@ -31,7 +31,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-6 col-md-4">Regular Tube WITH BOTTOM - $17 each</label>
+				<label class="control-label col-sm-6 col-lg-4">Regular Tube WITH BOTTOM - $17 each</label>
 				<div class="col-sm-6">
 					<select class="form-control price-control" id="regTubeWBottom" name="regTubeWBottom" data-price="17">
 		  				<option value="0">0</option>
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-6 col-md-4">Deluxe Tube (Don't skimp out this year) - $20 each</label>
+				<label class="control-label col-sm-6 col-lg-4">Deluxe Tube (Don't skimp out this year) - $20 each</label>
 				<div class="col-sm-6">
 					<select class="form-control price-control" id="deluxeTube" name="deluxeTube" data-price="20">
 		  				<option value="0">0</option>
@@ -51,7 +51,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-6 col-md-4">Cooler Tube (you will want one!) - $11 each</label>
+				<label class="control-label col-sm-6 col-lg-4">Cooler Tube (you will want one!) - $11 each</label>
 				<div class="col-sm-6">
 					<select class="form-control price-control" id="coolerTube" name="coolerTube" data-price="11">
 		  				<option value="0">0</option>
@@ -64,7 +64,7 @@
 			<h2>McRiver Gear</h2>
 			<div class="form-group">
 				<label class="col-xs-12">Men's T-Shirts</label>
-				<label class="control-label col-sm-6 col-md-4">Select Quanity</label>
+				<label class="control-label col-sm-6 col-lg-4">Select Quanity</label>
 				<div class="col-sm-6">
 					<select class="form-control tshirt-quantity" name="tshirtQuanity" id="tshirtQuanity">
 		  				<option value="0">0</option>
@@ -79,7 +79,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-xs-12">Men's Tank Tops</label>
-				<label class="control-label col-sm-6 col-md-4">Select Quanity</label>
+				<label class="control-label col-sm-6 col-lg-4">Select Quanity</label>
 				<div class="col-sm-6">
 					<select class="form-control mtanktop-quantity" name="mtanktopQuanity" id="mtanktopQuanity">
 		  				<option value="0">0</option>
@@ -94,7 +94,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-xs-12">Women's Tank Tops</label>
-				<label class="control-label col-sm-6 col-md-4">Select Quanity</label>
+				<label class="control-label col-sm-6 col-lg-4">Select Quanity</label>
 				<div class="col-sm-6">
 					<select class="form-control wtanktop-quantity" name="wtanktopQuanity" id="wtanktopQuanity">
 		  				<option value="0">0</option>
@@ -109,7 +109,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-xs-12">Crew Neck Sweatshirts</label>
-				<label class="control-label col-sm-6 col-md-4">Select Quanity</label>
+				<label class="control-label col-sm-6 col-lg-4">Select Quanity</label>
 				<div class="col-sm-6">
 					<select class="form-control crewnecksweatshirts-quantity" name="crewnecksweatshirtsQuanity" id="crewnecksweatshirtsQuanity">
 		  				<option value="0">0</option>
@@ -124,7 +124,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-xs-12">Hooded Sweatshirts</label>
-				<label class="control-label col-sm-6 col-md-4">Select Quanity</label>
+				<label class="control-label col-sm-6 col-lg-4">Select Quanity</label>
 				<div class="col-sm-6">
 					<select class="form-control hoodedsweatshirts-quantity" name="hoodedsweatshirtsQuanity" id="hoodedsweatshirtsQuanity">
 		  				<option value="0">0</option>
@@ -139,7 +139,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-xs-12">Hats</label>
-				<label class="control-label col-sm-6 col-md-4">Select Quanity</label>
+				<label class="control-label col-sm-6 col-lg-4">Select Quanity</label>
 				<div class="col-sm-6">
 					<select class="form-control price-control" id="hat" name="hat" data-price="13">
 		  				<option value="0">0</option>
@@ -150,25 +150,25 @@
 			</div>
 			<h2>Contact Info</h2>
 			<div class="form-group">
-				<label class="control-label col-sm-6 col-md-4">Email Address</label>
+				<label class="control-label col-sm-6 col-lg-4">Email Address</label>
 				<div class="col-sm-6">
 					<input type="email" class="form-control" id="email" name="email" placeholder="Email" required="required">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-6 col-md-4">Phone Number</label>
+				<label class="control-label col-sm-6 col-lg-4">Phone Number</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required="required">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-6 col-md-4">Are you a McRiver Rookie?</label>
+				<label class="control-label col-sm-6 col-lg-4">Are you a McRiver Rookie?</label>
 				<div class="col-sm-6">
 					<label class="radio-inline">
-						<input type="radio" name="rookie" id="rookie" value="yes" checked> Yes
+						<input type="radio" name="rookie" id="rookie" value="1" checked> Yes
 					</label>
 					<label class="radio-inline">
-						<input type="radio" name="rookie" id="rookie" value="no"> No
+						<input type="radio" name="rookie" id="rookie" value="0"> No
 					</label>
 		  			<div class="text-muted">If this is your first year, do yourself a favor and admit it.</div>
 		  			<div><a href="#" data-toggle="modal" data-target="#rookieRequirements">Click here for Rookie Requirements</a></div>
@@ -193,7 +193,7 @@
 		</form>
 	</div>
 	<div class="col-sm-4 hidden-xs">
-		<img src="{{url('/')}}/img/mcriver-jim.jpg" class="img-responsive" alt="McRiver Jim">
+		<img src="{{url('/')}}/img/mcriver-jim.jpg" class="img-responsive featured-img" alt="McRiver Jim">
 	</div>
 </div>
 
@@ -225,6 +225,10 @@
 
 @section('footercode')
 <script>
+	$(document).ready(function()
+	{
+	    priceUpdate();
+	});
 	$('.tshirt-quantity').change(function()
 	{
 		var element = $(this);
@@ -234,7 +238,7 @@
 		{
 			for(var i = 1; i <= $(this).val(); i++)
 			{
-		    	container.append('<div class="col-sm-6 col-md-4">Shirt #'+i+'<br><select class="form-control tshirt-size'+i+'" name="tshirtSize'+i+'" id="tshirtSize'+i+'"><option value="s-13" data-size="s" data-price="13">Small - $13</option><option value="m-13" data-size="m" data-price="13">Medium - $13</option><option value="l-13" data-size="l" data-price="13">Large - $13</option><option value="xl-13" data-size="xl" data-price="13">XL - $13</option><option value="2xl-14" data-size="2xl" data-price="14">2XL - $14</option><option value="3xl-14" data-size="3xl" data-price="14">3XL - $14</option><option value="4xl-14" data-size="4xl" data-price="14">4XL - $14</option></select></div>');
+		    	container.append('<div class="col-sm-6 col-lg-4">Shirt #'+i+'<br><select class="form-control input-sm tshirt-size'+i+'" name="tshirtSize'+i+'" id="tshirtSize'+i+'"><option value="s-13" data-size="s" data-price="13">Small - $13</option><option value="m-13" data-size="m" data-price="13">Medium - $13</option><option value="l-13" data-size="l" data-price="13">Large - $13</option><option value="xl-13" data-size="xl" data-price="13">XL - $13</option><option value="2xl-14" data-size="2xl" data-price="14">2XL - $14</option><option value="3xl-14" data-size="3xl" data-price="14">3XL - $14</option><option value="4xl-14" data-size="4xl" data-price="14">4XL - $14</option></select></div>');
 		    }
 		    priceUpdate();
 		}
@@ -248,7 +252,7 @@
 		{
 			for(var i = 1; i <= $(this).val(); i++)
 			{
-		    	container.append('<div class="col-sm-6 col-md-3">Tank Top #'+i+'<br><select class="form-control mtanktop-size'+i+'" name="mtanktopSize'+i+'" id="mtanktopSize'+i+'"><option value="s-13" data-size="s" data-price="13">Small - $13</option><option value="m-13" data-size="m" data-price="13">Medium - $13</option><option value="l-13" data-size="l" data-price="13">Large - $13</option><option value="xl-13" data-size="xl" data-price="13">XL - $13</option><option value="2xl-14" data-size="2xl" data-price="14">2XL - $14</option></select></div>');
+		    	container.append('<div class="col-sm-6 col-lg-4">Tank Top #'+i+'<br><select class="form-control input-sm mtanktop-size'+i+'" name="mtanktopSize'+i+'" id="mtanktopSize'+i+'"><option value="s-13" data-size="s" data-price="13">Small - $13</option><option value="m-13" data-size="m" data-price="13">Medium - $13</option><option value="l-13" data-size="l" data-price="13">Large - $13</option><option value="xl-13" data-size="xl" data-price="13">XL - $13</option><option value="2xl-14" data-size="2xl" data-price="14">2XL - $14</option></select></div>');
 		    }
 		}
 		priceUpdate();
@@ -262,7 +266,7 @@
 		{
 			for(var i = 1; i <= $(this).val(); i++)
 			{
-		    	container.append('<div class="col-sm-6 col-md-3">Tank Top #'+i+'<br><select class="form-control wtanktop-size'+i+'" name="wtanktopSize'+i+'" id="wtanktopSize'+i+'"><option value="s-14" data-size="s" data-price="14">Small - $14</option><option value="m-14" data-size="m" data-price="14">Medium - $14</option><option value="l-14" data-size="l" data-price="14">Large - $14</option><option value="xl-14" data-size="xl" data-price="14">XL - $14</option><option value="2xl-15" data-size="2xl" data-price="15">2XL - $15</option></select></div>');
+		    	container.append('<div class="col-sm-6 col-lg-4">Tank Top #'+i+'<br><select class="form-control input-sm wtanktop-size'+i+'" name="wtanktopSize'+i+'" id="wtanktopSize'+i+'"><option value="s-14" data-size="s" data-price="14">Small - $14</option><option value="m-14" data-size="m" data-price="14">Medium - $14</option><option value="l-14" data-size="l" data-price="14">Large - $14</option><option value="xl-14" data-size="xl" data-price="14">XL - $14</option><option value="2xl-15" data-size="2xl" data-price="15">2XL - $15</option></select></div>');
 		    }
 		}
 		priceUpdate();
@@ -276,7 +280,7 @@
 		{
 			for(var i = 1; i <= $(this).val(); i++)
 			{
-		    	container.append('<div class="col-sm-6 col-md-3">Sweatshirts #'+i+'<br><select class="form-control wtanktop-size'+i+'" name="crewnecksweatshirtsSize'+i+'" id="crewnecksweatshirtsSize'+i+'"><option value="s-23" data-size="s" data-price="23">Small - $23</option><option value="m-23" data-size="m" data-price="23">Medium - $23</option><option value="l-23" data-size="l" data-price="23">Large - $23</option><option value="xl-23" data-size="xl" data-price="23">XL - $23</option><option value="2xl-26" data-size="2xl" data-price="26">2XL - $26</option><option value="3xl-27" data-size="3xl" data-price="27">3XL - $27</option><option value="4xl-27" data-size="4xl" data-price="27">4XL - $27</option></select></div>');
+		    	container.append('<div class="col-sm-6 col-lg-4">Sweatshirts #'+i+'<br><select class="form-control input-sm wtanktop-size'+i+'" name="crewnecksweatshirtsSize'+i+'" id="crewnecksweatshirtsSize'+i+'"><option value="s-23" data-size="s" data-price="23">Small - $23</option><option value="m-23" data-size="m" data-price="23">Medium - $23</option><option value="l-23" data-size="l" data-price="23">Large - $23</option><option value="xl-23" data-size="xl" data-price="23">XL - $23</option><option value="2xl-26" data-size="2xl" data-price="26">2XL - $26</option><option value="3xl-27" data-size="3xl" data-price="27">3XL - $27</option><option value="4xl-27" data-size="4xl" data-price="27">4XL - $27</option></select></div>');
 		    }
 		}
 		priceUpdate();
@@ -290,7 +294,7 @@
 		{
 			for(var i = 1; i <= $(this).val(); i++)
 			{
-		    	container.append('<div class="col-sm-6 col-md-3">Hoodie #'+i+'<br><select class="form-control wtanktop-size'+i+'" name="hoodedsweatshirtsSize'+i+'" id="hoodedsweatshirtsSize'+i+'"><option value="s-29" data-size="s" data-price="29">Small - $29</option><option value="m-29" data-size="m" data-price="29">Medium - $29</option><option value="l-29" data-size="l" data-price="29">Large - $29</option><option value="xl-29" data-size="xl" data-price="29">XL - $29</option><option value="2xl-30" data-size="2xl" data-price="30">2XL - $30</option><option value="3xl-31" data-size="3xl" data-price="31">3XL - $31</option><option value="4xl-31" data-size="4xl" data-price="31">4XL - $31</option></select></div>');
+		    	container.append('<div class="col-sm-6 col-lg-4">Hoodie #'+i+'<br><select class="form-control input-sm wtanktop-size'+i+'" name="hoodedsweatshirtsSize'+i+'" id="hoodedsweatshirtsSize'+i+'"><option value="s-29" data-size="s" data-price="29">Small - $29</option><option value="m-29" data-size="m" data-price="29">Medium - $29</option><option value="l-29" data-size="l" data-price="29">Large - $29</option><option value="xl-29" data-size="xl" data-price="29">XL - $29</option><option value="2xl-30" data-size="2xl" data-price="30">2XL - $30</option><option value="3xl-31" data-size="3xl" data-price="31">3XL - $31</option><option value="4xl-31" data-size="4xl" data-price="31">4XL - $31</option></select></div>');
 		    }
 		}
 		priceUpdate();
@@ -317,7 +321,6 @@
 	 		total+=parseFloat($(this).children('option:selected').data('price'));    
 		});
 		$('.price-total').html(total);
-		console.log(total);
 		$('#total').val(total);
 	}
 </script>

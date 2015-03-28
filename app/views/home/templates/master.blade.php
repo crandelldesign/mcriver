@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         @include('home.templates.header')
     </head>
-    <body>
+    <body style="background-image: url({{url('/')}}/img/default-background{{rand(1,4)}}.jpg)">
         @include('home.templates.nav')
         @yield('body')
         @include('home.templates.footer')

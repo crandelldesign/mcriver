@@ -1,7 +1,7 @@
 <title>{{isset($title) ? $title : ''}}</title>
 <meta name="description" content="{{isset($description) ? $description : ''}}">
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <link href="{{url('/')}}/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />

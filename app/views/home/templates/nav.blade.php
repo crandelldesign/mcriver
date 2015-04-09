@@ -1,3 +1,6 @@
+@if(!isset($active_page))
+<?php $active_page = ''; ?>
+@endif
 <div class="site-container">
 	<header class="header">
 		<div class="container-fluid logo-container">

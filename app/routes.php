@@ -11,6 +11,7 @@
 |
 */
 
+Route::controller('/admin', 'AdminController');
 Route::controller('/', 'HomeController');
 
 App::missing(function($exception)

@@ -134,7 +134,7 @@ class HomeController extends BaseController {
         $person->year = date('Y');
         $person->name = Input::get('name');
         $person->date = date('Y-m-d H:i:s');
-        $person->items = Input::get('items');
+        $person->items = rtrim(Input::get('items'),',');
         $person->total = Input::get('total');
         $person->is_rookie = Input::get('is_rookie');
         $person->payment_method = Input::get('paymentMethod');
@@ -156,7 +156,7 @@ class HomeController extends BaseController {
         return $person;
     }
 
-    public function getOrderEmail()
+    /*public function getOrderEmail()
     {
         $person = Person::find(2);
         $vw = View::make('emails.confirm');
@@ -168,7 +168,7 @@ class HomeController extends BaseController {
         $vw->person = $person;
 
         return $vw;
-    }
+    }*/
 
     public function postConfirm($order_id)
     {
@@ -178,6 +178,7 @@ class HomeController extends BaseController {
 
         $person->is_paid = 1;
         $person->save();
+
         $vw = View::make('home.post-confirm');
         $vw->title = "Confirm Your Order";
         $vw->description = "";

@@ -3,7 +3,7 @@
 
 <h1>Sign Up to Party</h1>
 
-<p>Out of courtesy and respect, please send your money as soon as you can so your order for McRiver gear can be placed! We can not wait to place your order at the last minute and you payment is needed to place the order…send the money ASAP!</p>
+<p>Out of courtesy and respect, please send your money as soon as you can so your order for McRiver gear can be placed! We can not wait to place your order at the last minute and your payment is needed to place the order... send the money ASAP!</p>
 
 <p>Please fill this form out for each person that will be attending!</p>
 

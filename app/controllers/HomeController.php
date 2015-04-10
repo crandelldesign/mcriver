@@ -178,27 +178,28 @@ class HomeController extends BaseController {
         if(!$person)
             return Redirect::to(url('/'), 301);
 
-        //print_r(Input::all());
+        if(!$person->is_paid)
+        {
+            /* Test Mode Secret data-key="sk_test_pK8BiJvfzn4H6RJ5VbnEwGSI" */
+            /* Prod Mode Secret data-key="sk_live_vOWzFsE1oJcUUusNSE5OGnpe" */
 
-        /* Test Mode Secret data-key="sk_test_pK8BiJvfzn4H6RJ5VbnEwGSI" */
-        /* Prod Mode Secret data-key="sk_live_vOWzFsE1oJcUUusNSE5OGnpe" */
+            \Stripe\Stripe::setApiKey('sk_live_vOWzFsE1oJcUUusNSE5OGnpe');
 
-        \Stripe\Stripe::setApiKey('sk_live_vOWzFsE1oJcUUusNSE5OGnpe');
+            $token  = $_POST['stripeToken'];
 
-        $token  = $_POST['stripeToken'];
+            $customer = \Stripe\Customer::create(array(
+                'email' => $person->email,
+                'card'  => $token
+            ));
 
-        $customer = \Stripe\Customer::create(array(
-            'email' => $person->email,
-            'card'  => $token
-        ));
-
-        $charge = \Stripe\Charge::create(array(
-            'customer' => $customer->id,
-            'amount'   => ($person->total * 100),
-            'currency' => 'usd',
-            'receipt_email' => $person->email
-        ));
-
+            $charge = \Stripe\Charge::create(array(
+                'customer' => $customer->id,
+                'amount'   => ($person->total * 100),
+                'currency' => 'usd',
+                'receipt_email' => $person->email
+            ));
+        }
+        
         $person->is_paid = 1;
         $person->save();
 

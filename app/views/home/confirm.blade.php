@@ -39,6 +39,7 @@
 <form class="order-data">
 <input type="hidden" name="name" value="{{$basic_info['name']}}">
 <input type="hidden" name="email" value="{{$basic_info['email']}}">
+<input type="hidden" name="phone" value="{{$basic_info['phone']}}">
 <input type="hidden" name="items" value="Camping,@foreach($items as $item) {{$item->name}},@endforeach">
 <input type="hidden" name="total" value="{{$basic_info['total']}}">
 <input type="hidden" name="is_rookie" value="{{$basic_info['rookie']}}">
@@ -93,7 +94,7 @@
 					  	</script>
 					</form>
 					<?php /* Test Mode data-key="pk_test_Jkq2zhGLCLGk8UTvuel8wu15" */ ?>
-					<?php /* Test Mode data-key="pk_live_HLWAvzdpzXU7NwFRSBm3SPZI" */ ?>
+					<?php /* Prod Mode data-key="pk_live_HLWAvzdpzXU7NwFRSBm3SPZI" */ ?>
 				</div>
 			</div>
 			<div class="modal-footer text-center">

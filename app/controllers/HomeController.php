@@ -138,6 +138,8 @@ class HomeController extends BaseController {
         $person->total = Input::get('total');
         $person->is_rookie = Input::get('is_rookie');
         $person->payment_method = Input::get('paymentMethod');
+        $person->email = Input::get('email');
+        $person->phone = Input::get('phone');
         $person->save();
 
         $data = array(
@@ -175,6 +177,27 @@ class HomeController extends BaseController {
         $person = Person::find($order_id);
         if(!$person)
             return Redirect::to(url('/'), 301);
+
+        //print_r(Input::all());
+
+        /* Test Mode Secret data-key="sk_test_pK8BiJvfzn4H6RJ5VbnEwGSI" */
+        /* Prod Mode Secret data-key="sk_live_vOWzFsE1oJcUUusNSE5OGnpe" */
+
+        \Stripe\Stripe::setApiKey('sk_live_vOWzFsE1oJcUUusNSE5OGnpe');
+
+        $token  = $_POST['stripeToken'];
+
+        $customer = \Stripe\Customer::create(array(
+            'email' => $person->email,
+            'card'  => $token
+        ));
+
+        $charge = \Stripe\Charge::create(array(
+            'customer' => $customer->id,
+            'amount'   => ($person->total * 100),
+            'currency' => 'usd',
+            'receipt_email' => $person->email
+        ));
 
         $person->is_paid = 1;
         $person->save();

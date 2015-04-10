@@ -61,7 +61,8 @@
 		  			<div class="text-muted">Seriously, get one!</div>
 				</div>
 			</div>
-			<h2>McRiver Gear</h2>
+
+			<h2>McRiver Gear <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#gearSizes">See Sizes and Prices</button></h2>
 			<div class="form-group">
 				<label class="col-xs-12">Men's T-Shirts</label>
 				<label class="control-label col-sm-6 col-lg-4">Select Quanity</label>
@@ -138,7 +139,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-xs-12">Hats</label>
+				<label class="col-xs-12">Hats - $13</label>
 				<label class="control-label col-sm-6 col-lg-4">Select Quanity</label>
 				<div class="col-sm-6">
 					<select class="form-control price-control" id="hat" name="hat" data-price="13">
@@ -148,6 +149,7 @@
 		  			</select>
 				</div>
 			</div>
+
 			<h2>Contact Info</h2>
 			<div class="form-group">
 				<label class="control-label col-sm-6 col-lg-4">Email Address</label>
@@ -195,6 +197,89 @@
 	<div class="col-sm-4 hidden-xs">
 		<img src="{{url('/')}}/img/mcriver-jim.jpg" class="img-responsive featured-img" alt="McRiver Jim">
 	</div>
+</div>
+
+<div class="modal fade" id="gearSizes" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+			<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">McRiver Gear Prices</h4>
+      		</div>
+      		<div class="modal-body">
+      			<table class="table table-striped">
+      				<thead>
+      					<tr>
+      						<th></th>
+      						<th>S</th>
+      						<th>M</th>
+      						<th>L</th>
+      						<th>XL</th>
+      						<th>2XL</th>
+      						<th>3XL</th>
+      						<th>4XL</th>
+      					</tr>
+      				</thead>
+      				<tbody>
+      					<tr>
+      						<th>Men's T-Shirt</th>
+      						<td>$13</td>
+      						<td>$13</td>
+      						<td>$13</td>
+      						<td>$13</td>
+      						<td>$14</td>
+      						<td>$14</td>
+      						<td>$14</td>
+      					</tr>
+      					<tr>
+      						<th>Men's Tank Top</th>
+      						<td>$13</td>
+      						<td>$13</td>
+      						<td>$13</td>
+      						<td>$13</td>
+      						<td>$14</td>
+      						<td></td>
+      						<td></td>
+      					</tr>
+      					<tr>
+      						<th>Women's Tank Top</th>
+      						<td>$14</td>
+      						<td>$14</td>
+      						<td>$14</td>
+      						<td>$14</td>
+      						<td>$15</td>
+      						<td></td>
+      						<td></td>
+      					</tr>
+      					<tr>
+      						<th>Crew Neck Sweatshirts</th>
+      						<td>$23</td>
+      						<td>$23</td>
+      						<td>$23</td>
+      						<td>$23</td>
+      						<td>$26</td>
+      						<td>$27</td>
+      						<td>$27</td>
+      					</tr>
+      					<tr>
+      						<th>Hooded Sweatshirts</th>
+      						<td>$29</td>
+      						<td>$29</td>
+      						<td>$29</td>
+      						<td>$29</td>
+      						<td>$30</td>
+      						<td>$31</td>
+      						<td>$31</td>
+      					</tr>
+      					<tr>
+      						<th>Hats</th>
+      						<td colspan="7">$13 - One Size Fits All</td>
+      					</tr>
+      				</tbody>
+      			</table>
+      		</div>
+    	</div>
+  	</div>
 </div>
 
 <div class="modal fade" id="rookieRequirements" tabindex="-1" role="dialog">

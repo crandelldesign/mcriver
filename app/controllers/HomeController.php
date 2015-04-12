@@ -200,6 +200,7 @@ class HomeController extends BaseController {
             ));
         }
         
+        $person->payment_method = 'online';
         $person->is_paid = 1;
         $person->save();
 

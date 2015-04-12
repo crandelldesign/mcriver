@@ -10,15 +10,16 @@
 </div>
 @endif
 
+<p>Enter the name and email you used to find your order.</p>
 
 <form action="{{url('/')}}/order-status" method="post" role="form">
   	<div class="form-group">
     	<label for="name">Name</label>
-    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" required="required">
   	</div>
   	<div class="form-group">
     	<label for="email">Email</label>
-    	<input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email">
+    	<input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" required="required">
 	</div>
 	<button type="submit" class="btn btn-lg btn-default pull-right">Submit</button>
 	<div class="clearfix"></div>

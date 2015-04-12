@@ -5,6 +5,9 @@
 
 <p>Name: <strong>{{$person->name}}</strong></p>
 
+<p>Email: <strong>{{$person->email}}</strong></p>
+
+@if(isset($items))
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -31,6 +34,31 @@
 		</tr>
 	</tfoot>
 </table>
+@else
+
+<table class="table orders-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date Registered</th>
+            <th>Items Ordered</th>
+            <th>Total</th>
+            <th>Payment Type</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tr data-order="{{$person->id}}">
+        <td>{{$person->name}}</td>
+        <td>{{date('n/d/Y',strtotime($person->date))}}</td>
+        <td>{{rtrim($person->items,',')}}</td>
+        <td>{{$person->total}}</td>
+        <td>{{ucwords($person->payment_method)}}</td>
+        <td>{{($person->is_paid)?'Paid':'Unpaid'}}</td>
+    </tr>
+</table>
+
+@endif
 
 <div class="text-center">
 	<button type="button" class="btn btn-success btn-print-order">Print Your Order</button>

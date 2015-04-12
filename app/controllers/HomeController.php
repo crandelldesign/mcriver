@@ -200,6 +200,7 @@ class HomeController extends BaseController {
             ));
         }
         
+        $person->payment_method = 'online';
         $person->is_paid = 1;
         $person->save();
 
@@ -208,7 +209,10 @@ class HomeController extends BaseController {
         $vw->description = "";
         $vw->active_page = "signup";
 
-        $vw->items = Session::get('itemArray');
+        if(Session::has('itemArray'))
+        {
+            $vw->items = Session::get('itemArray');
+        }
         $vw->person = $person;
 
         return $vw;
@@ -221,6 +225,48 @@ class HomeController extends BaseController {
         $vw->description = "";
         $vw->active_page = "rookies";
         return $vw;
+    }
+
+    public function getOrderStatus()
+    {
+        $vw = View::make('home.order-status');
+        $vw->title = "Order Status";
+        $vw->description = "";
+        $vw->active_page = "orderStatus";
+        return $vw;
+    }
+
+    public function postOrderStatus()
+    {
+        Session::forget('itemArray');
+        Input::get('name');
+        Input::get('email');
+
+        $person = Person::where('name','like',Input::get('name'))->where('email','=',Input::get('email'))->first();
+        if(!$person)
+            return Redirect::to(url('/').'/order-status')->with(array('statusError' => true));
+
+        $vw = View::make('home.order-status2');
+        $vw->title = "Order Status";
+        $vw->description = "";
+        $vw->active_page = "orderStatus";
+
+        $vw->person = $person;
+
+        return $vw;
+    }
+
+    public function getPayCheck()
+    {
+        $person = Person::find(Input::get('id'));
+        if(!$person)
+            return;
+
+        $person->payment_method = 'check';
+        $person->is_paid = 0;
+        $person->save();
+
+        return $person;
     }
 
 	protected function sizeTranslator($size)

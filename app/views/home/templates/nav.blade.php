@@ -24,6 +24,7 @@
 				    <ul id="menu-menu" class="nav navbar-nav">
 				    	<li class="{{$active_page=='home'?'active':''}}"><a href="{{url('/')}}">Home</a></li>
 				    	<li class="{{$active_page=='signup'?'active':''}}"><a href="{{url('/')}}/sign-up">Sign Up to Party</a></li>
+				    	<li class="{{$active_page=='orderStatus'?'active':''}}"><a href="{{url('/')}}/order-status">Order Status</a></li>
 				    	<li class="{{$active_page=='rookies'?'active':''}}"><a href="{{url('/')}}/rookies">Rookie Requirements</a></li>
 					</ul>				
 				</div><!-- /.navbar-collapse -->

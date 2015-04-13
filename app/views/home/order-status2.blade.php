@@ -45,7 +45,7 @@
 
 <p>However, if you want to pay online, click below.</p>
 
-<p><form id="stripeForm" action="/confirm" method="POST">
+<p><form id="stripeForm" action="/confirm/{{$person->id}}" method="POST">
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="pk_live_HLWAvzdpzXU7NwFRSBm3SPZI"
@@ -62,7 +62,7 @@
 
 <p>Your online payment never posted. Please click the button below:</p>
 
-<p><form id="stripeForm" action="/confirm" method="POST">
+<p><form id="stripeForm" action="/confirm/{{$person->id}}" method="POST">
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="pk_live_HLWAvzdpzXU7NwFRSBm3SPZI"

@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '5inallhosting.com',
-			'database'  => 'crandell_mcriver',
-			'username'  => 'crandell_5inall',
-			'password'  => 'march2001',
+            'host'      => $_ENV['APP_DB_HOST'],
+			'database'  => $_ENV['APP_DB_NAME'],
+			'username'  => $_ENV['APP_DB_USER'],
+			'password'  => $_ENV['APP_DB_PASS'],
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

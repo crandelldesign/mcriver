@@ -3,6 +3,8 @@
 
 <h1>Orders</h1>
 
+<h3>Total: {{count($orders)}}</h3>
+
 	<div><strong><small>Filter By Name</small></strong></div>
 	<form class="form-inline margin-bottom-10">
 		<div class="form-group">
@@ -16,10 +18,11 @@
 	<thead>
 		<tr>
 			<th>Name</th>
-			<th>Date Registered</th>
-			<th>Items Ordered</th>
+			<th>Registered</th>
+			<th style="width: 450px">Items Ordered</th>
 			<th>Total</th>
-			<th>Payment Type</th>
+			<th>Payment</th>
+			<th>Phone</th>
 			<th>Status</th>
 			<th></th>
 		</tr>
@@ -31,6 +34,7 @@
 		<td>{{rtrim($order->items,',')}}</td>
 		<td>{{$order->total}}</td>
 		<td>{{ucwords($order->payment_method)}}</td>
+		<td>{{$order->phone}}</td>
 		<td>{{($order->is_paid)?'Paid':'Unpaid'}}</td>
 		<td>@if($order->is_paid)
 			<button data-order="{{$order->id}}" class="btn btn-default btn-xs btn-mark-unpaid">Make Unpaid</button>

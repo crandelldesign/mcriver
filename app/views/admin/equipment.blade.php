@@ -212,4 +212,6 @@
 	@endif
 </table>
 
+<p><a class="btn btn-default" href="{{url('/')}}/admin">Return to Main Admin Page</a></p>
+
 @stop

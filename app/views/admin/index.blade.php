@@ -13,6 +13,7 @@
 
 <ul>
 	<li><a href="{{url('/')}}/admin/orders">Check Sign Ups</a></li>
+	<li><a href="{{url('/')}}/admin/equipment">Check Equipment Totals</a></li>
 	<li><a href="{{url('/')}}/admin/change-password">Change Your Password</a></li>
     <li><a href="{{url('/')}}/admin/logout">Logout</a></li>
 </ul>

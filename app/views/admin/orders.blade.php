@@ -29,7 +29,7 @@
 	</thead>
 	@foreach($orders as $order)
 	<tr data-order="{{$order->id}}">
-		<td>{{$order->name}}</td>
+		<td><a class="pointer" data-toggle="modal" data-target="#{{$order->id}}OrderModal">{{$order->name}}</a></td>
 		<td>{{date('n/d/Y',strtotime($order->date))}}</td>
 		<td>{{rtrim($order->items,',')}}</td>
 		<td>{{$order->total}}</td>
@@ -44,6 +44,49 @@
 	</tr>
 	@endforeach
 	</table>
+
+	@foreach($orders as $order)
+	<?php
+		$items = explode(',', $order->items);
+	?>
+	<div class="modal fade" id="{{$order->id}}OrderModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Order Details</h4>
+				</div>
+				<div class="modal-body">
+					<p>Name: {{$order->name}}<br>
+						Email: {{$order->email}}<br>
+						Phone: {{$order->phone}}</p>
+					<table class="table table-striped orders-table">
+					<thead>
+						<tr>
+							<th>Items</th>
+							<th></th>
+						</tr>
+					</thead>
+					@foreach($items as $item)
+					<tr>
+						<td colspan="2">{{$item}}</td>
+					</tr>
+					@endforeach
+					<tr>
+						<td><strong>Total</strong></td>
+						<td class="text-right"><strong>{{$order->total}}</strong></td>
+					</tr>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-lg btn-success print-modal">Print</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	@endforeach
+
+
 @elseif((count($orders) == 0) && isset($filter))
 
 	<p>There are no orders with a name staring with <strong>&quot;{{$filter}}&quot;</strong></p>
@@ -99,6 +142,10 @@
 	    if(e.which == 13) {
 	        filterNames();
 	    }
+	});
+	$('.print-modal').click(function(event)
+	{
+		$('.modal.in .modal-body').print();
 	});
 	function filterNames()
 	{

@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+Route::controller('/', 'HomeController');
+
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 /*
 |--------------------------------------------------------------------------

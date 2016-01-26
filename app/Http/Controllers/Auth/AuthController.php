@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace mcriver\Http\Controllers\Auth;
 
-use App\User;
+use mcriver\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use mcriver\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

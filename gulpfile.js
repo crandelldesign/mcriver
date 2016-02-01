@@ -17,55 +17,30 @@ elixir(function(mix) {
 		'app.scss',
 		'public/css/stylesheet.css',
 		{
-			includePaths: [
-			    'node_modules/motion-ui/src',
-			    'vendor/zurb/foundation/scss/'
-			],
-			outputStyle: 'expanded'
-		}
+	        includePaths: [
+	            'vendor/twbs/bootstrap-sass/assets/stylesheets/',
+	            'vendor/fortawesome/font-awesome/scss/'
+	        ],
+	        //outputStyle: 'expanded'
+      	}
     );
-    mix.copy('node_modules/motion-ui/dist/motion-ui.js', 'resources/assets/js/foundation');
-    mix.copy('vendor/zurb/foundation/js/*.js', 'resources/assets/js/foundation');
+    //mix.copy('node_modules/motion-ui/dist/motion-ui.js', 'resources/assets/js/foundation');
+    mix.copy('vendor/twbs/bootstrap-sass/assets/javascripts/*.js', 'resources/assets/js/bootstrap');
 
     mix.scripts(
 		[
 	        'jquery-2.2.0.min.js',
-	        'foundation/motion-ui.js',
-	        'foundation/foundation.core.js',
-	        'foundation/foundation.abide.js',
-	        'foundation/foundation.accordion.js',
-	        'foundation/foundation.accordionMenu.js',
-	        'foundation/foundation.drilldown.js',
-	        'foundation/foundation.dropdown.js',
-	        'foundation/foundation.dropdownMenu.js',
-	        'foundation/foundation.equalizer.js',
-	        'foundation/foundation.interchange.js',
-	        'foundation/foundation.magellan.js',
-	        'foundation/foundation.offcanvas.js',
-	        'foundation/foundation.orbit.js',
-	        'foundation/foundation.responsiveMenu.js',
-	        'foundation/foundation.responsiveToggle.js',
-	        'foundation/foundation.reveal.js',
-	        'foundation/foundation.slider.js',
-	        'foundation/foundation.sticky.js',
-	        'foundation/foundation.tabs.js',
-	        'foundation/foundation.toggler.js',
-	        'foundation/foundation.tooltip.js',
-	        'foundation/foundation.util.box.js',
-	        'foundation/foundation.util.keyboard.js',
-	        'foundation/foundation.util.mediaQuery.js',
-	        'foundation/foundation.util.motion.js',
-	        'foundation/foundation.util.nest.js',
-	        'foundation/foundation.util.timerAndImageLoader.js',
-	        'foundation/foundation.util.touch.js',
-	        'foundation/foundation.util.triggers.js'
+	        'bootstrap/bootstrap.js'
 		],
 		'public/js/master.js'
     );
 
-	mix.copy('resources/assets/fonts/foundation-icons.*', 'public/fonts');
+	mix.copy('vendor/twbs/bootstrap-sass/assets/fonts', 'public/fonts/bootstrap');
+	mix.copy('vendor/fortawesome/font-awesome/fonts', 'public/fonts');
 
     mix.version(['css/stylesheet.css', 'js/master.js']);
 
-    mix.copy('resources/assets/fonts/foundation-icons.*', 'public/build/fonts');
+    //mix.copy('resources/assets/fonts/foundation-icons.*', 'public/build/fonts');
+    mix.copy('vendor/twbs/bootstrap-sass/assets/fonts', 'public/build/fonts/bootstrap');
+	mix.copy('vendor/fortawesome/font-awesome/fonts', 'public/build/fonts');
 });

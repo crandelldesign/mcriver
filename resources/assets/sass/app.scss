@@ -1,8 +1,50 @@
-@import 'motion-ui';
-@include motion-ui-transitions;
+//@import 'motion-ui';
+//@include motion-ui-transitions;
 
-@import 'foundation';
-@include foundation-everything;
+//@import 'foundation';
+//@include foundation-everything;
 
-@import 'foundation_icons';
+//@import 'foundation_icons';
 
+//@import "vender/twbs/bootstrap-sass/assets/stylesheets/bootstrap";
+@import 'bootstrap';
+@import 'font-awesome';
+@import 'variables';
+
+/* Body */
+.site-container {
+	@media (min-width: $screen-sm-min) {
+		max-width: 1200px;
+		margin: 20px auto;
+	    border: 1px solid $black;
+	    border-radius: 25px;
+		@include box-shadow($z4-shadow);
+		overflow: hidden;
+	}
+}
+
+/* Header */
+.header {
+	background-color: $black;
+	@media (min-width: $screen-sm-min) {
+		.logo-container {
+		    padding: 20px;
+		    background-color: $black;
+		    border-top-left-radius: 25px;
+		    border-top-right-radius: 25px;
+		}
+	}
+}
+
+/* Content */
+.page {
+	background-color: #fff;
+}
+
+/* Footer */
+.footer {
+	text-align: center;
+	font-size: 10px;
+	color: #fff;
+	background-color: $black;
+}

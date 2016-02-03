@@ -2,7 +2,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
+    <a href="{{url('/')}}/admin" class="logo">McRiver Admin</a>
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">

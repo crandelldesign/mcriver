@@ -35,6 +35,7 @@ class CreateTables extends Migration
             $table->timestamps();
             $table->increments('id');
             $table->string('email');
+            $table->string('name');
             $table->integer('user_id');
             $table->integer('year');
             $table->float('total');

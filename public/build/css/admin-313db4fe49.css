@@ -12235,4 +12235,8 @@ table.text-center, table.text-center td, table.text-center th {
   .skin-blue.layout-top-nav .main-header > .logo:hover {
     background-color: #3b8ab8; }
 
+/* General Styles*/
+.margin-bottom-15 {
+  margin-bottom: 15px; }
+
 /*# sourceMappingURL=admin.css.map */

@@ -13,7 +13,7 @@
 /*Route::get('/admin', function () {
     return view('admin.index');
 });*/
-Route::controller('/admin', 'AdminController');
+
 //Route::controller('/', 'HomeController');
 
 Route::get('/', 'HomeController@getIndex');
@@ -37,5 +37,5 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
-    Route::get('/admin', 'AdminController@getIndex');
+    Route::controller('/admin', 'AdminController');
 });

@@ -23,11 +23,6 @@ class AdminController extends Controller
             //return redirect('/');
     }
 
-    public function getNotAdmin()
-    {
-        echo 'Not Admin';
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -35,7 +30,13 @@ class AdminController extends Controller
      */
     public function getIndex()
     {
-        //echo \Auth::user()->is_admin;
-        return view('admin.index');
+        $view = view('admin.index');
+        return $view;
+    }
+
+    public function getProducts($category_id = null)
+    {
+        $view = view('admin.products-index');
+        return $view;
     }
 }

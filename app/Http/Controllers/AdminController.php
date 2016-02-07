@@ -5,6 +5,7 @@ namespace mcriver\Http\Controllers;
 use mcriver\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use mcriver\Category;
 
 class AdminController extends Controller
 {
@@ -36,7 +37,39 @@ class AdminController extends Controller
 
     public function getProducts($category_id = null)
     {
+        if (!$category_id) {
+            return $this->productsIndex();
+        } else {
+            return $this->products($category_id);
+        }
+    }
+
+    protected function productsIndex()
+    {
         $view = view('admin.products-index');
+        $view->categories = Category::all();
         return $view;
     }
+
+    protected function products($category_id)
+    {
+        $view = view('admin.products');
+        return $view;
+    }
+
+    public function postPostProducts(Request $request, $category_id = null)
+    {
+        if(!$category_id)
+            $category = new Category;
+        else
+            $category = Category::find($category_id);
+
+        $category->name = $request->input('categoryName');
+        $category->slug = $this->toAscii($category->name);
+        $category->description = $request->input('categoryDescription');
+        $category->save();
+
+        return redirect('/admin/products');
+    }
+
 }

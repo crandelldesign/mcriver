@@ -1,4 +1,4 @@
-<title>{{isset($title) ? $title : ''}}</title>
+<title>{{isset($title) ? $title.' | ' : ''}}McRiver Raiders</title>
 <meta name="description" content="{{isset($description) ? $description : ''}}">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">

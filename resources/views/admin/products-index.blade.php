@@ -20,7 +20,7 @@
 									<div class="pull-right">
 										<a href="{{url('/')}}/admin/products/{{$category->id}}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Edit the Products for this Category"><i class="fa fa-chevron-right"></i></a>
 										<button class="btn btn-info btn-sm btn-edit-category" data-toggle="tooltip" data-placement="top" title="Edit this Category"><i class="fa fa-pencil"></i></button>
-										<button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete this Category"><i class="fa fa-trash"></i></button>
+										<button class="btn btn-danger btn-sm btn-delete-category" data-toggle="tooltip" data-placement="top" title="Delete this Category"><i class="fa fa-trash"></i></button>
 									</div>
 								</div>
 							</li>
@@ -94,7 +94,7 @@
 		    <div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel">Edit Category</h4>
+					<h4 class="modal-title">Edit Category</h4>
 				</div>
 				<div class="modal-body">
 					<form method="post" action="{{url('/')}}/admin/post-categories">
@@ -109,19 +109,33 @@
 				        <div class="form-group">
 				        	<label for="isHasSizes">Do the products in this category have sizes?</label><br>
 				        	<label class="radio-inline">
-								<input type="radio" name="isHasSizes" id="isHasSizes1" value="1"> Yes
+								<input type="radio" name="isHasSizes" id="editIsHasSizes1" value="1"> Yes
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="isHasSizes" id="isHasSizes2" value="0" checked> No
+								<input type="radio" name="isHasSizes" id="editIsHasSizes2" value="0"> No
 							</label>
 				        </div>
 				        <div class="form-group">
-				        	{!! csrf_field() !!}
-				        	<button type="submit" class="btn btn-primary">Add Category</button>
+				        	<button type="submit" class="btn btn-primary">Save Category</button>
 				        </div>
 					</form>
 				</div>
 		    </div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="deleteCategoryModal" role="dialog">
+		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Delete Category</h4>
+				</div>
+				<div class="modal-body text-center">
+					<p>Are you sure?</p>
+					<p><a class="btn btn-delete-confirm btn-danger" href="{{url('/')}}/admin/delete-category">Yes</a>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">No</button></p>
+				</div>
+			</div>
 		</div>
 	</div>
 @stop
@@ -156,14 +170,27 @@
 		        async: true,
 		        success: function(result)
 	        	{
-	        		//console.log(result.is_no_sizes);
+	        		console.log(result.is_no_sizes);
 	        		$("#editCategoryModal form").attr('action', "{{url('/')}}/admin/post-categories/"+result.id);
 	        		$('#editCategoryModal #categoryName').val(result.name);
 	        		$('#editCategoryModal #categoryDescription').val(result.description);
-	        		$('#editCategoryModal input[type=radio]').val(result.is_no_sizes);
+	        		if(result.is_no_sizes) {
+	        			$('#editCategoryModal #editIsHasSizes1').prop('checked',true);
+	        			$('#editCategoryModal #editIsHasSizes2').prop('checked',false);
+	        		} else {
+	        			$('#editCategoryModal #editIsHasSizes1').prop('checked',false);
+	        			$('#editCategoryModal #editIsHasSizes2').prop('checked',true);
+	        		}
+	        		//$('#editCategoryModal input[type=radio]').prop('checked',(result.is_no_sizes)?true:false);
 	        		$('#editCategoryModal').modal('show');
 	        	}
         	});
+		});
+		$('.btn-delete-category').click(function()
+		{
+			var categoryID = $(this).parents('li').data('id');
+			$('#deleteCategoryModal .btn-delete-confirm').attr('href', "{{url('/')}}/admin/delete-category/"+categoryID);
+			$('#deleteCategoryModal').modal('show');
 		});
 	})
 </script>

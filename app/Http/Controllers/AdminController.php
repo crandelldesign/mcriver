@@ -6,6 +6,7 @@ use mcriver\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use mcriver\Category;
+use mcriver\Item;
 
 class AdminController extends Controller
 {
@@ -60,7 +61,7 @@ class AdminController extends Controller
 
     public function postPostCategories(Request $request, $category_id = null)
     {
-        if(!$category_id)
+        if (!$category_id)
             $category = new Category;
         else
             $category = Category::find($category_id);
@@ -69,6 +70,10 @@ class AdminController extends Controller
         $category->slug = $this->toAscii($category->name);
         $category->description = $request->input('categoryDescription');
         $category->is_no_sizes = $request->input('isHasSizes');
+        if (!$category_id) {
+            $categoryCount = Category::count();
+            $category->display_order = $categoryCount;
+        }
         $category->save();
 
         return redirect('/admin/products');
@@ -86,4 +91,12 @@ class AdminController extends Controller
         return 'success';
     }
 
+    public function getDeleteCategory(Request $request, $category_id)
+    {
+        $items = Item::where('category_id',$category_id)->update(['category_id' => 0]);
+
+        $category = Category::find($category_id);
+        $category->delete();
+        return redirect('/admin/products');
+    }
 }

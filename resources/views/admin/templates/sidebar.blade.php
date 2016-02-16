@@ -1,3 +1,6 @@
+<?php
+    $navCategories = mcriver\Category::orderBy('display_order')->get();
+?>
 <!-- Left side column. contains the sidebar -->
 <aside class="main-sidebar">
 
@@ -34,10 +37,12 @@
             <li class="active"><a href="#"><span>Link</span></a></li>
             <li><a href="#"><span>Another Link</span></a></li>
             <li class="treeview">
-                <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><span>Products</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
+                @foreach($navCategories as $category)
+                    <li><a href="{{url('/')}}/admin/products/{{$category->id}}">{{$category->name}}</a></li>
+                @endforeach
+                    <li><a href="{{url('/')}}/admin/products">Edit Product Categories</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

@@ -10,6 +10,7 @@
 					<h2 class="box-title">Product Categories</h2>
 				</div>
 				<div class="box-body">
+					@if(!empty($categories))
 					<div class="dd" id="categories">
 						<ol class="dd-list">
 						@foreach($categories as $category)
@@ -27,28 +28,7 @@
 						@endforeach
 						</ol>
 					</div>
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Description</th>
-								<th>Go</th>
-								<th>Edit</th>
-								<th>Delete</th>
-							</tr>
-						</thead>
-						<tbody>
-						@foreach($categories as $category)
-							<tr>
-								<td>{{$category->name}}</td>
-								<td>{{$category->description}}</td>
-								<td><a href="{{url('/')}}/admin/products/{{$category->id}}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Edit the Products for this Category"><i class="fa fa-chevron-right"></i></a></td>
-								<td><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit this Category"><i class="fa fa-pencil"></i></button></td>
-								<td><button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete this Category"><i class="fa fa-trash"></i></button></td>
-							</tr>
-						@endforeach
-						</tbody>
-					</table>
+					@endif
 					@if(empty($categories))
 					<p>There are no catgeories yet for the products. Please enter one below.</p>
 					@endif
@@ -158,7 +138,9 @@
         	});
 	    };
 		$('[data-toggle="tooltip"]').tooltip();
-		$('#categories').nestable().on('change', updateOutput);;
+		$('#categories').nestable({
+        	maxDepth: 1
+    	}).on('change', updateOutput);;
 		$('.btn-edit-category').click(function()
 		{
 			var categoryID = $(this).parents('li').data('id');

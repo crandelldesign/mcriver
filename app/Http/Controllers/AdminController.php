@@ -33,6 +33,21 @@ class AdminController extends Controller
     public function getIndex()
     {
         $view = view('admin.index');
+        $view->active_page = 'home';
+        return $view;
+    }
+
+    public function getSignUps()
+    {
+        $view = view('admin.index');
+        $view->active_page = 'sign-ups';
+        return $view;
+    }
+
+    public function getEquipment()
+    {
+        $view = view('admin.index');
+        $view->active_page = 'equipment';
         return $view;
     }
 
@@ -49,6 +64,7 @@ class AdminController extends Controller
     {
         $view = view('admin.products-index');
         $view->categories = Category::orderBy('display_order')->get();
+        $view->active_page = 'products';
         return $view;
     }
 
@@ -56,9 +72,11 @@ class AdminController extends Controller
     {
         $view = view('admin.products');
         $view->category = Category::find($category_id);
+        $view->active_page = 'products';
         return $view;
     }
 
+    /* Editing Functions */
     public function postPostCategories(Request $request, $category_id = null)
     {
         if (!$category_id)

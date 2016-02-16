@@ -16,6 +16,7 @@
 
 //Route::controller('/', 'HomeController');
 
+Route::controller('/api', 'ApiController');
 Route::get('/', 'HomeController@getIndex');
 Route::get('/not-permitted', 'HomeController@getNotPermitted');
 

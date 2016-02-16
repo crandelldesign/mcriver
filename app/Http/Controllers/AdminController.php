@@ -47,17 +47,18 @@ class AdminController extends Controller
     protected function productsIndex()
     {
         $view = view('admin.products-index');
-        $view->categories = Category::all();
+        $view->categories = Category::orderBy('display_order')->get();
         return $view;
     }
 
     protected function products($category_id)
     {
         $view = view('admin.products');
+        $view->category = Category::find($category_id);
         return $view;
     }
 
-    public function postPostProducts(Request $request, $category_id = null)
+    public function postPostCategories(Request $request, $category_id = null)
     {
         if(!$category_id)
             $category = new Category;
@@ -67,9 +68,22 @@ class AdminController extends Controller
         $category->name = $request->input('categoryName');
         $category->slug = $this->toAscii($category->name);
         $category->description = $request->input('categoryDescription');
+        $category->is_no_sizes = $request->input('isHasSizes');
         $category->save();
 
         return redirect('/admin/products');
+    }
+
+    public function postPostCategoriesOrder(Request $request)
+    {
+        $displayOrder = 0;
+        foreach ($request->input('categoryOrder') as $categoryOrder) {
+            $category = Category::find($categoryOrder['id']);
+            $category->display_order = $displayOrder;
+            $category->save();
+            $displayOrder++;
+        }
+        return 'success';
     }
 
 }

@@ -18,5 +18,6 @@
 		@include('admin.templates.footer')
 		</div>
 		<script type="text/javascript" src="{{ elixir('js/admin.js') }}"></script>
+		@yield('scripts')
 	</body>
 </html>

@@ -12292,7 +12292,7 @@ table.text-center, table.text-center td, table.text-center th {
   float: left;
   width: 25px;
   height: 20px;
-  margin: 5px 0;
+  margin: 10px 0;
   padding: 0;
   text-indent: 100%;
   white-space: nowrap;
@@ -12395,7 +12395,7 @@ table.text-center, table.text-center td, table.text-center th {
   margin: 0; }
 
 .dd3-item > button {
-  margin-left: 30px; }
+  margin-left: 40px; }
 
 .dd3-handle {
   position: absolute;

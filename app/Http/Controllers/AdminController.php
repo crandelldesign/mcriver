@@ -72,7 +72,10 @@ class AdminController extends Controller
     {
         $view = view('admin.products');
         $category = Category::find($category_id);
-        $items = $category->items()->orderBy('display_order')->get();
+        $items = $category->items()->where('parent_id',0)->orderBy('display_order')->get();
+        foreach ($items as $item) {
+            $item->children = $item->children()->orderBy('display_order')->get();
+        }
         $view->category = $category;
         $view->items = $items;
         $view->active_page = 'products';
@@ -126,7 +129,7 @@ class AdminController extends Controller
         if (!$item_id)
             $item = new Item;
         else
-            $item = Category::find($item_id);
+            $item = Item::find($item_id);
 
         $item->name = $request->input('productName');
         $item->short_name = $request->input('productShortName');
@@ -135,11 +138,45 @@ class AdminController extends Controller
         $item->is_one_size = $request->input('isOneSize');
         $item->category_id = $request->input('categoryId');
         if (!$item_id) {
-            $itemCount = Item::count();
+            $itemCount = Item::where('category_id',$request->input('categoryId'))->where('parent_id',0)->count();
             $item->display_order = $itemCount;
         }
         $item->save();
 
         return redirect('/admin/products/'.$request->input('categoryId'));
+    }
+
+    public function postPostItemsOrder(Request $request)
+    {
+        $displayOrder = 0;
+        //print_r($request->input('itemOrder'));
+        //exit;
+        foreach ($request->input('itemOrder') as $itemOrder) {
+            $item = Item::find($itemOrder['id']);
+            $item->display_order = $displayOrder;
+            $item->save();
+            $displayOrder++;
+            $childrenDisplayOrder = 0;
+            if(isset($itemOrder['children'])) {
+                foreach ($itemOrder['children'] as $childrenOrder) {
+                    print_r($childrenOrder);
+                    $item = Item::find($childrenOrder['id']);
+                    $item->display_order = $childrenDisplayOrder;
+                    $item->parent_id = $itemOrder['id'];
+                    $item->save();
+                    $childrenDisplayOrder++;
+                }
+            }
+        }
+        return 'success';
+    }
+
+    public function getDeleteItem(Request $request, $category_id, $item_id)
+    {
+        $items = Item::where('parent_id',$item_id)->update(['parent_id' => 0]);
+
+        $item = Item::find($item_id);
+        $item->delete();
+        return redirect('/admin/products/'.$category_id);
     }
 }

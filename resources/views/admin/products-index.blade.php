@@ -53,10 +53,10 @@
 				        <div class="form-group">
 				        	<label for="isHasSizes">Do the products in this category have sizes?</label><br>
 				        	<label class="radio-inline">
-								<input type="radio" name="isHasSizes" id="isHasSizes1" value="1"> Yes
+								<input type="radio" name="isHasSizes" id="isHasSizes1" value="0"> Yes
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="isHasSizes" id="isHasSizes2" value="0" checked> No
+								<input type="radio" name="isHasSizes" id="isHasSizes2" value="1" checked> No
 							</label>
 				        </div>
 				        <div class="form-group">
@@ -89,10 +89,10 @@
 				        <div class="form-group">
 				        	<label for="isHasSizes">Do the products in this category have sizes?</label><br>
 				        	<label class="radio-inline">
-								<input type="radio" name="isHasSizes" id="editIsHasSizes1" value="1"> Yes
+								<input type="radio" name="isHasSizes" id="editIsHasSizes1" value="0"> Yes
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="isHasSizes" id="editIsHasSizes2" value="0"> No
+								<input type="radio" name="isHasSizes" id="editIsHasSizes2" value="1"> No
 							</label>
 				        </div>
 				        <div class="form-group">
@@ -146,13 +146,12 @@
 			var categoryID = $(this).parents('li').data('id');
 			$.ajax({
 		        type: 'GET',
-		        url: '{{url("/")}}/api/products/'+categoryID,
+		        url: '{{url("/")}}/api/categories/'+categoryID,
 		        data: {category : categoryID},
 		        dataType: 'json',
 		        async: true,
 		        success: function(result)
 	        	{
-	        		console.log(result.is_no_sizes);
 	        		$("#editCategoryModal form").attr('action', "{{url('/')}}/admin/post-categories/"+result.id);
 	        		$('#editCategoryModal #categoryName').val(result.name);
 	        		$('#editCategoryModal #categoryDescription').val(result.description);

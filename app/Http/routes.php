@@ -10,14 +10,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/admin', function () {
+/*Route::get('/admin', function () {
     return view('admin.index');
-});
-Route::controller('/', 'HomeController');
-
-/*Route::get('/', function () {
-    return view('welcome');
 });*/
+
+//Route::controller('/', 'HomeController');
+
+Route::controller('/api', 'ApiController');
+Route::get('/', 'HomeController@getIndex');
+Route::get('/not-permitted', 'HomeController@getNotPermitted');
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,10 @@ Route::controller('/', 'HomeController');
 
 Route::group(['middleware' => ['web']], function () {
     //
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::controller('/admin', 'AdminController');
 });

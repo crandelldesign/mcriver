@@ -29,6 +29,6 @@ class User extends Authenticatable
      */
     public function orders()
     {
-        return $this->hasMany('mcriver\Oredr');
+        return $this->hasMany('mcriver\Order');
     }
 }

@@ -25,6 +25,13 @@ class Authenticate
             }
         }
 
-        return $next($request);
+        if(Auth::user()->is_admin)
+            return $next($request);
+        else {
+            if (strpos($request->path(),'admin') !== false) {
+                return redirect('/not-permitted');
+            }
+            return $next($request);
+        }
     }
 }

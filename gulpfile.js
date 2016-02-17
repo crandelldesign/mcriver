@@ -48,7 +48,8 @@ elixir(function(mix) {
 		[
 	        'jquery-2.2.0.min.js',
 	        'bootstrap/bootstrap.js',
-	        'adminlte/app.js'
+	        'adminlte/app.js',
+	        'jquery.nestable.js'
 		],
 		'public/js/admin.js'
     );

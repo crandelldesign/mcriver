@@ -71,7 +71,10 @@ class AdminController extends Controller
     protected function products($category_id)
     {
         $view = view('admin.products');
-        $view->category = Category::find($category_id);
+        $category = Category::find($category_id);
+        $items = $category->items()->orderBy('display_order')->get();
+        $view->category = $category;
+        $view->items = $items;
         $view->active_page = 'products';
         return $view;
     }
@@ -116,5 +119,27 @@ class AdminController extends Controller
         $category = Category::find($category_id);
         $category->delete();
         return redirect('/admin/products');
+    }
+
+    public function postPostItem(Request $request, $item_id = null)
+    {
+        if (!$item_id)
+            $item = new Item;
+        else
+            $item = Category::find($item_id);
+
+        $item->name = $request->input('productName');
+        $item->short_name = $request->input('productShortName');
+        $item->slug = $this->toAscii($item->name);
+        $item->price = $request->input('productPrice');
+        $item->is_one_size = $request->input('isOneSize');
+        $item->category_id = $request->input('categoryId');
+        if (!$item_id) {
+            $itemCount = Item::count();
+            $item->display_order = $itemCount;
+        }
+        $item->save();
+
+        return redirect('/admin/products/'.$request->input('categoryId'));
     }
 }

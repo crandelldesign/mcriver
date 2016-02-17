@@ -140,7 +140,7 @@
 		$('[data-toggle="tooltip"]').tooltip();
 		$('#categories').nestable({
         	maxDepth: 1
-    	}).on('change', updateOutput);;
+    	}).on('change', updateOutput);
 		$('.btn-edit-category').click(function()
 		{
 			var categoryID = $(this).parents('li').data('id');
@@ -174,6 +174,6 @@
 			$('#deleteCategoryModal .btn-delete-confirm').attr('href', "{{url('/')}}/admin/delete-category/"+categoryID);
 			$('#deleteCategoryModal').modal('show');
 		});
-	})
+	});
 </script>
 @stop

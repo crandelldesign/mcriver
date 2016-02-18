@@ -19,6 +19,8 @@
 Route::controller('/api', 'ApiController');
 Route::get('/', 'HomeController@getIndex');
 Route::get('/not-permitted', 'HomeController@getNotPermitted');
+Route::get('/sign-up', 'HomeController@getSignUp');
+Route::get('/sign-up/2', 'HomeController@getSignUpStep2'); //Add in Order Number
 
 /*
 |--------------------------------------------------------------------------

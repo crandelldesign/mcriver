@@ -37,6 +37,41 @@ class AdminController extends Controller
         return $view;
     }
 
+    public function getChangePassword()
+    {
+        $view = view('admin.change-password');
+        $view->active_page = 'change-password';
+        return $view;
+    }
+
+    public function postChangePassword(Request $request)
+    {
+        echo 'Test';
+        $this->validate($request, [
+            'current_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+        $credentials = [
+            'email' => \Auth::user()->email,
+            'password' => $request->get('current_password'),
+        ];
+
+        if(\Auth::validate($credentials)) {
+            $user = \Auth::user();
+            $user->password = bcrypt($request->get('password'));
+            $user->save();
+            return redirect('/admin')->with('message', 'Password changed successfully.');
+        } else {
+            return redirect()->back()->withErrors('Incorrect old password.');
+        }
+        
+        
+        /*$view = view('admin.change-password');
+        $view->active_page = 'change-password';
+        return $view;*/
+    }
+
     public function getSignUps()
     {
         $view = view('admin.index');

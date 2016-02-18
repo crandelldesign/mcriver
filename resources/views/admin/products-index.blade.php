@@ -53,10 +53,10 @@
 				        <div class="form-group">
 				        	<label for="isHasSizes">Do the products in this category have sizes?</label><br>
 				        	<label class="radio-inline">
-								<input type="radio" name="isHasSizes" id="isHasSizes1" value="0"> Yes
+								<input type="radio" name="isHasSizes" id="isHasSizes1" value="0" checked> Yes
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="isHasSizes" id="isHasSizes2" value="1" checked> No
+								<input type="radio" name="isHasSizes" id="isHasSizes2" value="1"> No
 							</label>
 				        </div>
 				        <div class="form-group">
@@ -156,11 +156,11 @@
 	        		$('#editCategoryModal #categoryName').val(result.name);
 	        		$('#editCategoryModal #categoryDescription').val(result.description);
 	        		if(result.is_no_sizes) {
-	        			$('#editCategoryModal #editIsHasSizes1').prop('checked',true);
-	        			$('#editCategoryModal #editIsHasSizes2').prop('checked',false);
-	        		} else {
 	        			$('#editCategoryModal #editIsHasSizes1').prop('checked',false);
 	        			$('#editCategoryModal #editIsHasSizes2').prop('checked',true);
+	        		} else {
+	        			$('#editCategoryModal #editIsHasSizes1').prop('checked',true);
+	        			$('#editCategoryModal #editIsHasSizes2').prop('checked',false);
 	        		}
 	        		//$('#editCategoryModal input[type=radio]').prop('checked',(result.is_no_sizes)?true:false);
 	        		$('#editCategoryModal').modal('show');

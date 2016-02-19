@@ -7874,6 +7874,21 @@ button.close {
   .footer p {
     margin-bottom: 2px; }
 
+/* Home Page */
+.featured-img-container {
+  margin: 0 -15px; }
+  @media (min-width: 768px) {
+    .featured-img-container {
+      margin: 0; } }
+
+.featured-img {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-top: 1px solid #725d2a;
+  border-bottom: 1px solid #725d2a; }
+  @media (min-width: 768px) {
+    .featured-img {
+      border: 1px solid #725d2a; } }
+
 /* General Styles */
 .margin-top-0 {
   margin-top: 0; }

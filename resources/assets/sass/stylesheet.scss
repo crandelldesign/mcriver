@@ -73,6 +73,22 @@
 	}
 }
 
+/* Home Page */
+.featured-img-container {
+	margin: 0 -15px;
+	@media (min-width: $screen-sm-min) {
+		margin: 0;
+	}
+}
+.featured-img {
+	@include box-shadow($z1-shadow);
+	border-top: 1px solid $darkgold;
+	border-bottom: 1px solid $darkgold;
+	@media (min-width: $screen-sm-min) {
+		border: 1px solid $darkgold;
+	}
+}
+
 /* General Styles */
 .margin-top-0 {
 	margin-top: 0;

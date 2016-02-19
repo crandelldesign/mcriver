@@ -13,6 +13,7 @@
 
 /* Body */
 .site-container {
+	color: $black;
 	@media (min-width: $screen-sm-min) {
 		max-width: 1200px;
 		margin: 20px auto;
@@ -34,17 +35,51 @@
 		    border-top-right-radius: 25px;
 		}
 	}
+	.navbar {
+		background-color: $gold;
+		margin-bottom: 0;
+		border-bottom: 1px solid $black;
+		border-radius: 0;
+		.navbar-brand {
+			padding: 8px 15px;
+			img {
+				height: 100%;
+				width: auto;
+			}
+		}
+		.navbar-toggle {
+		    border-color: $black;
+		    .icon-bar {
+		    	background-color: $black;
+		    }
+		}
+	}
 }
 
 /* Content */
 .page {
-	background-color: #fff;
+	background-color: $white;
 }
 
 /* Footer */
 .footer {
+    padding: 20px;
 	text-align: center;
 	font-size: 10px;
 	color: #fff;
 	background-color: $black;
+	p {
+		margin-bottom: 2px;
+	}
+}
+
+/* General Styles */
+.margin-top-0 {
+	margin-top: 0;
+}
+.margin-bottom-0 {
+	margin-bottom: 0;
+}
+.margin-bottom-15 {
+	margin-bottom: 15px;
 }

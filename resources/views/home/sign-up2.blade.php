@@ -13,44 +13,9 @@
 		<h2>Continue as a Guest</h2>
 	</div>
 	<div class="col-md-8">
-		<h2>Review Your Order</h2>
+		<h2 class="margin-top-0">Review Your Order</h2>
 	</div>
 </div>
-
-<div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
-  	<div class="modal-dialog">
-    	<div class="modal-content">
-      		<div class="modal-header">
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        		<h4 class="modal-title">Login</h4>
-      		</div>
-      		<div class="modal-body">
-        		<form class="form-horizontal" role="form" method="POST" action="">
-					<div class="form-group">
-						<label class="col-md-4 control-label">Email</label>
-                        <div class="col-md-6">
-			            	<input type="email" class="form-control" name="email" placeholder="Email">
-			            </div>
-			        </div>
-			        <div class="form-group">
-			        	<label class="col-md-4 control-label">Password</label>
-                        <div class="col-md-6">
-			            	<input type="password" class="form-control" name="password" placeholder="Password">
-			            </div>
-			        </div>
-			        <div class="form-group">
-			        	{!! csrf_field() !!}
-			        	<div class="col-md-6 col-md-offset-4">
-				        	<button type="submit" class="btn btn-primary btn-block">
-				                Continue
-				            </button>
-				        </div>
-			        </div>
-	    		</form>
-      		</div>
-    	</div><!-- /.modal-content -->
-  	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 <div class="modal fade" tabindex="-1" role="dialog" id="registerModal">
   	<div class="modal-dialog">

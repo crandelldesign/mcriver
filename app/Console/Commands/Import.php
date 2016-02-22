@@ -51,7 +51,9 @@ class Import extends Command
             $user->phone = '248-310-4923';
             $user->save();
             $this->info("Loaded Jim McDonald\n");
-
+        }
+        $user = User::where('email','=','mrcrandell@gmail.com')->first();
+        if(empty($user)) {
             $user = new User;
             $user->name = 'Matt Crandell';
             $user->email = 'mrcrandell@gmail.com';

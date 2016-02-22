@@ -51,8 +51,15 @@ class Import extends Command
             $user->phone = '248-310-4923';
             $user->save();
             $this->info("Loaded Jim McDonald\n");
+
+            $user = new User;
+            $user->name = 'Matt Crandell';
+            $user->email = 'mrcrandell@gmail.com';
+            $user->phone = '248-240-1642';
+            $user->save();
+            $this->info("Loaded Matt Crandell\n");
         }
-        if (($handle = fopen(url('/')."/data/old/people.csv", "r")) !== FALSE) {
+        /*if (($handle = fopen(url('/')."/data/old/people.csv", "r")) !== FALSE) {
             if(($data = fgetcsv($handle, null, ",")) !== FALSE) {
                 $num = count($data);
                 $this->info("people.csv ".$num." columns\n");
@@ -75,7 +82,7 @@ class Import extends Command
             }
             fclose($handle);
         }
-        $this->info("Loaded $counter Old Users\n");
+        $this->info("Loaded $counter Old Users\n");*/
         $this->info("Begin Linking Admins");
         if (($handle = fopen(url('/')."/data/old/users.csv", "r")) !== FALSE) {
             if(($data = fgetcsv($handle, null, ",")) !== FALSE) {

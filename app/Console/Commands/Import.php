@@ -84,7 +84,7 @@ class Import extends Command
         }
         $this->info("Loaded $counter Old Users\n");*/
         $this->info("Begin Linking Admins");
-        if (($handle = fopen(url('/')."/data/old/users.csv", "r")) !== FALSE) {
+        if (($handle = fopen("/data/old/users.csv", "r")) !== FALSE) {
             if(($data = fgetcsv($handle, null, ",")) !== FALSE) {
                 $num = count($data);
                 $this->info("users.csv ".$num." columns\n");

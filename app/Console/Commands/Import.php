@@ -52,6 +52,7 @@ class Import extends Command
             $user->save();
             $this->info("Loaded Jim McDonald\n");
         }
+        // Check if Matt Crandell is in the Database
         $user = User::where('email','=','mrcrandell@gmail.com')->first();
         if(empty($user)) {
             $user = new User;
@@ -86,7 +87,7 @@ class Import extends Command
         }
         $this->info("Loaded $counter Old Users\n");*/
         $this->info("Begin Linking Admins");
-        if (($handle = fopen("data/old/users.csv", "r")) !== FALSE) {
+        if (($handle = fopen(public_path()."/data/old/users.csv", "r")) !== FALSE) {
             if(($data = fgetcsv($handle, null, ",")) !== FALSE) {
                 $num = count($data);
                 $this->info("users.csv ".$num." columns\n");

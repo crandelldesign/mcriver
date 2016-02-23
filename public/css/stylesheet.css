@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic|Balthazar");
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -7825,6 +7826,9 @@ button.close {
   content: ""; }
 
 /* Body */
+body {
+  font-family: 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
 .site-container {
   color: #010101; }
   @media (min-width: 768px) {
@@ -7848,6 +7852,7 @@ button.close {
   .header .navbar {
     background-color: #AA8B3C;
     margin-bottom: 0;
+    border-top: 0;
     border-bottom: 1px solid #010101;
     border-radius: 0; }
     .header .navbar .navbar-brand {
@@ -7859,10 +7864,22 @@ button.close {
       border-color: #010101; }
       .header .navbar .navbar-toggle .icon-bar {
         background-color: #010101; }
+    .header .navbar li a {
+      color: #010101; }
+    .header .navbar li.active a {
+      background-color: #010101;
+      color: #fefefe; }
+    .header .navbar li a:hover {
+      background-color: #010101;
+      color: #AA8B3C; }
 
 /* Content */
 .page {
   background-color: #fefefe; }
+
+h1 {
+  font-family: 'Balthazar', serif;
+  color: #725d2a; }
 
 /* Footer */
 .footer {

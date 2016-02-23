@@ -1,17 +1,12 @@
-//@import 'motion-ui';
-//@include motion-ui-transitions;
-
-//@import 'foundation';
-//@include foundation-everything;
-
-//@import 'foundation_icons';
-
-//@import "vender/twbs/bootstrap-sass/assets/stylesheets/bootstrap";
+@import url('http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic|Balthazar');
 @import 'bootstrap';
 @import 'font-awesome';
 @import 'variables';
 
 /* Body */
+body {
+	font-family: 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 .site-container {
 	color: $black;
 	@media (min-width: $screen-sm-min) {
@@ -38,6 +33,7 @@
 	.navbar {
 		background-color: $gold;
 		margin-bottom: 0;
+		border-top: 0;
 		border-bottom: 1px solid $black;
 		border-radius: 0;
 		.navbar-brand {
@@ -53,12 +49,29 @@
 		    	background-color: $black;
 		    }
 		}
+		li {
+			a {
+				color: $black;
+			}
+			&.active a {
+				background-color: $black;
+				color: $white;
+			}
+			a:hover {
+				background-color: $black;
+				color: $gold;
+			}
+		}
 	}
 }
 
 /* Content */
 .page {
 	background-color: $white;
+}
+h1 {
+    font-family: 'Balthazar', serif;
+    color: $darkgold;
 }
 
 /* Footer */

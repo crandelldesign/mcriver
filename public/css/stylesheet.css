@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic|Balthazar");
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -7825,14 +7826,19 @@ button.close {
   content: ""; }
 
 /* Body */
-@media (min-width: 768px) {
-  .site-container {
-    max-width: 1200px;
-    margin: 20px auto;
-    border: 1px solid #010101;
-    border-radius: 25px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    overflow: hidden; } }
+body {
+  font-family: 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+.site-container {
+  color: #010101; }
+  @media (min-width: 768px) {
+    .site-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      border: 1px solid #010101;
+      border-radius: 25px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      overflow: hidden; } }
 
 /* Header */
 .header {
@@ -7843,16 +7849,71 @@ button.close {
       background-color: #010101;
       border-top-left-radius: 25px;
       border-top-right-radius: 25px; } }
+  .header .navbar {
+    background-color: #AA8B3C;
+    margin-bottom: 0;
+    border-top: 0;
+    border-bottom: 1px solid #010101;
+    border-radius: 0; }
+    .header .navbar .navbar-brand {
+      padding: 8px 15px; }
+      .header .navbar .navbar-brand img {
+        height: 100%;
+        width: auto; }
+    .header .navbar .navbar-toggle {
+      border-color: #010101; }
+      .header .navbar .navbar-toggle .icon-bar {
+        background-color: #010101; }
+    .header .navbar li a {
+      color: #010101; }
+    .header .navbar li.active a {
+      background-color: #010101;
+      color: #fefefe; }
+    .header .navbar li a:hover {
+      background-color: #010101;
+      color: #AA8B3C; }
 
 /* Content */
 .page {
-  background-color: #fff; }
+  background-color: #fefefe; }
+
+h1 {
+  font-family: 'Balthazar', serif;
+  color: #725d2a; }
 
 /* Footer */
 .footer {
+  padding: 20px;
   text-align: center;
   font-size: 10px;
   color: #fff;
   background-color: #010101; }
+  .footer p {
+    margin-bottom: 2px; }
+
+/* Home Page */
+.featured-img-container {
+  margin: 0 -15px; }
+  @media (min-width: 768px) {
+    .featured-img-container {
+      margin: 0; } }
+
+.featured-img {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-top: 1px solid #725d2a;
+  border-bottom: 1px solid #725d2a; }
+  @media (min-width: 768px) {
+    .featured-img {
+      border: 1px solid #725d2a; } }
+
+/* General Styles */
+.margin-top-0 {
+  margin-top: 0; }
+
+.margin-bottom-0 {
+  margin-bottom: 0; }
+
+.margin-bottom-15 {
+  margin-bottom: 15px; }
 
 /*# sourceMappingURL=stylesheet.css.map */

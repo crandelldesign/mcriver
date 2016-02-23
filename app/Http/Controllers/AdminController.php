@@ -65,11 +65,6 @@ class AdminController extends Controller
         } else {
             return redirect()->back()->withErrors('Incorrect old password.');
         }
-        
-        
-        /*$view = view('admin.change-password');
-        $view->active_page = 'change-password';
-        return $view;*/
     }
 
     public function getSignUps()

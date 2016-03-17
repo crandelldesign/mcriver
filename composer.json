@@ -14,9 +14,7 @@
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*",
-        "laravel/homestead": "^3.0",
-        "FortAwesome/Font-Awesome": "^4.5",
-        "twbs/bootstrap-sass": "~3.3"
+        "laravel/homestead": "^3.0"
     },
     "autoload": {
         "classmap": [

@@ -12,31 +12,31 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    //mix.sass('app.scss');
+    // Build Stylesheet
     mix.sass(
 		'stylesheet.scss',
 		'public/css/stylesheet.css',
 		{
 	        includePaths: [
-	            'vendor/twbs/bootstrap-sass/assets/stylesheets/',
-	            'vendor/fortawesome/font-awesome/scss/'
-	        ],
-	        //outputStyle: 'expanded'
+	            'node_modules/bootstrap-sass/assets/stylesheets/',
+	            'node_modules/font-awesome/scss/'
+	        ]
       	}
     );
+    // Build Admin Stylesheet
     mix.sass(
 		'admin.scss',
 		'public/css/admin.css',
 		{
 	        includePaths: [
-	            'vendor/twbs/bootstrap-sass/assets/stylesheets/',
-	            'vendor/fortawesome/font-awesome/scss/'
-	        ],
-	        //outputStyle: 'expanded'
+	            'node_modules/bootstrap-sass/assets/stylesheets/',
+	            'node_modules/font-awesome/scss/'
+	        ]
       	}
     );
-    //mix.copy('node_modules/motion-ui/dist/motion-ui.js', 'resources/assets/js/foundation');
-    mix.copy('vendor/twbs/bootstrap-sass/assets/javascripts/*.js', 'resources/assets/js/bootstrap');
+    // Copy Bootstrap's JS
+    mix.copy('node_modules/bootstrap-sass/assets/javascripts/*.js', 'resources/assets/js/bootstrap');
+    // Build JS
     mix.scripts(
 		[
 	        'jquery-2.2.0.min.js',
@@ -44,6 +44,7 @@ elixir(function(mix) {
 		],
 		'public/js/master.js'
     );
+    // Build Admin JS
     mix.scripts(
 		[
 	        'jquery-2.2.0.min.js',
@@ -54,12 +55,14 @@ elixir(function(mix) {
 		'public/js/admin.js'
     );
 
-	mix.copy('vendor/twbs/bootstrap-sass/assets/fonts', 'public/fonts/bootstrap');
-	mix.copy('vendor/fortawesome/font-awesome/fonts', 'public/fonts');
+    // Copy Fonts
+	mix.copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts/bootstrap');
+	mix.copy('node_modules/font-awesome/fonts', 'public/fonts');
 
+    // Create Build Numbers
     mix.version(['css/stylesheet.css', 'css/admin.css', 'js/master.js', 'js/admin.js']);
 
-    //mix.copy('resources/assets/fonts/foundation-icons.*', 'public/build/fonts');
-    mix.copy('vendor/twbs/bootstrap-sass/assets/fonts', 'public/build/fonts/bootstrap');
-	mix.copy('vendor/fortawesome/font-awesome/fonts', 'public/build/fonts');
+    // Copy Fonts for Build Numbers
+    mix.copy('node_modules/bootstrap-sass/assets/fonts', 'public/build/fonts/bootstrap');
+	mix.copy('node_modules/font-awesome/fonts', 'public/build/fonts');
 });

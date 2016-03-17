@@ -7875,11 +7875,15 @@ body {
 
 /* Content */
 .page {
-  background-color: #fefefe; }
+  background-color: #fefefe;
+  padding: 20px; }
 
 h1 {
   font-family: 'Balthazar', serif;
   color: #725d2a; }
+
+h2 {
+  color: #C9AE6B; }
 
 /* Footer */
 .footer {
@@ -7905,6 +7909,24 @@ h1 {
   @media (min-width: 768px) {
     .featured-img {
       border: 1px solid #725d2a; } }
+
+/* Order Form */
+.price-box {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  border: 1px solid #010101;
+  background-color: #333;
+  color: #fefefe;
+  padding: 25px 27px;
+  line-height: normal;
+  text-align: center;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+  .price-box .total {
+    display: block; }
+  .price-box .price {
+    display: block;
+    font-size: 20px; }
 
 /* General Styles */
 .margin-top-0 {

@@ -37,4 +37,12 @@ class Item extends Model
     {
         return $this->belongsToMany('mcriver\Order');
     }
+
+    /**
+     * Get item by slug
+     */
+    public function scopeSlug($query, $slug)
+    {
+        return $query->where('slug', $slug);
+    }
 }

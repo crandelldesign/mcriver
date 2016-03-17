@@ -11,7 +11,7 @@
 
         <script type="text/javascript" src="{{ elixir('js/master.js') }}"></script>
         
-        @yield('footercode')
+        @yield('scripts')
     </body>
     
 </html>

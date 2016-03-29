@@ -11,7 +11,7 @@
 |
 */
 
-$demo = true;
+$demo = false;
 
 if (isset($demo) && $demo == true) {
     Route::get('/', function ()

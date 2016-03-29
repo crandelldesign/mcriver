@@ -46,7 +46,6 @@ class AdminController extends Controller
 
     public function postChangePassword(Request $request)
     {
-        echo 'Test';
         $this->validate($request, [
             'current_password' => 'required',
             'password' => 'required|confirmed',

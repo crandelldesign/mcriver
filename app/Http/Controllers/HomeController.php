@@ -156,6 +156,30 @@ class HomeController extends Controller
     {
         $order = $request->session()->get('order');
 
+        for ($i = 1; $i <= $order->people; $i++) {
+            $validator = $this->validate(
+                $request,
+                [
+                    'person'.$i => 'required'
+                ],
+                [
+                    'person'.$i.'.required' => 'Please enter a name for Person #'.$i
+                ]
+            );
+        }
+
+        $validator = $this->validate(
+            $request,
+            [
+                'phone' => 'required',
+                'email' => 'required'
+            ],
+            [
+                'phone.required' => 'Please enter a phone number.',
+                'email.required' => 'Please enter an email address.'
+            ]
+        );
+
         if(Auth::check())
         {
             $user = Auth::user();
@@ -163,10 +187,6 @@ class HomeController extends Controller
             $user->email = $request->email;
             $user->save();
         }
-
-        print_r($request->all());
-        echo '<br><br>';
-        print_r($request->session()->get('order'));
 
         $error = '';
         $success = '';
@@ -198,7 +218,7 @@ class HomeController extends Controller
         }
 
         if ($success != 1) {
-            return redirect('/sign-up/3')->with('errors', $error);
+            return redirect('/sign-up/3')->with('stripe_errors', $error);
         } else {
 
             $names = '';
@@ -212,8 +232,6 @@ class HomeController extends Controller
                 }
             }
             $names = rtrim($names, ',');
-
-            echo $names;
 
             $new_order = New Order;
             $new_order->email = $request->email;
@@ -243,7 +261,7 @@ class HomeController extends Controller
                 $message->subject('Thank You For Your Order!');
             });
 
-
+            return redirect('/sign-up/4');
         }
 
     }
@@ -268,12 +286,46 @@ class HomeController extends Controller
         ];
 
         if(\Auth::attempt($credentials)) {
+            return redirect()->back();
+        } else {
+            return redirect()->back()->with('errors', 'Email or password are incorrect.');
+        }
+    }
+
+    // Needs Functionality
+    public function postCreateAccount(Request $request)
+    {
+        $this->validate($request, [
+            'current_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+        $credentials = [
+            'email' => \Auth::user()->email,
+            'password' => $request->get('current_password'),
+        ];
+
+        if(\Auth::validate($credentials)) {
+            $user = \Auth::user();
+            $user->password = bcrypt($request->get('password'));
+            $user->save();
+            return redirect('/admin')->with('message', 'Password changed successfully.');
+        } else {
+            return redirect()->back()->withErrors('Incorrect old password.');
+        }
+
+        $credentials = [
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+        ];
+
+        if(\Auth::attempt($credentials)) {
             //$user = \Auth::user();
             //$user->password = bcrypt($request->get('password'));
             //$user->save();
             return redirect()->back();
         } else {
-            return redirect()->back()->withErrors('Incorrect old password.')->with('message', 'Password changed successfully.');
+            return redirect()->back()->with('errors', 'Email or password are incorrect.');
         }
     }
 

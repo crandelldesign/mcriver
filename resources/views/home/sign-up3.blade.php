@@ -2,15 +2,15 @@
 @section('body')
 <h1>Complete Your Order</h1>
 
-@if (session('errors'))
+@if (session('stripe_errors'))
     <div class="alert alert-danger">
         <ul>
-            <li>{{ session('errors') }}</li>
+            <li>{{ session('stripe_errors') }}</li>
         </ul>
     </div>
 @endif
 
-@if (is_array($errors) && count($errors) > 0)
+@if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)

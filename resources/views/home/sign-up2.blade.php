@@ -1,6 +1,6 @@
 @extends('master.templates.master')
 @section('body')
-<h1>Check Out</h1>
+<h1>Complete Your Order</h1>
 
 <div class="row">
 	<div class="col-md-4">
@@ -25,7 +25,7 @@
         		<h4 class="modal-title">Register</h4>
       		</div>
       		<div class="modal-body">
-        		<form class="form-horizontal" role="form" method="POST" action="">
+        		<form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                     {!! csrf_field() !!}
                     <div class="form-group">
                         <label class="col-md-4 control-label">Name</label>

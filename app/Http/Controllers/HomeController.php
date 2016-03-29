@@ -7,8 +7,11 @@ use mcriver\Http\Requests;
 use mcriver\Http\Controllers\Controller;
 use mcriver\Category;
 use mcriver\Item;
+use mcriver\Order;
+use mcriver\Rookie;
 use \stdClass;
 use \Auth;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -43,7 +46,7 @@ class HomeController extends Controller
         } elseif ($step == 2) {
             return $this->signupStep2();
         } elseif ($step == 3) {
-            return $this->signupStep3();
+            return $this->postSignupStep3($request);
         } elseif ($step == 4) {
             return $this->signupStep4();
         } else {
@@ -138,6 +141,102 @@ class HomeController extends Controller
         $view->active_page = "sign-up";
         $view->order = $request->session()->get('order');
         return $view;
+    }
+
+    protected function postsignupStep3(Request $request)
+    {
+        $order = $request->session()->get('order');
+
+        if(Auth::check())
+        {
+            $user = Auth::user();
+            $user->phone = $request->phone;
+            $user->email = $request->email;
+            $user->save();
+        }
+
+        print_r($request->all());
+        echo '<br><br>';
+        print_r($request->session()->get('order'));
+
+        $error = '';
+        $success = '';
+
+        if ($request->payment_method == 'credit card') {
+            try {
+                \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+                $myCard = \Stripe\Token::create(array("card" => array('number' => $request->card_number, 'exp_month' => $request->expiry_month, 'exp_year' => $request->expiry_year, 'name' => $request->card_holder_name, 'cvc' => $request->cvc)));
+                $charge = \Stripe\Charge::create(array('card' => $myCard, 'amount' => $order->total.'00', 'currency' => 'usd', 'receipt_email' => $request->email));
+                //echo $charge;
+                $success = 1;
+                //$paymentProcessor="Credit card (www.stripe.com)";
+            } catch (\Stripe\Error\ApiConnection $e) {
+                // Network problem, perhaps try again.
+                $error = $e->getMessage();
+            } catch (\Stripe\Error\InvalidRequest $e) {
+                // You screwed up in your programming. Shouldn't happen!
+                $error = $e->getMessage();
+            } catch (\Stripe\Error\Api $e) {
+                // Stripe's servers are down!
+                $error = $e->getMessage();
+            } catch (\Stripe\Error\Card $e) {
+                // Card was declined.
+                $error = $e->getMessage();
+            }
+        } else {
+             $success = 1;
+        }
+
+        if ($success != 1) {
+            return redirect('/sign-up/3')->with('errors', $error);
+        } else {
+
+            $names = '';
+            for ($i = 1; $i <= $order->people; $i++) {
+                $names .= $request->get('person'.$i).',';
+                if ($request->get('is_rookie_person'.$i)) {
+                    $rookie = New Rookie;
+                    $rookie->name = $request->get('person'.$i);
+                    $rookie->year = date('Y');
+                    $rookie->save();
+                }
+            }
+            $names = rtrim($names, ',');
+
+            echo $names;
+
+            $new_order = New Order;
+            $new_order->email = $request->email;
+            $new_order->name = $names;
+            $new_order->user_id = (isset($user))?$user->id:'';
+            $new_order->year = date('Y');
+            $new_order->total = $order->total;
+            $new_order->payment_method = $request->payment_method;
+            $new_order->is_paid = ($request->payment_method == 'credit card')?1:0;
+            $new_order->save();
+
+            foreach ($order->items as $item) {
+                $item_order = \DB::table('item_order')->insertGetId(
+                    ['order_id' => $new_order->id, 'item_id' => $item->item_id]
+                );
+            }
+
+            $data = array(
+                'inputs' => $request->all(),
+                'order' => $order
+            );
+
+            Mail::send('emails.confirm', $data, function($message) use ($request)
+            {
+                $message->to($request->get('email'), $request->get('person1'));
+                $message->from('matt@crandelldesign.com', 'Matt Crandell');
+                $message->subject('Thank You For Your Order!');
+            });
+
+
+        }
+
     }
 
     protected function signupStep4()

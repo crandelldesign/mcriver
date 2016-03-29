@@ -30,9 +30,10 @@ return [
     ],
 
     'stripe' => [
-        'model'  => mcriver\User::class,
+        //'model'  => mcriver\User::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
+        'version' => '2016-03-07',
     ],
 
 ];

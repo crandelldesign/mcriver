@@ -46,7 +46,7 @@
 		  			</select>
 		  			@if(count($item->children) > 0)
 		  				<div class="row change-sizes">
-		  					@for($i = 1; $i < 3; $i++)
+		  					@for($i = 1; $i <= 4; $i++)
 		  						<div class="col-sm-6 col-lg-4 hidden {{$i}}">Shirt #{{$i}} <?php count($item->children) ?><br>
 		  							<select class="form-control input-sm {{$item->slug.$i}}" name="{{$item->slug.$i}}" id="{{$item->slug.$i}}">
 		  								@foreach($item->children as $child)
@@ -110,13 +110,10 @@
 			//console.log(quantity);
 			var price = $(this).data('price');
 			total+= quantity * price;
-			console.log(total);
 		});
 		$('.change-sizes .count select').each(function()
 		{
 	    	//console.log($(this).children('option:selected').data('price'));
-
-			console.log(total);
 	 		total+=parseFloat($(this).children('option:selected').data('price'));    
 		});
 		$('.price-total').html(total);

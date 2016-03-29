@@ -73,7 +73,16 @@ class HomeController extends Controller
 
     protected function postsignupStep1(Request $request)
     {
-        //print_r($request->all());
+
+        $validator = $this->validate(
+            $request,
+            [
+                'agreement' => 'required'
+            ],
+            [
+                'agreement.required' => 'Please check the checkbox to agree.'
+            ]
+        );
 
         $order = new stdClass;
         $categories = Category::orderBy('display_order')->get();

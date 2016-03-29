@@ -5,14 +5,21 @@
 <p class="text-center featured-img-container"><img src="{{url('/')}}/img/group-shot-2015.jpg" class="img-responsive center-block featured-img" alt="2015's Group"></p>
 
 <div class="row">
+	<div class="col-md-11 col-lg-offset-1">
+		<h2>What?</h2>
+		<p>McRiver Raid is an annual camping event.</p>
+	</div>
+</div>
+
+<div class="row">
 	<div class="col-md-4 col-lg-3 col-lg-offset-1">
 		<h2>When?</h2>
 		<p><strong>Starting:</strong> Friday Aug 12, 2016<br>
 			<strong>Ending:</strong> Sunday Aug 14, 2016</p>
 	</div>
 	<div class="col-md-4">
-		<h2>What?</h2>
-		<p><strong>Theme:</strong> TBD <i class="fa fa-beer"></i><!--70’s Disco &quot;Staying Alive&quot;--></p>
+		<h2>Theme?</h2>
+		<p>TBD <i class="fa fa-beer"></i><!--70’s Disco &quot;Staying Alive&quot;--></p>
 	</div>
 	<div class="col-md-4 col-lg-3">
 		<h2>Where?</h2>

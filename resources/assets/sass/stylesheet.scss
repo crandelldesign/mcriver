@@ -22,13 +22,11 @@ body {
 /* Header */
 .header {
 	background-color: $black;
-	@media (min-width: $screen-sm-min) {
-		.logo-container {
-		    padding: 20px;
-		    background-color: $black;
-		    border-top-left-radius: 25px;
-		    border-top-right-radius: 25px;
-		}
+	.logo-container {
+	    padding: 20px;
+	    background-color: $black;
+	    border-top-left-radius: 25px;
+	    border-top-right-radius: 25px;
 	}
 	.navbar {
 		background-color: $gold;

@@ -7843,12 +7843,11 @@ body {
 /* Header */
 .header {
   background-color: #010101; }
-  @media (min-width: 768px) {
-    .header .logo-container {
-      padding: 20px;
-      background-color: #010101;
-      border-top-left-radius: 25px;
-      border-top-right-radius: 25px; } }
+  .header .logo-container {
+    padding: 20px;
+    background-color: #010101;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px; }
   .header .navbar {
     background-color: #AA8B3C;
     margin-bottom: 0;

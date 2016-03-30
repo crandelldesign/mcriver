@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use mcriver\Category;
 use mcriver\Item;
+use mcriver\Order;
 
 class AdminController extends Controller
 {
@@ -68,8 +69,11 @@ class AdminController extends Controller
 
     public function getSignUps()
     {
-        $view = view('admin.index');
+        $orders = Order::where('year',date('Y'))->get();
+
+        $view = view('admin.signups');
         $view->active_page = 'sign-ups';
+        $view->orders = $orders;
         return $view;
     }
 

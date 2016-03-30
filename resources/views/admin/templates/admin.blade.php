@@ -2,6 +2,7 @@
 <html>
 	<head>
 		@include('admin.templates.head')
+		@yield('head')
 	</head>
 	<body class="skin-blue">
 		<div class="wrapper">

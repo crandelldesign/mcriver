@@ -128,6 +128,14 @@
                 </div>
             </div>
         </div>
+        <div class="check-section" style="display:none">
+            <p>Please send a check or money order to the address below by June 21, 2016.</p>
+            <address>
+                Jim McDonald<br>
+                4323 Crestdale Ave<br>
+                West Bloomfield, MI 48323<br>
+            </address>
+        </div>
 	</div>
 	<div class="col-md-6">
 		<h2 class="margin-top-0">Review Your Order</h2>
@@ -170,8 +178,10 @@
     {
         if ($(this).val() == 'credit card') {
             $('.credit-card-section').show();
+            $('.check-section').hide();
         } else {
             $('.credit-card-section').hide();
+            $('.check-section').show();
         }
     });
 </script>

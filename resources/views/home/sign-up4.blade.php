@@ -6,6 +6,15 @@
 
 <p>You will receive an email with your order.</p>
 
+@if($order->payment == 'check')
+<p>Please send a check or money order to the address below by June 21, 2016.</p>
+<address>
+    Jim McDonald<br>
+    4323 Crestdale Ave<br>
+    West Bloomfield, MI 48323<br>
+</address>
+@endif
+
 <h2 class="margin-top-0">Your Order</h2>
 <table class="table table-striped">
 @for($i = 0; $i < count($names); $i++)

@@ -33,7 +33,7 @@ class HomeController extends Controller
         } elseif ($step == 3) {
             return $this->signupStep3($request);
         } elseif ($step == 4) {
-            return $this->signupStep4();
+            return $this->signupStep4($request);
         } else {
             return redirect('/sign-up');
         }
@@ -192,6 +192,19 @@ class HomeController extends Controller
         $success = '';
 
         if ($request->payment_method == 'credit card') {
+
+            $validator = $this->validate(
+                $request,
+                [
+                    'card_holder_name' => 'required',
+                    'card_number' => 'required'
+                ],
+                [
+                    'card_holder_name.required' => 'Please enter the name on your credit card.',
+                    'card_number.required' => 'Please enter your card number.'
+                ]
+            );
+
             try {
                 \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
@@ -243,11 +256,15 @@ class HomeController extends Controller
             $new_order->is_paid = ($request->payment_method == 'credit card')?1:0;
             $new_order->save();
 
-            foreach ($order->items as $item) {
-                $item_order = \DB::table('item_order')->insertGetId(
-                    ['order_id' => $new_order->id, 'item_id' => $item->item_id]
-                );
+            if(isset($order->items)) {
+                foreach ($order->items as $item) {
+                    $item_order = \DB::table('item_order')->insertGetId(
+                        ['order_id' => $new_order->id, 'item_id' => $item->item_id]
+                    );
+                }
             }
+
+            $order = Order::with('items')->find($new_order->id);
 
             $data = array(
                 'inputs' => $request->all(),
@@ -261,20 +278,37 @@ class HomeController extends Controller
                 $message->subject('Thank You For Your Order!');
             });
 
-            return redirect('/sign-up/4');
+            //return redirect('/sign-up/4?order='.$new_order->id)->with('new_order',$new_order);
+            $request->session()->forget('order');
+            return redirect('/sign-up/4')->with('new_order',$new_order);
         }
 
     }
 
-    protected function signupStep4()
+    protected function signupStep4(Request $request)
     {
         /*if (\Auth::check()) {
             return redirect('/sign-up/3');
         }*/
+
+        if($request->order)
+        {
+            $order = Order::with('items')->find($request->order);
+        } elseif ($request->session()->has('new_order')) {
+            $new_order = $request->session()->get('new_order');
+            $order = Order::with('items')->find($new_order->id);
+        } else {
+            return redirect('/sign-up/4');
+        }
+
+        $names = explode(',',$order->name);
+
         $view = view('home.sign-up4');
         $view->title = "McRiver Raid 2016";
         $view->description = "";
         $view->active_page = "sign-up";
+        $view->order = $order;
+        $view->names = $names;
         return $view;
     }
 

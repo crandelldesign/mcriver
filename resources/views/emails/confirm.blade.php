@@ -215,8 +215,8 @@
                   <tr>
                     <td style="text-align:left; padding-top: 15px;">
                     <br>
-                    <strong>Name:</strong><br>
-                      {{$inputs['person1']}}<br><br>
+                    <strong>Name:</strong> {{$inputs['person1']}}<br>
+                    <strong>Order Number:</strong> {{$order->id}}<br><br>
                     </td>
                   </tr>
                 </table>
@@ -236,12 +236,14 @@
                             <td style="border-bottom:1px solid #e3e3e3; padding: 5px;">$53</td>
                         </tr>
                     @endfor
+                    @if(isset($order->items))
                     @foreach($order->items as $item)
                         <tr>
                             <td style="border-bottom:1px solid #e3e3e3; padding: 5px;">{{$item->name}}</td>
                             <td style="border-bottom:1px solid #e3e3e3; padding: 5px;">${{$item->price}}</td>
                         </tr>
                     @endforeach
+                    @endif
                     </tbody>
                     <tfoot>
                         <tr class="success">

@@ -89,7 +89,7 @@
         <hr>
 
         <h3>Continue as a Guest</h3>
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+        <form class="form-horizontal" role="form" method="POST" action="{{url('/guest-checkout')}}">
             {!! csrf_field() !!}
             <div class="form-group">
                 <label class="col-md-4 control-label">Name</label>

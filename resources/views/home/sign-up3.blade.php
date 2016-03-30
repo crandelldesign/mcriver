@@ -32,7 +32,7 @@
                 </label>
                 <div class="col-sm-9">
                     <div class="input-group">
-                        <input type="text" value="{{($i == 1 && \Auth::check())?\Auth::user()->name:old('person'.$i)}}" name="person{{$i}}" id="person-{{$i}}" class="form-control" data-person="{{$i}}">
+                        <input type="text" value="{{($i == 1)?$person1:old('person'.$i)}}" name="person{{$i}}" id="person-{{$i}}" class="form-control" data-person="{{$i}}">
                         <span class="input-group-addon">
                             <span>Is this person a rookie?&nbsp;</span>
                             <input type="checkbox" aria-label="Is this person a rookie?" name="is_rookie_person{{$i}}" id="is-rookie-person-{{$i}}">
@@ -134,7 +134,7 @@
         <table class="table table-striped">
         @for($i = 1; $i <= $order->people; $i++)
             <tr class="person-{{$i}}-row" data-person="{{$i}}">
-                <td>{{($i == 1 && \Auth::check())?\Auth::user()->name:'Person #'.$i}}</td>
+                <td>{{($i == 1)?$person1:'Person #'.$i}}</td>
                 <td>$53</td>
             </tr>
         @endfor

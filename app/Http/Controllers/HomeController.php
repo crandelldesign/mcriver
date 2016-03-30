@@ -127,7 +127,7 @@ class HomeController extends Controller
 
     protected function signupStep2(Request $request)
     {
-        if (Auth::check()) {
+        if (Auth::check() || $request->session()->has('guest')) {
             return redirect('/sign-up/3');
         }
         $view = view('home.sign-up2');
@@ -140,17 +140,25 @@ class HomeController extends Controller
 
     protected function signupStep3(Request $request)
     {
-        if (!$request->session()->has('order')) {
+        if (!$request->session()->has('order') && (!Auth::check() || !$request->session()->has('guest'))) {
             return redirect('/sign-up');
         }
         /*if (\Auth::check()) {
             return redirect('/sign-up/3');
         }*/
+
+        if (Auth::check()) {
+            $person1 = Auth::user()->name;
+        } else {
+            $person1 = $request->session()->get('guest');
+        }
+
         $view = view('home.sign-up3');
         $view->title = "McRiver Raid 2016";
         $view->description = "";
         $view->active_page = "sign-up";
         $view->order = $request->session()->get('order');
+        $view->person1 = $person1;
         return $view;
     }
 
@@ -328,7 +336,6 @@ class HomeController extends Controller
         }
     }
 
-    // Needs Functionality
     public function postCreateAccount(Request $request)
     {
         $this->validate($request, [
@@ -353,6 +360,19 @@ class HomeController extends Controller
         } else {
             return redirect()->back()->with('register_errors', 'User not registered properly.');
         }
+    }
+
+    public function postGuestCheckout(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $name = $request->get('name');
+
+        $request->session()->put('guest', $name);
+
+        return redirect('/sign-up/3');
     }
 
     public function getNotPermitted()

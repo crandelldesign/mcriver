@@ -9,6 +9,7 @@ use mcriver\Category;
 use mcriver\Item;
 use mcriver\Order;
 use mcriver\Rookie;
+use mcriver\User;
 use \stdClass;
 use \Auth;
 use Mail;
@@ -29,7 +30,7 @@ class HomeController extends Controller
         if (!$step) {
             return $this->signupStep1();
         } elseif ($step == 2) {
-            return $this->signupStep2();
+            return $this->signupStep2($request);
         } elseif ($step == 3) {
             return $this->signupStep3($request);
         } elseif ($step == 4) {
@@ -124,7 +125,7 @@ class HomeController extends Controller
         return redirect('/sign-up/2');
     }
 
-    protected function signupStep2()
+    protected function signupStep2(Request $request)
     {
         if (Auth::check()) {
             return redirect('/sign-up/3');
@@ -133,6 +134,7 @@ class HomeController extends Controller
         $view->title = "McRiver Raid 2016";
         $view->description = "";
         $view->active_page = "sign-up";
+        $view->order = $request->session()->get('order');
         return $view;
     }
 
@@ -322,7 +324,7 @@ class HomeController extends Controller
         if(\Auth::attempt($credentials)) {
             return redirect()->back();
         } else {
-            return redirect()->back()->with('errors', 'Email or password are incorrect.');
+            return redirect()->back()->with('login_errors', 'Email or password are incorrect.');
         }
     }
 
@@ -330,23 +332,16 @@ class HomeController extends Controller
     public function postCreateAccount(Request $request)
     {
         $this->validate($request, [
-            'current_password' => 'required',
+            'name' => 'required',
+            'email' => 'required|unique:users',
             'password' => 'required|confirmed',
         ]);
 
-        $credentials = [
-            'email' => \Auth::user()->email,
-            'password' => $request->get('current_password'),
-        ];
-
-        if(\Auth::validate($credentials)) {
-            $user = \Auth::user();
-            $user->password = bcrypt($request->get('password'));
-            $user->save();
-            return redirect('/admin')->with('message', 'Password changed successfully.');
-        } else {
-            return redirect()->back()->withErrors('Incorrect old password.');
-        }
+        $user = new User;
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
 
         $credentials = [
             'email' => $request->get('email'),
@@ -354,12 +349,9 @@ class HomeController extends Controller
         ];
 
         if(\Auth::attempt($credentials)) {
-            //$user = \Auth::user();
-            //$user->password = bcrypt($request->get('password'));
-            //$user->save();
             return redirect()->back();
         } else {
-            return redirect()->back()->with('errors', 'Email or password are incorrect.');
+            return redirect()->back()->with('register_errors', 'User not registered properly.');
         }
     }
 

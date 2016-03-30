@@ -33,7 +33,7 @@ class HomeController extends Controller
         } elseif ($step == 3) {
             return $this->signupStep3($request);
         } elseif ($step == 4) {
-            return $this->signupStep4();
+            return $this->signupStep4($request);
         } else {
             return redirect('/sign-up');
         }
@@ -73,7 +73,16 @@ class HomeController extends Controller
 
     protected function postsignupStep1(Request $request)
     {
-        //print_r($request->all());
+
+        $validator = $this->validate(
+            $request,
+            [
+                'agreement' => 'required'
+            ],
+            [
+                'agreement.required' => 'Please check the checkbox to agree.'
+            ]
+        );
 
         $order = new stdClass;
         $categories = Category::orderBy('display_order')->get();
@@ -147,6 +156,30 @@ class HomeController extends Controller
     {
         $order = $request->session()->get('order');
 
+        for ($i = 1; $i <= $order->people; $i++) {
+            $validator = $this->validate(
+                $request,
+                [
+                    'person'.$i => 'required'
+                ],
+                [
+                    'person'.$i.'.required' => 'Please enter a name for Person #'.$i
+                ]
+            );
+        }
+
+        $validator = $this->validate(
+            $request,
+            [
+                'phone' => 'required',
+                'email' => 'required'
+            ],
+            [
+                'phone.required' => 'Please enter a phone number.',
+                'email.required' => 'Please enter an email address.'
+            ]
+        );
+
         if(Auth::check())
         {
             $user = Auth::user();
@@ -155,14 +188,23 @@ class HomeController extends Controller
             $user->save();
         }
 
-        print_r($request->all());
-        echo '<br><br>';
-        print_r($request->session()->get('order'));
-
         $error = '';
         $success = '';
 
         if ($request->payment_method == 'credit card') {
+
+            $validator = $this->validate(
+                $request,
+                [
+                    'card_holder_name' => 'required',
+                    'card_number' => 'required'
+                ],
+                [
+                    'card_holder_name.required' => 'Please enter the name on your credit card.',
+                    'card_number.required' => 'Please enter your card number.'
+                ]
+            );
+
             try {
                 \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
@@ -189,7 +231,7 @@ class HomeController extends Controller
         }
 
         if ($success != 1) {
-            return redirect('/sign-up/3')->with('errors', $error);
+            return redirect('/sign-up/3')->with('stripe_errors', $error);
         } else {
 
             $names = '';
@@ -204,8 +246,6 @@ class HomeController extends Controller
             }
             $names = rtrim($names, ',');
 
-            echo $names;
-
             $new_order = New Order;
             $new_order->email = $request->email;
             $new_order->name = $names;
@@ -216,11 +256,15 @@ class HomeController extends Controller
             $new_order->is_paid = ($request->payment_method == 'credit card')?1:0;
             $new_order->save();
 
-            foreach ($order->items as $item) {
-                $item_order = \DB::table('item_order')->insertGetId(
-                    ['order_id' => $new_order->id, 'item_id' => $item->item_id]
-                );
+            if(isset($order->items)) {
+                foreach ($order->items as $item) {
+                    $item_order = \DB::table('item_order')->insertGetId(
+                        ['order_id' => $new_order->id, 'item_id' => $item->item_id]
+                    );
+                }
             }
+
+            $order = Order::with('items')->find($new_order->id);
 
             $data = array(
                 'inputs' => $request->all(),
@@ -234,20 +278,37 @@ class HomeController extends Controller
                 $message->subject('Thank You For Your Order!');
             });
 
-
+            //return redirect('/sign-up/4?order='.$new_order->id)->with('new_order',$new_order);
+            $request->session()->forget('order');
+            return redirect('/sign-up/4')->with('new_order',$new_order);
         }
 
     }
 
-    protected function signupStep4()
+    protected function signupStep4(Request $request)
     {
         /*if (\Auth::check()) {
             return redirect('/sign-up/3');
         }*/
+
+        if($request->order)
+        {
+            $order = Order::with('items')->find($request->order);
+        } elseif ($request->session()->has('new_order')) {
+            $new_order = $request->session()->get('new_order');
+            $order = Order::with('items')->find($new_order->id);
+        } else {
+            return redirect('/sign-up/4');
+        }
+
+        $names = explode(',',$order->name);
+
         $view = view('home.sign-up4');
         $view->title = "McRiver Raid 2016";
         $view->description = "";
         $view->active_page = "sign-up";
+        $view->order = $order;
+        $view->names = $names;
         return $view;
     }
 
@@ -259,12 +320,46 @@ class HomeController extends Controller
         ];
 
         if(\Auth::attempt($credentials)) {
+            return redirect()->back();
+        } else {
+            return redirect()->back()->with('errors', 'Email or password are incorrect.');
+        }
+    }
+
+    // Needs Functionality
+    public function postCreateAccount(Request $request)
+    {
+        $this->validate($request, [
+            'current_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+        $credentials = [
+            'email' => \Auth::user()->email,
+            'password' => $request->get('current_password'),
+        ];
+
+        if(\Auth::validate($credentials)) {
+            $user = \Auth::user();
+            $user->password = bcrypt($request->get('password'));
+            $user->save();
+            return redirect('/admin')->with('message', 'Password changed successfully.');
+        } else {
+            return redirect()->back()->withErrors('Incorrect old password.');
+        }
+
+        $credentials = [
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+        ];
+
+        if(\Auth::attempt($credentials)) {
             //$user = \Auth::user();
             //$user->password = bcrypt($request->get('password'));
             //$user->save();
             return redirect()->back();
         } else {
-            return redirect()->back()->withErrors('Incorrect old password.')->with('message', 'Password changed successfully.');
+            return redirect()->back()->with('errors', 'Email or password are incorrect.');
         }
     }
 

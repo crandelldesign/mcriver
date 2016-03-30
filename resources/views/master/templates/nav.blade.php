@@ -26,7 +26,7 @@
                         @if(!\Auth::check())
                         <li><a href="#" data-toggle="modal" data-target="#loginModal">Log In</a></li>
                         @endif
-                    </ul>               
+                    </ul>        
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>

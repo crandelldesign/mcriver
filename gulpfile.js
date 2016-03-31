@@ -56,13 +56,13 @@ elixir(function(mix) {
     );
 
     // Copy Fonts
-	mix.copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts/bootstrap');
+	mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap', 'public/fonts/bootstrap');
 	mix.copy('node_modules/font-awesome/fonts', 'public/fonts');
 
     // Create Build Numbers
     mix.version(['css/stylesheet.css', 'css/admin.css', 'js/master.js', 'js/admin.js']);
 
     // Copy Fonts for Build Numbers
-    mix.copy('node_modules/bootstrap-sass/assets/fonts', 'public/build/fonts/bootstrap');
+    mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap', 'public/build/fonts/bootstrap');
 	mix.copy('node_modules/font-awesome/fonts', 'public/build/fonts');
 });

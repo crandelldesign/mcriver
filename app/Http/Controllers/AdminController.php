@@ -71,6 +71,11 @@ class AdminController extends Controller
     {
         $orders = Order::where('year',date('Y'))->get();
 
+        foreach ($orders as $order) {
+            $names = explode(',',$order->name);
+            $order->person1 = $names[0];
+        }
+
         $view = view('admin.signups');
         $view->active_page = 'sign-ups';
         $view->orders = $orders;
@@ -211,5 +216,29 @@ class AdminController extends Controller
         $item = Item::find($item_id);
         $item->delete();
         return redirect('/admin/products/'.$category_id);
+    }
+
+    public function getOrderMarkUnpaid(Request $request)
+    {
+        $order = Order::find($request->input('id'));
+        if(!$order)
+            return;
+
+        $order->is_paid = 0;
+        $order->save();
+
+        return $order;
+    }
+
+    public function getOrderMarkPaid(Request $request)
+    {
+        $order = Order::find($request->input('id'));
+        if(!$order)
+            return;
+
+        $order->is_paid = 1;
+        $order->save();
+
+        return $order;
     }
 }

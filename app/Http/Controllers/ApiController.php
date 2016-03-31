@@ -8,6 +8,7 @@ use mcriver\Http\Requests;
 use mcriver\Http\Controllers\Controller;
 use mcriver\Category;
 use mcriver\Item;
+use mcriver\Order;
 
 class ApiController extends Controller
 {
@@ -27,5 +28,11 @@ class ApiController extends Controller
         } else {
             return Item::find($item_id);
         }
+    }
+
+    public function getOrder($order_id)
+    {
+        $order = Order::find($order_id);
+        return $order;
     }
 }

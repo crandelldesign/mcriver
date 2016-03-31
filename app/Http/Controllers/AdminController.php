@@ -84,8 +84,33 @@ class AdminController extends Controller
 
     public function getEquipment()
     {
-        $view = view('admin.index');
+        $categories = Category::all();
+        foreach ($categories as $category) {
+            $items = $category->items()->where('parent_id',0)->orderBy('display_order')->get();
+            foreach ($items as $item) {
+                $item_order = \DB::table('item_order')->where('item_id',$item->id)
+                    ->join('orders', function ($join) {
+                        $join->on('item_order.order_id', '=', 'orders.id')
+                            ->where('orders.year', '=', date('Y'));
+                    })
+                    ->count();
+                $item->count = $item_order;
+                $item->children = $item->children()->orderBy('display_order')->get();
+                foreach ($item->children as $child) {
+                    $item_order = \DB::table('item_order')->where('item_id',$child->id)
+                    ->join('orders', function ($join) {
+                        $join->on('item_order.order_id', '=', 'orders.id')
+                            ->where('orders.year', '=', date('Y'));
+                    })
+                    ->count();
+                    $child->count = $item_order;
+                }
+            }
+            $category->items = $items;
+        }
+        $view = view('admin.equipment-totals');
         $view->active_page = 'equipment';
+        $view->categories = $categories;
         return $view;
     }
 

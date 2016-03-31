@@ -7868,7 +7868,7 @@ body {
     .header .navbar li.active a {
       background-color: #010101;
       color: #fefefe; }
-    .header .navbar li a:hover {
+    .header .navbar li a:hover, .header .navbar li a:focus {
       background-color: #010101;
       color: #AA8B3C; }
 

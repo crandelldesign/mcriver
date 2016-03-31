@@ -69,6 +69,7 @@ class HomeController extends Controller
             }
         }
         $view->categories = $categories;
+        $view->active_page = "signup";
         return $view;
     }
 
@@ -135,6 +136,7 @@ class HomeController extends Controller
         $view->description = "";
         $view->active_page = "sign-up";
         $view->order = $request->session()->get('order');
+        $view->active_page = "signup";
         return $view;
     }
 
@@ -159,6 +161,7 @@ class HomeController extends Controller
         $view->active_page = "sign-up";
         $view->order = $request->session()->get('order');
         $view->person1 = $person1;
+        $view->active_page = "signup";
         return $view;
     }
 
@@ -319,6 +322,7 @@ class HomeController extends Controller
         $view->active_page = "sign-up";
         $view->order = $order;
         $view->names = $names;
+        $view->active_page = "signup";
         return $view;
     }
 

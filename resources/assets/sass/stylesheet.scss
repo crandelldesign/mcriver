@@ -55,7 +55,7 @@ body {
 				background-color: $black;
 				color: $white;
 			}
-			a:hover {
+			a:hover, a:focus {
 				background-color: $black;
 				color: $gold;
 			}

@@ -93,7 +93,7 @@
                 <label class="col-sm-3 control-label" for="expiry_month">Expiration Date</label>
                 <div class="col-sm-9">
                     <div class="row">
-                        <div class="col-xs-3">
+                        <div class="col-xs-6 col-sm-3">
                             <select class="form-control col-sm-2" name="expiry_month" id="expiry-month" data-stripe="exp-month">
                                 <option>Month</option>
                                 <option value="1">Jan (01)</option>
@@ -110,7 +110,7 @@
                                 <option value="12">Dec (12)</option>
                             </select>
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-6 col-sm-3">
                             <select class="form-control" name="expiry_year" data-stripe="exp-year">
                                 <option>Year</option>
                                 @for($i = 0; $i <= 10; $i++)

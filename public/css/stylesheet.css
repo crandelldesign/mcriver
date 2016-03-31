@@ -7927,6 +7927,9 @@ h2 {
     display: block;
     font-size: 20px; }
 
+div.change-sizes div.count {
+  margin-top: 2px; }
+
 /* General Styles */
 .margin-top-0 {
   margin-top: 0; }

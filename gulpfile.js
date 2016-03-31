@@ -36,6 +36,8 @@ elixir(function(mix) {
     );
     // Copy Bootstrap's JS
     mix.copy('node_modules/bootstrap-sass/assets/javascripts/*.js', 'resources/assets/js/bootstrap');
+    // Copy Handlebars's JS
+    mix.copy('node_modules/handlebars/dist/*.js', 'resources/assets/js/handlebars');
     // Build JS
     mix.scripts(
 		[
@@ -50,7 +52,8 @@ elixir(function(mix) {
 	        'jquery-2.2.0.min.js',
 	        'bootstrap/bootstrap.js',
 	        'adminlte/app.js',
-	        'jquery.nestable.js'
+	        'jquery.nestable.js',
+            'handlebars/handlebars.js'
 		],
 		'public/js/admin.js'
     );

@@ -13,6 +13,7 @@
                     <h2 class="box-title">Sign Ups for {{date('Y')}}</h2>
                 </div>
                 <div class="box-body">
+                    @if(count($orders) > 0)
                     <div class="table-responsive">
                         <table class="table table-striped orders">
                             <thead>
@@ -45,13 +46,56 @@
                             </tbody>
                         </table>
                     </div>
+                    @else
+                    <p>There are no orders for {{date('Y')}}.</p>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal-order" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Order Details</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped order-details">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-success print-modal">Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script id="order-details-template" type="x-tmpl-mustache">
+        @{{#each names}}
+            <tr>
+                <td>@{{this}}</td>
+                <td>$53</td>
+            </tr>
+        @{{/each}}
+        @{{#each items}}
+            <tr>
+                <td>@{{name}}</td>
+                <td>@{{price}}</td>
+            </tr>
+        @{{/each}}
+        <tr>
+            <th>Total</th>
+            <th>$@{{total}}</th>
+        </tr>
+    </script>
 @stop
 @section('scripts')
-<script type="text/javascript" src="https://cdn.datatables.net/t/bs/dt-1.10.11/datatables.js"></script>
+<script type="text/javascript" src="{{url('/')}}/js/datatables.min.js"></script>
+<script type="text/javascript" src="{{url('/')}}/js/jQuery.print.js"></script>
 <script>
     $(document).ready(function()
     {
@@ -101,12 +145,23 @@
                 success: function(result)
                 {
                     console.log(result);
-                    //element.removeClass('btn-mark-unpaid').addClass('btn-mark-paid').html('Make Paid');
-                    //element.parents('tr').children('.is-paid').html('Unpaid');
+                    var names = result.name.split(',');
+                    var source = $("#order-details-template").html();
+                    var template = Handlebars.compile(source);
+                    var html = template({
+                        items: result.items,
+                        names: names,
+                        total: result.total
+                    });
+                    $('.order-details tbody').html(html);
+                    $('#modal-order').modal('show');
                 }
             });
         });
-
+        $('.print-modal').click(function(event)
+        {
+            $('.modal.in .modal-body').print();
+        });
     });
 </script>
 @stop

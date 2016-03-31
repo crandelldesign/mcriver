@@ -137,6 +137,7 @@
         });
         $('.orders').on('click','.btn-order-details',function(event)
         {
+            event.preventDeault();
             element = $(this);
             order_id = element.data('order');
             $.ajax({

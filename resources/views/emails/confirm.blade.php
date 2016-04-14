@@ -78,7 +78,7 @@
 
   <style type="text/css" media="screen">
       @media screen {
-        @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,900);
+        @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,900);
         /* Thanks Outlook 2013! http://goo.gl/XLxpyl */
         * {
           font-family: 'Source Sans Pro', 'Helvetica Neue', 'Arial', 'sans-serif' !important;

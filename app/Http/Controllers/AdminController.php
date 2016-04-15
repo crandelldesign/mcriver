@@ -19,11 +19,6 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        
-        /*if(!\Auth::check() || (\Auth::check() && \Auth::user()->is_admin == 0))
-            return redirect()->action('AdminController@getNotAdmin');
-            exit;*/
-            //return redirect('/');
     }
 
     /**
@@ -76,9 +71,28 @@ class AdminController extends Controller
             $order->person1 = $names[0];
         }
 
+        $friday_meals = Order::where('year',date('Y'))->where('dish_day','like','%friday%')->get();
+        foreach ($friday_meals as $meal) {
+            $names = explode(',',$meal->name);
+            $meal->person1 = $names[0];
+        }
+        $saturday_meals = Order::where('year',date('Y'))->where('dish_day','like','%saturday%')->get();
+        foreach ($saturday_meals as $meal) {
+            $names = explode(',',$meal->name);
+            $meal->person1 = $names[0];
+        }
+        $sunday_meals = Order::where('year',date('Y'))->where('dish_day','like','%sunday%')->get();
+        foreach ($sunday_meals as $meal) {
+            $names = explode(',',$meal->name);
+            $meal->person1 = $names[0];
+        }
+
         $view = view('admin.signups');
         $view->active_page = 'sign-ups';
         $view->orders = $orders;
+        $view->friday_meals = $friday_meals;
+        $view->saturday_meals = $saturday_meals;
+        $view->sunday_meals = $sunday_meals;
         return $view;
     }
 

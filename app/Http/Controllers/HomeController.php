@@ -196,8 +196,8 @@ class HomeController extends Controller
         if(Auth::check())
         {
             $user = Auth::user();
-            $user->phone = $request->phone;
-            $user->email = $request->email;
+            $user->phone = $request->get('phone');
+            $user->email = $request->get('email');
             $user->save();
         }
 
@@ -260,13 +260,16 @@ class HomeController extends Controller
             $names = rtrim($names, ',');
 
             $new_order = New Order;
-            $new_order->email = $request->email;
+            $new_order->email = $request->get('email');
             $new_order->name = $names;
             $new_order->user_id = (isset($user))?$user->id:'';
             $new_order->year = date('Y');
             $new_order->total = $order->total;
             $new_order->payment_method = $request->payment_method;
             $new_order->is_paid = ($request->payment_method == 'credit card')?1:0;
+            $new_order->phone = $request->get('phone');
+            $new_order->dish_day = implode(',',$request->get('dish_day'));
+            $new_order->dish_description = $request->get('dish_description');
             $new_order->save();
 
             if(isset($order->items)) {

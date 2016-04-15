@@ -73,9 +73,9 @@
 			@endforeach
 		<hr>
 		@endforeach
-		<p>Do you agree to pay before June 21, 2016?<br>
+		<p>Do you agree to be fully paid before June 21, 2016?<br>
 		<label class="checkbox-inline">
-			<input type="checkbox" id="agreement" name="agreement" value="yes"> Yes, I agree to these terms stated!
+			<input type="checkbox" id="agreement" name="agreement" value="yes"> Yes, I agree to these terms stated.
 		</label></p>
 		<input type="hidden" name="total" id="total" value="53" />
 		<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />

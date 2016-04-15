@@ -61,6 +61,39 @@
             </div>
         </div>
 
+        <h2>Dish to Pass</h2>
+        <p>Food is needed for Friday Late Night (breadsticks and potato soup), Saturday Potluck, and Sunday Breakfast.</p>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Which Day(s)?</label>
+            <div class="col-sm-9">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="friday" name="dish_day[]">
+                        Friday Late Night
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="saturday" name="dish_day[]">
+                        Saturday Potluck
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="sunday" name="dish_day[]">
+                        Sunday Breakfast
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">What Are You Bringing?</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" name="dish_description" rows="3"></textarea>
+            </div>
+        </div>
+        <hr>
+
         <div class="form-group">
             <label class="control-label col-sm-3">
                 Payment Method

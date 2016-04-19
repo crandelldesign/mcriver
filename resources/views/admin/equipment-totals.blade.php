@@ -15,7 +15,8 @@
                 <div class="box-body">
                     @if(count($categories) > 0)
                     @foreach($categories as $category)
-                        <h3>{{$category->name}}</h3>
+                        <h3>{{$category->name}} {{count($category->items)}}</h3>
+                        @if($category->category_count > 0)
                         <div class="table-responsive">
                             <table class="table table-striped orders">
                                 <thead>
@@ -43,6 +44,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        @else
+                        <p>No {{$category->name}} has been ordered.</p>
+                        @endif
                     @endforeach
                     @else
                     <p>There is no equipment added yet.</p>
@@ -60,6 +64,7 @@
     {
         $('.orders').DataTable({
             paging: false,
+            info: false,
             /* Disable initial sort */
             "aaSorting": []
         });

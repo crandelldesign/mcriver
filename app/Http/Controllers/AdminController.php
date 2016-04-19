@@ -100,6 +100,7 @@ class AdminController extends Controller
     {
         $categories = Category::all();
         foreach ($categories as $category) {
+            $category_count = 0;
             $items = $category->items()->where('parent_id',0)->orderBy('display_order')->get();
             foreach ($items as $item) {
                 $item_order = \DB::table('item_order')->where('item_id',$item->id)
@@ -109,6 +110,8 @@ class AdminController extends Controller
                     })
                     ->count();
                 $item->count = $item_order;
+                if ($item_order > 0)
+                    $category_count++;
                 $item->children = $item->children()->orderBy('display_order')->get();
                 foreach ($item->children as $child) {
                     $item_order = \DB::table('item_order')->where('item_id',$child->id)
@@ -118,9 +121,12 @@ class AdminController extends Controller
                     })
                     ->count();
                     $child->count = $item_order;
+                    if ($item_order > 0)
+                        $category_count++;
                 }
             }
             $category->items = $items;
+            $category->category_count = $category_count; 
         }
         $view = view('admin.equipment-totals');
         $view->active_page = 'equipment';

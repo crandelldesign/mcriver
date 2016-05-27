@@ -27,6 +27,9 @@ body {
 	    background-color: $black;
 	    border-top-left-radius: 25px;
 	    border-top-right-radius: 25px;
+	    img {
+	    	max-width: 463px;
+	    }
 	}
 	.navbar {
 		background-color: $gold;

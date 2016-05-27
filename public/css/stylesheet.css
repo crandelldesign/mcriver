@@ -7848,6 +7848,8 @@ body {
     background-color: #010101;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px; }
+    .header .logo-container img {
+      max-width: 463px; }
   .header .navbar {
     background-color: #AA8B3C;
     margin-bottom: 0;

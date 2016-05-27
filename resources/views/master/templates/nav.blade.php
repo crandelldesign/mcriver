@@ -1,7 +1,7 @@
 <div class="site-container">
     <header class="header">
         <div class="container-fluid logo-container hidden-xs">
-            <a href="{{url('/')}}"><img class="img-responsive center-block" src="{{url('/')}}/img/logo-default-gold.png" alt="McRiver"></a>
+            <a href="{{url('/')}}"><img class="img-responsive center-block" src="{{url('/')}}/img/logo-default-gold.svg" alt="McRiver"></a>
         </div>
         <nav class="navbar">
             <div class="container-fluid">
@@ -13,7 +13,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand visible-xs-block" href="{{url('/')}}"><img src="{{url('/')}}/img/logo-default.png" alt="McRiver"></a>
+                    <a class="navbar-brand visible-xs-block" href="{{url('/')}}"><img src="{{url('/')}}/img/logo-default.svg" alt="McRiver"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->

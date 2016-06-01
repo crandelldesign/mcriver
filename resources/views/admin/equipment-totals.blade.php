@@ -15,7 +15,7 @@
                 <div class="box-body">
                     @if(count($categories) > 0)
                     @foreach($categories as $category)
-                        <h3>{{$category->name}} {{count($category->items)}}</h3>
+                        <h3>{{$category->name}}</h3>
                         @if($category->category_count > 0)
                         <div class="table-responsive">
                             <table class="table table-striped orders">

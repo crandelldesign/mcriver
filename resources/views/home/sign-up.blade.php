@@ -73,6 +73,16 @@
 			@endforeach
 		<hr>
 		@endforeach
+
+		<div class="form-group form-total">
+			<label class="total control-label col-sm-6 col-lg-4">Total:</label>
+			<div class="col-sm-6">
+				<p class="form-control-static"><strong><span class="price">$53</span></strong></p>
+			</div>
+		</div>
+
+		<hr>
+
 		<p>Do you agree to be fully paid before July 5th, 2016?<br>
 		<label class="checkbox-inline">
 			<input type="checkbox" id="agreement" name="agreement" value="yes"> Yes, I agree to be fully paid by the date given.
@@ -134,6 +144,7 @@
 			$('.price-total').html(total);
 			$('#total').val(total);
 			$('.price-box .price').html('$'+total);
+			$('.form-total .price').html('$'+total);
 		}
 	});
 </script>

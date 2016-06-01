@@ -110,8 +110,9 @@ h2 {
 /* Order Form */
 .price-box {
 	position: fixed;
-	right: 15px;
 	bottom: 15px;
+	right: 15px;
+	margin-right: 15px;
 	border: 1px solid $black;
 	background-color: #333;
 	color: $white;
@@ -119,6 +120,9 @@ h2 {
 	line-height: normal;
 	text-align: center;
 	@include box-shadow($z4-shadow);
+	@media (min-width: $screen-lg-min) {
+		right: 25%;
+	}
 	.total {
 		display: block;
 	}
@@ -126,6 +130,9 @@ h2 {
 		display: block;
 		font-size: 20px;
 	}
+}
+.form-total {
+	font-size: 16px;
 }
 div.change-sizes div.count {
 	margin-top: 2px;

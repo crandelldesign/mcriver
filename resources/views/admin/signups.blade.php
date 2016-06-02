@@ -6,51 +6,57 @@
     <h1>Sign Ups</h1>
 @stop
 @section('body')
+    <div class="box">
+        <div class="box-header">
+            <h2 class="box-title">Sign Ups for {{date('Y')}}</h2>
+        </div>
+        <div class="box-body">
+            @if(count($orders) > 0)
+            <div class="table-responsive">
+                <table class="table table-striped orders">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>People in Party</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Registered</th>
+                            <th>Total</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($orders as $order)
+                        <tr>
+                            <td data-search="{{$order->name}}"><a href="#" class="btn-order-details" data-order="{{$order->id}}">{{$order->person1}}</a></td>
+                            <td>{{$order->person_count}}</td>
+                            <td>{{$order->email}}</td>
+                            <td>{{$order->phone}}</td>
+                            <td>{{date('n/d/Y',strtotime($order->created_at))}}</td>
+                            <td>${{$order->total}}</td>
+                            <td>{{ucfirst($order->payment_method)}}</td>
+                            <td class="is-paid">{{($order->is_paid)?'Paid':'Unpaid'}}</td>
+                            <td>@if($order->is_paid)
+                            <button data-order="{{$order->id}}" class="btn btn-default btn-xs btn-mark-unpaid">Make Unpaid</button>
+                            @else
+                            <button data-order="{{$order->id}}" class="btn btn-default btn-xs btn-mark-paid">Make Paid</button>
+                            @endif</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            @else
+            <p>There are no orders for {{date('Y')}}.</p>
+            @endif
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-lg-10">
-            <div class="box">
-                <div class="box-header">
-                    <h2 class="box-title">Sign Ups for {{date('Y')}}</h2>
-                </div>
-                <div class="box-body">
-                    @if(count($orders) > 0)
-                    <div class="table-responsive">
-                        <table class="table table-striped orders">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Registered</th>
-                                    <th>Total</th>
-                                    <th>Payment</th>
-                                    <th>Status</th>
-                                    <th>&nbsp;</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($orders as $order)
-                                <tr>
-                                    <td data-search="{{$order->name}}"><a href="#" class="btn-order-details" data-order="{{$order->id}}">{{$order->person1}}</a></td>
-                                    <td>{{$order->phone}}</td>
-                                    <td>{{date('n/d/Y',strtotime($order->created_at))}}</td>
-                                    <td>${{$order->total}}</td>
-                                    <td>{{ucfirst($order->payment_method)}}</td>
-                                    <td class="is-paid">{{($order->is_paid)?'Paid':'Unpaid'}}</td>
-                                    <td>@if($order->is_paid)
-                                    <button data-order="{{$order->id}}" class="btn btn-default btn-xs btn-mark-unpaid">Make Unpaid</button>
-                                    @else
-                                    <button data-order="{{$order->id}}" class="btn btn-default btn-xs btn-mark-paid">Make Paid</button>
-                                    @endif</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    @else
-                    <p>There are no orders for {{date('Y')}}.</p>
-                    @endif
-                </div>
-            </div>
 
             <div class="box">
                 <div class="box-header">

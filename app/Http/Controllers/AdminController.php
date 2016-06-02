@@ -69,6 +69,7 @@ class AdminController extends Controller
         foreach ($orders as $order) {
             $names = explode(',',$order->name);
             $order->person1 = $names[0];
+            $order->person_count = count($names);
         }
 
         $friday_meals = Order::where('year',date('Y'))->where('dish_day','like','%friday%')->get();

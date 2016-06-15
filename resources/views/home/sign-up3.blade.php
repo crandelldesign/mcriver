@@ -1,4 +1,10 @@
 @extends('master.templates.master')
+@section('yield')
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    Stripe.setPublishableKey({{env('STRIPE_KEY')}});
+</script>
+@stop
 @section('body')
 <h1>Complete Your Order</h1>
 
@@ -205,10 +211,6 @@
 </form>
 @stop
 @section('scripts')
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">
-    Stripe.setPublishableKey({{env('STRIPE_KEY')}});
-</script>
 <script>
     $('.payment-method-toggle').change(function()
     {

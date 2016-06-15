@@ -19,7 +19,8 @@
 	</div>
 	<div class="col-md-4">
 		<h2>Theme?</h2>
-		<p>TBD <i class="fa fa-beer"></i><!--70’s Disco &quot;Staying Alive&quot;--></p>
+		<p>Come Celebrate 30 Years of Sunshine, Sarcasm &amp; Shenanigans<br>
+		<strong>Rock Your Rookie Year</strong></p>
 	</div>
 	<div class="col-md-4 col-lg-3">
 		<h2>Where?</h2>

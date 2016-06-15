@@ -14,10 +14,10 @@
 			@endif
 			<div class="row">
 				<div class="col-sm-6 margin-bottom">
-					<a href="#" class="btn btn-lg btn-block btn-success">Check Sign Ups</a>
+					<a href="{{url('/')}}/admin/sign-ups" class="btn btn-lg btn-block btn-success">Check Sign Ups</a>
 				</div>
 				<div class="col-sm-6 margin-bottom">
-					<a href="#" class="btn btn-lg btn-block btn-primary">Check Equipment Totals</a>
+					<a href="{{url('/')}}/admin/equipment" class="btn btn-lg btn-block btn-primary">Check Equipment Totals</a>
 				</div>
 				<div class="col-sm-6 margin-bottom">
 					<a href="{{url('/')}}/admin/products" class="btn btn-lg btn-block bg-maroon">Change Products</a>

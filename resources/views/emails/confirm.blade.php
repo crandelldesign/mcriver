@@ -169,7 +169,7 @@
           <table style="margin:0 auto;" cellspacing="0" cellpadding="0" width="100%">
             <tr>
               <td style="text-align: center; padding: 15px; background-color: #010101">
-                <a href="#"><img class="w320" width="320" height="69" src="http://www.mcriver.net/img/logo-default-gold.png" alt="McRiver" /></a>
+                <a href="{{url('/')}}"><img class="w320" width="320" height="69" src="http://www.mcriver.net/img/logo-default-gold.png" alt="McRiver" /></a>
               </td>
             </tr>
           </table>
@@ -229,7 +229,7 @@
 						</tr>
 					</thead>
 					<tbody>
-                    @for($i = 1; $i <= $order->people; $i++)
+                    @for($i = 1; $i <= $session_order->people; $i++)
                         <?php $name = 'person'.$i; ?>
                         <tr class="person-{{$i}}-row" data-person="{{$i}}">
                             <td style="border-bottom:1px solid #e3e3e3; padding: 5px;">{{$inputs[$name]}}</td>

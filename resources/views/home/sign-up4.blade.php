@@ -7,7 +7,7 @@
 <p>You will receive an email with your order.</p>
 
 @if($order->payment == 'check')
-<p>Please send a check or money order to the address below by June 21, 2016.</p>
+<p>Please send a check or money order to the address below by July 5, 2016.</p>
 <address>
     Jim McDonald<br>
     4323 Crestdale Ave<br>

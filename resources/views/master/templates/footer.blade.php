@@ -14,7 +14,7 @@
         		<h4 class="modal-title">Login</h4>
       		</div>
       		<div class="modal-body">
-        		<form class="form-horizontal" role="form" method="POST" action="{{url('/signin')}}">
+        		<form class="form-horizontal" method="POST" action="{{url('/signin')}}">
 					<div class="form-group">
 						<label class="col-md-4 control-label">Email</label>
                         <div class="col-md-6">
@@ -49,7 +49,7 @@
                 <h4 class="modal-title">Register</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                <form class="form-horizontal" method="POST" action="{{ url('/register') }}">
                     {!! csrf_field() !!}
                     <div class="form-group">
                         <label class="col-md-4 control-label">Name</label>

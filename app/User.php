@@ -31,4 +31,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('mcriver\Order');
     }
+
+    /**
+     * Get admin
+     */
+    public function scopeAdmin($query)
+    {
+        return $query->where('is_admin', 1);
+    }
 }

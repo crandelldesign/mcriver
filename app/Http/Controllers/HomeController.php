@@ -280,11 +280,12 @@ class HomeController extends Controller
                 }
             }
 
-            $order = Order::with('items')->find($new_order->id);
+            $new_order = Order::with('items')->find($new_order->id);
 
             $data = array(
                 'inputs' => $request->all(),
-                'order' => $order
+                'session_order' => $order,
+                'order' => $new_order
             );
 
             Mail::send('emails.confirm', $data, function($message) use ($request)
@@ -293,6 +294,16 @@ class HomeController extends Controller
                 $message->from('matt@crandelldesign.com', 'Matt Crandell');
                 $message->subject('Thank You For Your Order!');
             });
+
+            $admins = User::admin()->get();
+            foreach ($admins as $admin) {
+                Mail::send('emails.confirm', $data, function($message) use ($request, $admin)
+                {
+                    $message->to($admin->email, $admin->name);
+                    $message->from('matt@crandelldesign.com', 'Matt Crandell');
+                    $message->subject('McRiver '.date('Y').' Order');
+                });
+            }
 
             //return redirect('/sign-up/4?order='.$new_order->id)->with('new_order',$new_order);
             $request->session()->forget('order');
@@ -314,7 +325,7 @@ class HomeController extends Controller
             $new_order = $request->session()->get('new_order');
             $order = Order::with('items')->find($new_order->id);
         } else {
-            return redirect('/sign-up/4');
+            return redirect('/sign-up/3');
         }
 
         $names = explode(',',$order->name);

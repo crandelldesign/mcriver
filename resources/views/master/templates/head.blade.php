@@ -14,5 +14,3 @@
 	<style>
 	</style>
 <![endif]-->
-
-@yield('head')

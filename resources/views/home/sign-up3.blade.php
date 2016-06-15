@@ -196,7 +196,7 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        <button type="submit" class="btn btn-lg center-block btn-primary">Complete Your Order</button>
+        <button type="submit" class="btn btn-lg center-block btn-primary btn-submit">Complete Your Order</button>
     </div>
 </div>
 
@@ -208,10 +208,7 @@
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
-$(document).ready(function()
-{
     Stripe.setPublishableKey("{{env('STRIPE_KEY')}}");
-});
 </script>
 <script>
     $('.payment-method-toggle').change(function()
@@ -232,7 +229,7 @@ $(document).ready(function()
         if ($('.payment-method-toggle').val() == 'credit card') {
             event.preventDefault();
             // Disable the submit button to prevent repeated clicks:
-            $form.find('.submit').prop('disabled', true);
+            $form.find('.btn-submit').prop('disabled', true);
 
             // Request a token from Stripe:
             Stripe.card.createToken($form, stripeResponseHandler);
@@ -249,7 +246,7 @@ $(document).ready(function()
 
             // Show the errors on the form:
             $form.find('.payment-errors').text(response.error.message);
-            $form.find('.submit').prop('disabled', false); // Re-enable submission
+            $form.find('.btn-submit').prop('disabled', false); // Re-enable submission
 
         } else { // Token was created!
 

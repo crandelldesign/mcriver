@@ -206,6 +206,9 @@
 @stop
 @section('scripts')
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    Stripe.setPublishableKey({{env('STRIPE_SECRET')}});
+</script>
 <script>
     $('.payment-method-toggle').change(function()
     {

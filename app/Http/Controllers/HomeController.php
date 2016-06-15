@@ -221,8 +221,9 @@ class HomeController extends Controller
             try {
                 \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-                $myCard = \Stripe\Token::create(array("card" => array('number' => $request->card_number, 'exp_month' => $request->expiry_month, 'exp_year' => $request->expiry_year, 'name' => $request->card_holder_name, 'cvc' => $request->cvc)));
-                $charge = \Stripe\Charge::create(array('card' => $myCard, 'amount' => $order->total.'00', 'currency' => 'usd', 'receipt_email' => $request->email));
+                //$myCard = \Stripe\Token::create(array("card" => array('number' => $request->card_number, 'exp_month' => $request->expiry_month, 'exp_year' => $request->expiry_year, 'name' => $request->card_holder_name, 'cvc' => $request->cvc)));
+                $token = $request->get('stripeToken');
+                $charge = \Stripe\Charge::create(array('source' => $token, 'amount' => $order->total.'00', 'currency' => 'usd', 'receipt_email' => $request->email));
                 //echo $charge;
                 $success = 1;
                 //$paymentProcessor="Credit card (www.stripe.com)";
@@ -268,7 +269,7 @@ class HomeController extends Controller
             $new_order->payment_method = $request->payment_method;
             $new_order->is_paid = ($request->payment_method == 'credit card')?1:0;
             $new_order->phone = $request->get('phone');
-            $new_order->dish_day = implode(',',$request->get('dish_day'));
+            $new_order->dish_day = ($request->get('dish_day'))?implode(',',$request->get('dish_day')):'';
             $new_order->dish_description = $request->get('dish_description');
             $new_order->save();
 

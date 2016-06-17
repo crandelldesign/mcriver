@@ -110,16 +110,23 @@
 
         <div class="credit-card-section">
             <h2>Credit Card Info</h2>
+
+            <div class="alert alert-danger payment-errors" style="display:none">
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="card_holder_name" id="card-holder-name" placeholder="Card Holder's Name">
+                    <input type="text" class="form-control card_holder_name" name="card_holder_name" id="card-holder-name" placeholder="Card Holder's Name">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="card-number">Card Number</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="card_number" id="card-number" placeholder="Debit/Credit Card Number" data-stripe="number">
+                    <input type="text" class="form-control number" name="card_number" id="card-number" placeholder="Debit/Credit Card Number" data-stripe="number">
                 </div>
             </div>
             <div class="form-group">
@@ -127,7 +134,7 @@
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="col-xs-6 col-sm-3">
-                            <select class="form-control col-sm-2" name="expiry_month" id="expiry-month" data-stripe="exp-month">
+                            <select class="form-control col-sm-2 exp_month" name="expiry_month" id="expiry-month" data-stripe="exp-month">
                                 <option>Month</option>
                                 <option value="1">Jan (01)</option>
                                 <option value="2">Feb (02)</option>
@@ -144,7 +151,7 @@
                             </select>
                         </div>
                         <div class="col-xs-6 col-sm-3">
-                            <select class="form-control" name="expiry_year" data-stripe="exp-year">
+                            <select class="form-control exp_year" name="expiry_year" data-stripe="exp-year">
                                 <option>Year</option>
                                 @for($i = 0; $i <= 10; $i++)
                                 <option value="{{date('y', strtotime('+'.$i.' years'))}}">{{date('Y', strtotime('+'.$i.' years'))}}</option>
@@ -157,7 +164,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="cvc">Card CVC</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" name="cvc" id="cvc" placeholder="Security Code" data-stripe="cvc">
+                    <input type="text" class="form-control cvc" name="cvc" id="cvc" placeholder="Security Code" data-stripe="cvc">
                 </div>
             </div>
         </div>
@@ -226,8 +233,16 @@ $(document).ready(function()
     var $form = $('#payment-form');
     $form.submit(function(event)
     {
-        if ($('.payment-method-toggle').val() == 'credit card') {
-            event.preventDefault();
+        if ($('.payment-method-toggle:checked').val() == 'credit card') {
+            
+            // Remove Error States
+            $('.payment-errors').hide();
+            $('.card_holder_name').parents('.form-group').removeClass('has-error');
+            $('.number').parents('.form-group').removeClass('has-error');
+            $('.exp_month').parents('.form-group').removeClass('has-error');
+            $('.exp_year').parents('.form-group').removeClass('has-error');
+            $('.cvc').parents('.form-group').removeClass('has-error');
+
             // Disable the submit button to prevent repeated clicks:
             $form.find('.btn-submit').prop('disabled', true);
 
@@ -243,10 +258,18 @@ $(document).ready(function()
         var $form = $('#payment-form');
 
         if (response.error) { // Problem!
-
             // Show the errors on the form:
-            $form.find('.payment-errors').text(response.error.message);
-            $form.find('.btn-submit').prop('disabled', false); // Re-enable submission
+            $('.payment-errors').show().find('li').text(response.error.message);
+            if (response.error.message == 'Could not find payment information') {
+                $('.card_holder_name').parents('.form-group').addClass('has-error');
+                $('.number').parents('.form-group').addClass('has-error');
+                $('.exp_month').parents('.form-group').addClass('has-error');
+                $('.exp_year').parents('.form-group').addClass('has-error');
+                $('.cvc').parents('.form-group').addClass('has-error');
+            } else if (response.error.param) {
+                $('.'+response.error.param).parents('.form-group').addClass('has-error');
+            }
+            $form.find('.submit').prop('disabled', false); // Re-enable submission
 
         } else { // Token was created!
 

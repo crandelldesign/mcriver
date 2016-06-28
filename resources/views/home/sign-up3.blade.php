@@ -136,15 +136,15 @@
                         <div class="col-xs-6 col-sm-3">
                             <select class="form-control col-sm-2 exp_month" name="expiry_month" id="expiry-month" data-stripe="exp-month">
                                 <option>Month</option>
-                                <option value="1">Jan (01)</option>
-                                <option value="2">Feb (02)</option>
-                                <option value="3">Mar (03)</option>
-                                <option value="4">Apr (04)</option>
-                                <option value="5">May (05)</option>
-                                <option value="6">June (06)</option>
-                                <option value="7">July (07)</option>
-                                <option value="8">Aug (08)</option>
-                                <option value="9">Sep (09)</option>
+                                <option value="01">Jan (01)</option>
+                                <option value="02">Feb (02)</option>
+                                <option value="03">Mar (03)</option>
+                                <option value="04">Apr (04)</option>
+                                <option value="05">May (05)</option>
+                                <option value="06">June (06)</option>
+                                <option value="07">July (07)</option>
+                                <option value="08">Aug (08)</option>
+                                <option value="09">Sep (09)</option>
                                 <option value="10">Oct (10)</option>
                                 <option value="11">Nov (11)</option>
                                 <option value="12">Dec (12)</option>

@@ -229,6 +229,7 @@
 						</tr>
 					</thead>
 					<tbody>
+                    @if ($session_order)
                     @for($i = 1; $i <= $session_order->people; $i++)
                         <?php $name = 'person'.$i; ?>
                         <tr class="person-{{$i}}-row" data-person="{{$i}}">
@@ -236,7 +237,8 @@
                             <td style="border-bottom:1px solid #e3e3e3; padding: 5px;">$53</td>
                         </tr>
                     @endfor
-                    @if(isset($order->items))
+                    @endif
+                    @if (isset($order->items))
                     @foreach($order->items as $item)
                         <tr>
                             <td style="border-bottom:1px solid #e3e3e3; padding: 5px;">{{$item->name}}</td>

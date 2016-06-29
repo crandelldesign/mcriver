@@ -410,7 +410,7 @@ class HomeController extends Controller
     }
 
     public function getTestEmail(Request $request) {
-        $new_order = Order::with('items')->find(1);
+        $new_order = Order::with('items')->find(2);
         //$person1
         $data = array(
             'inputs' => $request->all(),

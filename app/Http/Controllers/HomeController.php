@@ -408,4 +408,21 @@ class HomeController extends Controller
         $view->active_page = "home";
         return $view;
     }
+
+    public function getTestEmail(Request $request) {
+        $new_order = Order::with('items')->find(2);
+        //$person1
+        $data = array(
+            'inputs' => $request->all(),
+            'session_order' => '',
+            'order' => $new_order
+        );
+
+        Mail::send('emails.confirm', $data, function($message) use ($request)
+        {
+            $message->to('mrcrandell@gmail.com', 'Matt Crandell');
+            //$message->from('postmaster@mcriver.net', 'McRiver Admin');
+            $message->subject('Thank You For Your Order!');
+        });
+    }
 }

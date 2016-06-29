@@ -275,8 +275,8 @@ class HomeController extends Controller
             $new_order->payment_method = $request->payment_method;
             $new_order->is_paid = ($request->payment_method == 'credit card')?1:0;
             $new_order->phone = $request->get('phone');
-            $new_order->dish_day = ($request->get('dish_day'))?implode(',',$request->get('dish_day')):'';
-            $new_order->dish_description = $request->get('dish_description');
+            $new_order->dish_day = ($request->get('dish_day'))?implode(',',$request->get('dish_day')):' ';
+            $new_order->dish_description = ($request->get('dish_description'))?$request->get('dish_description'):' ';
             $new_order->save();
 
             if(isset($order->items)) {

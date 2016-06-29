@@ -203,7 +203,7 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        <button type="submit" class="btn btn-lg center-block btn-primary btn-submit">Complete Your Order</button>
+        <button type="submit" class="btn btn-lg center-block btn-primary">Complete Your Order</button>
     </div>
 </div>
 
@@ -215,7 +215,10 @@
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
+$(document).ready(function()
+{
     Stripe.setPublishableKey("{{env('STRIPE_KEY')}}");
+});
 </script>
 <script>
     $('.payment-method-toggle').change(function()
@@ -244,7 +247,7 @@ $(document).ready(function()
             $('.cvc').parents('.form-group').removeClass('has-error');
 
             // Disable the submit button to prevent repeated clicks:
-            $form.find('.btn-submit').prop('disabled', true);
+            $form.find('.submit').prop('disabled', true);
 
             // Request a token from Stripe:
             Stripe.card.createToken($form, stripeResponseHandler);

@@ -223,7 +223,13 @@ class HomeController extends Controller
 
                 //$myCard = \Stripe\Token::create(array("card" => array('number' => $request->card_number, 'exp_month' => $request->expiry_month, 'exp_year' => $request->expiry_year, 'name' => $request->card_holder_name, 'cvc' => $request->cvc)));
                 $token = $request->get('stripeToken');
-                $charge = \Stripe\Charge::create(array('source' => $token, 'amount' => $order->total.'00', 'currency' => 'usd', 'receipt_email' => $request->email));
+
+                $charge = \Stripe\Charge::create(array(
+                    'source' => $token, 
+                    'amount' => $order->total.'00', 
+                    'currency' => 'usd', 
+                    'receipt_email' => $request->email
+                ));
                 //echo $charge;
                 $success = 1;
                 //$paymentProcessor="Credit card (www.stripe.com)";
@@ -269,8 +275,8 @@ class HomeController extends Controller
             $new_order->payment_method = $request->payment_method;
             $new_order->is_paid = ($request->payment_method == 'credit card')?1:0;
             $new_order->phone = $request->get('phone');
-            $new_order->dish_day = ($request->get('dish_day'))?implode(',',$request->get('dish_day')):'';
-            $new_order->dish_description = $request->get('dish_description');
+            $new_order->dish_day = ($request->get('dish_day'))?implode(',',$request->get('dish_day')):' ';
+            $new_order->dish_description = ($request->get('dish_description'))?$request->get('dish_description'):' ';
             $new_order->save();
 
             if(isset($order->items)) {
@@ -292,7 +298,7 @@ class HomeController extends Controller
             Mail::send('emails.confirm', $data, function($message) use ($request)
             {
                 $message->to($request->get('email'), $request->get('person1'));
-                $message->from('matt@crandelldesign.com', 'Matt Crandell');
+                $message->from('postmaster@mcriver.net', 'McRiver Admin');
                 $message->subject('Thank You For Your Order!');
             });
 
@@ -301,7 +307,7 @@ class HomeController extends Controller
                 Mail::send('emails.confirm', $data, function($message) use ($request, $admin)
                 {
                     $message->to($admin->email, $admin->name);
-                    $message->from('matt@crandelldesign.com', 'Matt Crandell');
+                    $message->from('postmaster@mcriver.net', 'McRiver Admin');
                     $message->subject('McRiver '.date('Y').' Order');
                 });
             }

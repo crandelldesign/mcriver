@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'postmaster@mcriver.net', 'name' => 'McRiver Admin'],
 
     /*
     |--------------------------------------------------------------------------

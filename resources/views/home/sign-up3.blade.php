@@ -1,5 +1,5 @@
-@extends('master.templates.master')
-@section('body')
+@extends('layouts.default')
+@section('content')
 <h1>Complete Your Order</h1>
 
 @if (session('stripe_errors'))

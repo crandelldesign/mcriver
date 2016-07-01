@@ -6,7 +6,7 @@
     </head>
     <body style="background-image: url({{url('/')}}/img/default-background{{rand(1,4)}}.jpg)">
         @include('master.templates.nav')
-        @yield('body')
+        @yield('content')
         @include('master.templates.footer')
 
         <script type="text/javascript" src="{{ elixir('js/master.js') }}"></script>

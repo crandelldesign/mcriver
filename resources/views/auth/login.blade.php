@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        @include('admin.templates.head')
+        @include('layouts.admin-head')
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
@@ -13,6 +13,7 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label class="control-label">E-Mail Address</label>
                             <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
 
                             @if ($errors->has('email'))
@@ -23,8 +24,8 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label class="control-label">Password</label>
                             <input type="password" class="form-control" name="password" placeholder="Password">
-
                             @if ($errors->has('password'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('password') }}</strong>

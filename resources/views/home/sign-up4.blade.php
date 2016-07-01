@@ -1,5 +1,5 @@
-@extends('master.templates.master')
-@section('body')
+@extends('layouts.default')
+@section('content')
 <h1>Thank You for Your Order</h1>
 
 <p>Your Order Number: <strong>{{$order->id}}</strong></p>

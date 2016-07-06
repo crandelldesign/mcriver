@@ -203,7 +203,7 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        <button type="submit" class="btn btn-lg center-block btn-primary">Complete Your Order</button>
+        <button type="submit" class="btn btn-lg center-block btn-primary btn-submit">Complete Your Order</button>
     </div>
 </div>
 
@@ -247,7 +247,7 @@ $(document).ready(function()
             $('.cvc').parents('.form-group').removeClass('has-error');
 
             // Disable the submit button to prevent repeated clicks:
-            $form.find('.submit').prop('disabled', true);
+            $form.find('.btn-submit').prop('disabled', true);
 
             // Request a token from Stripe:
             Stripe.card.createToken($form, stripeResponseHandler);
@@ -272,7 +272,7 @@ $(document).ready(function()
             } else if (response.error.param) {
                 $('.'+response.error.param).parents('.form-group').addClass('has-error');
             }
-            $form.find('.submit').prop('disabled', false); // Re-enable submission
+            $form.find('.btn-submit').prop('disabled', false); // Re-enable submission
 
         } else { // Token was created!
 

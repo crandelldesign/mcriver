@@ -189,7 +189,7 @@
                   </tr>
                   <tr>
                     <td style="font-size:24px; text-align:center; padding: 0 75px; color: #ffffff; padding: 0 0 10px 0; width: 100%" class="w320 mobile-spacing">
-                    	Details below.
+                    	Details below
                     </td>
                   </tr>
                 </table>

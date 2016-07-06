@@ -1,5 +1,5 @@
-@extends('master.templates.master')
-@section('body')
+@extends('layouts.default')
+@section('content')
 <h1>McRiver Raid 2016</h1>
 
 <div class="row">

@@ -1,11 +1,11 @@
-@extends('admin.templates.admin')
+@extends('layouts.admin')
 @section('head')
 <link rel="stylesheet" type="text/css" href="{{ url('/css/datatables.min.css') }}" />
 @stop
 @section('content-header')
     <h1>Sign Ups</h1>
 @stop
-@section('body')
+@section('content')
     <div class="box">
         <div class="box-header">
             <h2 class="box-title">Sign Ups for {{date('Y')}}</h2>

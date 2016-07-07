@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use mcriver\Category;
 use mcriver\Item;
 use mcriver\Order;
+use mcriver\Rookie;
 
 class AdminController extends Controller
 {
@@ -66,10 +67,12 @@ class AdminController extends Controller
     {
         $orders = Order::where('year',date('Y'))->get();
 
+        $sign_up_total = 0;
         foreach ($orders as $order) {
             $names = explode(',',$order->name);
             $order->person1 = $names[0];
             $order->person_count = count($names);
+            $sign_up_total = $sign_up_total + count($names);
         }
 
         $friday_meals = Order::where('year',date('Y'))->where('dish_day','like','%friday%')->get();
@@ -88,12 +91,16 @@ class AdminController extends Controller
             $meal->person1 = $names[0];
         }
 
+        $rookies = Rookie::where('year',date('Y'))->get();
+
         $view = view('admin.signups');
         $view->active_page = 'sign-ups';
         $view->orders = $orders;
         $view->friday_meals = $friday_meals;
         $view->saturday_meals = $saturday_meals;
         $view->sunday_meals = $sunday_meals;
+        $view->sign_up_total = $sign_up_total;
+        $view->rookies = $rookies;
         return $view;
     }
 

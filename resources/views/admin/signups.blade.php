@@ -9,6 +9,9 @@
     <div class="box">
         <div class="box-header">
             <h2 class="box-title">Sign Ups for {{date('Y')}}</h2>
+            <div class="box-tools">
+                Total: <strong>{{$sign_up_total}}</strong>
+            </div>
         </div>
         <div class="box-body">
             @if(count($orders) > 0)
@@ -46,6 +49,11 @@
                         </tr>
                         @endforeach
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th class="text-right" colspan="9">Total: <strong>{{$sign_up_total}}</strong></th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
             @else
@@ -54,17 +62,44 @@
         </div>
     </div>
 
+    <div class="box">
+        <div class="box-header">
+            <h2 class="box-title">Rookies for {{date('Y')}}</h2>
+            <div class="box-tools">
+                Total: <strong>{{count($rookies)}}</strong>
+            </div>
+        </div>
+        <div class="box-body">
+            @if(count($rookies) > 0)
+            <div class="table-responsive">
+                <table class="table table-striped orders">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($rookies as $rookie)
+                        <tr>
+                            <td>{{$rookie->name}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            @endif
+        </div>
+    </div>
 
-    <div class="row">
-        <div class="col-lg-10">
-
-            <div class="box">
-                <div class="box-header">
-                    <h2 class="box-title">Dishes for {{date('Y')}}</h2>
-                </div>
-                <div class="box-body">
-                    <p><small>Note: If somebody has volunteered to bring food more than one day, it will show up for all days.</small></p>
-                    @if(count($friday_meals) > 0)
+    <div class="box">
+        <div class="box-header">
+            <h2 class="box-title">Dishes for {{date('Y')}}</h2>
+        </div>
+        <div class="box-body">
+            <p><small>Note: If somebody has volunteered to bring food more than one day, it will show up for all days.</small></p>
+            <div class="row">
+                @if(count($friday_meals) > 0)
+                    <div class="col-md-6">
                         <h2>Friday</h2>
                         <table class="table table-striped">
                             <thead>
@@ -78,11 +113,14 @@
                                 <tr>
                                     <td>{{$meal->person1}}</td>
                                     <td>{{$meal->dish_description}}</td>
+                                </tr>
                                 @endforeach    
                             </tbody>
                         </table>
-                    @endif
-                    @if(count($saturday_meals) > 0)
+                    </div>
+                @endif
+                @if(count($saturday_meals) > 0)
+                    <div class="col-md-6">
                         <h3>Saturday</h3>
                         <table class="table table-striped">
                             <thead>
@@ -96,11 +134,14 @@
                                 <tr>
                                     <td>{{$meal->person1}}</td>
                                     <td>{{$meal->dish_description}}</td>
+                                </tr>
                                 @endforeach    
                             </tbody>
                         </table>
-                    @endif
-                    @if(count($sunday_meals) > 0)
+                    </div>
+                @endif
+                @if(count($sunday_meals) > 0)
+                    <div class="col-md-6">
                         <h3>Sunday</h3>
                         <table class="table table-striped">
                             <thead>
@@ -114,15 +155,16 @@
                                 <tr>
                                     <td>{{$meal->person1}}</td>
                                     <td>{{$meal->dish_description}}</td>
+                                </tr>
                                 @endforeach    
                             </tbody>
                         </table>
-                    @endif
-                    @if(count($friday_meals) == 0 && count($saturday_meals) == 0 && count($sunday_meals) == 0)
-                    <p>Nobody has volunteered to bring food this year.</p>
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
+            @if(count($friday_meals) == 0 && count($saturday_meals) == 0 && count($sunday_meals) == 0)
+            <p>Nobody has volunteered to bring food this year.</p>
+            @endif
         </div>
     </div>
 
@@ -130,7 +172,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close no-print" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Order Details</h4>
                 </div>
                 <div class="modal-body">
@@ -139,7 +181,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer no-print">
                     <button type="button" class="btn btn-lg btn-success print-modal">Print</button>
                 </div>
             </div>
@@ -150,18 +192,18 @@
         @{{#each names}}
             <tr>
                 <td>@{{this}}</td>
-                <td>$53</td>
+                <td class="text-right">$53</td>
             </tr>
         @{{/each}}
         @{{#each items}}
             <tr>
                 <td>@{{name}}</td>
-                <td>@{{price}}</td>
+                <td class="text-right">$@{{price}}</td>
             </tr>
         @{{/each}}
         <tr>
             <th>Total</th>
-            <th>$@{{total}}</th>
+            <th class="text-right">$@{{total}}</th>
         </tr>
     </script>
 @stop
@@ -233,7 +275,7 @@
         });
         $('.print-modal').click(function(event)
         {
-            $('.modal.in .modal-body').print();
+            $('.modal.in .modal-content').print();
         });
     });
 </script>

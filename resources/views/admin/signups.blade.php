@@ -10,7 +10,8 @@
         <div class="box-header">
             <h2 class="box-title">Sign Ups for {{date('Y')}}</h2>
             <div class="box-tools">
-                Total: <strong>{{$sign_up_total}}</strong>
+                Total: <strong>{{$sign_up_total}}</strong>&nbsp;&nbsp;
+                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#notify-all-modal">Send Notification Emails</button>
             </div>
         </div>
         <div class="box-body">
@@ -188,6 +189,29 @@
         </div>
     </div>
 
+    <div class="modal fade" id="notify-all-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning">
+                        <p><strong>Warning:</strong> This will send an email to all orders. Are you sure you want to continue?</p>
+                    </div>
+                    <div class="alert alert-success notify-all-success" style="display:none">
+                        <p>Emails have been sent successfully.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-send-notifcation-emails">Send</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script id="order-details-template" type="x-tmpl-mustache">
         @{{#each names}}
             <tr>
@@ -259,7 +283,6 @@
                 url: '{{url("/")}}/api/order/'+order_id,
                 success: function(result)
                 {
-                    console.log(result);
                     var names = result.name.split(',');
                     var source = $("#order-details-template").html();
                     var template = Handlebars.compile(source);
@@ -276,6 +299,26 @@
         $('.print-modal').click(function(event)
         {
             $('.modal.in .modal-content').print();
+        });
+        $('.btn-send-notifcation-emails').on('click', function(event)
+        {
+            $(this).prop('disabled', true);
+            $.ajax({
+                type: 'GET',
+                url: '{{url("/")}}/admin/notify-sign-ups',
+                data: 'year={{date("Y")}}',
+                dataType: 'json',
+                success: function(result)
+                {
+                    $('.notify-all-success').show();
+                    setTimeout(function()
+                    {
+                        $('#notify-all-modal').modal('hide');
+                        $('.notify-all-success').hide();
+                        $(this).prop('disabled', false);
+                    }, 3000);
+                }
+            });
         });
     });
 </script>

@@ -5,6 +5,7 @@ namespace mcriver\Http\Controllers;
 use mcriver\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Mail;
 use mcriver\Category;
 use mcriver\Item;
 use mcriver\Order;
@@ -293,5 +294,29 @@ class AdminController extends Controller
         $order->save();
 
         return $order;
+    }
+
+    public function getNotifySignUps(Request $request)
+    {
+        $orders = Order::with('items')->where('year',($request->input('year')))->get();
+        if(!$orders)
+            return;
+        foreach ($orders as $order) {
+            $names = explode(',',$order->name);
+
+            $data = array(
+                'order' => $order,
+                'names' => $names
+            );
+
+            Mail::queue('emails.status', $data, function($message) use ($order, $names)
+            {
+                $message->to($order->email, $names[0]);
+                $message->from('postmaster@mcriver.net', 'McRiver Admin');
+                $message->replyTo('matt@crandelldesign.com', 'Matt Crandell');
+                $message->subject('McRiver '.$order->year.' Order Status');
+            });
+        }
+        return $orders;
     }
 }

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        @include('master.templates.head')
+        @include('layouts.head')
     </head>
     <body style="background-image: url({{url('/')}}/img/default-background{{rand(1,4)}}.jpg)">
         <div class="site-container">

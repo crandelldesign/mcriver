@@ -21,4 +21,20 @@ class Order extends Model
     {
         return $this->belongsToMany('mcriver\Item');
     }
+
+    /**
+     * Get the persons for the order.
+     */
+    public function orders()
+    {
+        return $this->hasMany('mcriver\Person');
+    }
+
+    /**
+     * Get active
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 }

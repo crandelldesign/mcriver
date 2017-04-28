@@ -21,4 +21,12 @@ class Person extends Model
     {
         return $query->where('is_active', 1);
     }
+
+    /**
+     * Get Rookies
+     */
+    public function scopeRookies($query, $year)
+    {
+        return $query->where('is_rookies', 1)->where('year', $year);
+    }
 }

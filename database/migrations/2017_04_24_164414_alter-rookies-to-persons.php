@@ -14,6 +14,7 @@ class AlterRookiesToPersons extends Migration
     {
         Schema::rename('rookies', 'persons');
         Schema::table('persons', function ($table) {
+            $table->boolean('is_rookie')->default(0);
             $table->boolean('is_active')->default(1);
             $table->integer('order_id')->unsigned()->nullable();
             $table->foreign('order_id')->references('id')->on('orders');
@@ -34,6 +35,7 @@ class AlterRookiesToPersons extends Migration
             $table->dropColumn('is_active');
         });
         Schema::table('persons', function ($table) {
+            $table->dropColumn('is_rookie');
             $table->dropColumn('is_active');
             $table->dropForeign(['order_id']);
             $table->dropColumn('order_id');

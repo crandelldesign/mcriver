@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
+
+    protected $table = 'persons';
+
     /**
      * Get the order that owns the person.
      */
@@ -25,8 +28,8 @@ class Person extends Model
     /**
      * Get Rookies
      */
-    public function scopeRookies($query, $year)
+    public function scopeRookie($query, $year)
     {
-        return $query->where('is_rookies', 1)->where('year', $year);
+        return $query->where('is_rookie', 1)->where('year', $year);
     }
 }

@@ -25,7 +25,7 @@ class Order extends Model
     /**
      * Get the persons for the order.
      */
-    public function orders()
+    public function persons()
     {
         return $this->hasMany('mcriver\Person');
     }

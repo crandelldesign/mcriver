@@ -17,12 +17,14 @@
 
 <h2 class="margin-top-0">Your Order</h2>
 <table class="table table-striped">
-@for($i = 0; $i < count($names); $i++)
-    <tr class="person-{{$i}}-row" data-person="{{$i}}">
-        <td>{{$names[$i]}}</td>
+@if(isset($order->persons))
+@foreach($order->persons as $person)
+    <tr>
+        <td>{{$person->name}}</td>
         <td>$53</td>
     </tr>
-@endfor
+@endforeach
+@endif
 @if(isset($order->items))
 @foreach($order->items as $item)
     <tr>

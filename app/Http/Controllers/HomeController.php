@@ -8,7 +8,7 @@ use mcriver\Http\Controllers\Controller;
 use mcriver\Category;
 use mcriver\Item;
 use mcriver\Order;
-use mcriver\Rookie;
+use mcriver\Person;
 use mcriver\User;
 use \stdClass;
 use \Auth;
@@ -254,21 +254,9 @@ class HomeController extends Controller
             return redirect('/sign-up/3')->with('stripe_errors', $error);
         } else {
 
-            $names = '';
-            for ($i = 1; $i <= $order->people; $i++) {
-                $names .= $request->get('person'.$i).',';
-                if ($request->get('is_rookie_person'.$i)) {
-                    $rookie = New Rookie;
-                    $rookie->name = $request->get('person'.$i);
-                    $rookie->year = date('Y');
-                    $rookie->save();
-                }
-            }
-            $names = rtrim($names, ',');
-
             $new_order = New Order;
             $new_order->email = $request->get('email');
-            $new_order->name = $names;
+            $new_order->name = $request->get('person1');
             $new_order->user_id = (isset($user))?$user->id:'';
             $new_order->year = date('Y');
             $new_order->total = $order->total;
@@ -278,6 +266,21 @@ class HomeController extends Controller
             $new_order->dish_day = ($request->get('dish_day'))?implode(',',$request->get('dish_day')):' ';
             $new_order->dish_description = ($request->get('dish_description'))?$request->get('dish_description'):' ';
             $new_order->save();
+
+            //$names = '';
+            for ($i = 1; $i <= $order->people; $i++) {
+                $person = New Person;
+                $person->name = $request->get('person'.$i);
+                $person->is_rookie = ($request->get('is_rookie_person'.$i))?1:0;
+                $person->year = date('Y');
+                $person->order_id = $new_order->id;
+                $person->save();
+                /*$names .= $request->get('person'.$i).',';
+                if ($request->get('is_rookie_person'.$i)) {
+                    
+                }*/
+            }
+            //$names = rtrim($names, ',');
 
             if(isset($order->items)) {
                 foreach ($order->items as $item) {

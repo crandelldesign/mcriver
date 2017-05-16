@@ -330,7 +330,7 @@ class HomeController extends Controller
 
         if($request->order)
         {
-            $order = Order::with('items')->find($request->order);
+            $order = Order::with('items')->with('persons')->find($request->order);
         } elseif ($request->session()->has('new_order')) {
             $new_order = $request->session()->get('new_order');
             $order = Order::with('items')->find($new_order->id);

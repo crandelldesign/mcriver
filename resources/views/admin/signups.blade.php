@@ -34,7 +34,7 @@
                     <tbody>
                         @foreach($orders as $order)
                         <tr>
-                            <td data-search="{{$order->name}}"><a href="#" class="btn-order-details" data-order="{{$order->id}}">{{$order->person1}}</a></td>
+                            <td data-search="{{$order->name}}"><a href="#" class="btn-order-details" data-order="{{$order->id}}">{{$order->name}}</a></td>
                             <td>{{$order->person_count}}</td>
                             <td>{{$order->email}}</td>
                             <td>{{$order->phone}}</td>
@@ -213,9 +213,9 @@
     </div>
 
     <script id="order-details-template" type="x-tmpl-mustache">
-        @{{#each names}}
+        @{{#each persons}}
             <tr>
-                <td>@{{this}}</td>
+                <td>@{{name}}@{{#if is_rookie}}<small> (rookie)</small>@{{/if}}</td>
                 <td class="text-right">$53</td>
             </tr>
         @{{/each}}
@@ -283,12 +283,12 @@
                 url: '{{url("/")}}/api/order/'+order_id,
                 success: function(result)
                 {
-                    var names = result.name.split(',');
+                    var persons = result.persons;
                     var source = $("#order-details-template").html();
                     var template = Handlebars.compile(source);
                     var html = template({
                         items: result.items,
-                        names: names,
+                        persons: persons,
                         total: result.total
                     });
                     $('.order-details tbody').html(html);

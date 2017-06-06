@@ -14,13 +14,12 @@
 <div class="row">
 	<div class="col-md-4 col-lg-3 col-lg-offset-1">
 		<h2>When?</h2>
-		<p><strong>Starting:</strong> Friday Aug 12, 2016<br>
-			<strong>Ending:</strong> Sunday Aug 14, 2016</p>
+		<p><strong>Starting:</strong> Friday Aug 11, 2017<br>
+			<strong>Ending:</strong> Sunday Aug 11, 2017</p>
 	</div>
 	<div class="col-md-4">
 		<h2>Theme?</h2>
-		<p>Come Celebrate 30 Years of Sunshine, Sarcasm &amp; Shenanigans<br>
-		<strong>Rock Your Rookie Year</strong></p>
+		<p>McRiver's Got Talent</p>
 	</div>
 	<div class="col-md-4 col-lg-3">
 		<h2>Where?</h2>

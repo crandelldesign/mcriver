@@ -225,9 +225,9 @@ class HomeController extends Controller
                 $token = $request->get('stripeToken');
 
                 $charge = \Stripe\Charge::create(array(
-                    'source' => $token, 
-                    'amount' => $order->total.'00', 
-                    'currency' => 'usd', 
+                    'source' => $token,
+                    'amount' => $order->total.'00',
+                    'currency' => 'usd',
                     'receipt_email' => $request->email
                 ));
                 //echo $charge;
@@ -277,7 +277,7 @@ class HomeController extends Controller
                 $person->save();
                 /*$names .= $request->get('person'.$i).',';
                 if ($request->get('is_rookie_person'.$i)) {
-                    
+
                 }*/
             }
             //$names = rtrim($names, ',');
@@ -285,7 +285,7 @@ class HomeController extends Controller
             if(isset($order->items)) {
                 foreach ($order->items as $item) {
                     $item_order = \DB::table('item_order')->insertGetId(
-                        ['order_id' => $new_order->id, 'item_id' => $item->item_id]
+                        ['order_id' => $new_order->id, 'item_id' => $item->item_id, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
                     );
                 }
             }

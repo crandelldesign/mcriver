@@ -2,7 +2,7 @@
 @section('content')
 <h1>McRiver Raid 2016</h1>
 
-<p class="text-center featured-img-container"><img src="{{url('/')}}/img/group-shot-2015.jpg" class="img-responsive center-block featured-img" alt="2015's Group"></p>
+<p class="text-center featured-img-container"><img src="{{url('/')}}/img/group-shot-2016.jpg" class="img-responsive center-block featured-img" alt="2016's Group"></p>
 
 <div class="row">
 	<div class="col-md-11 col-lg-offset-1">

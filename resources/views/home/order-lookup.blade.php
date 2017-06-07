@@ -33,8 +33,6 @@
 
 @if (isset($order))
 
-<a href="{{url('/order-lookup?email='.$order->email.'&order='.$order->friendly_order_id)}}">{{url('/order-lookup?email='.$order->email.'&order='.$order->friendly_order_id)}}</a>
-
 <hr>
 
 <p>Your Order Number: <strong>{{$order->friendly_order_id}}</strong></p>

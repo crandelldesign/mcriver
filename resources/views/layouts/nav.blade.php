@@ -21,12 +21,12 @@
                     <ul id="menu-menu" class="nav navbar-nav">
                         <li class="{{(isset($active_page)) && $active_page=='home'?'active':''}}"><a href="{{url('/')}}">Home</a></li>
                         <li class="{{(isset($active_page)) && $active_page=='signup'?'active':''}}"><a href="{{url('/')}}/sign-up">Sign Up to Party</a></li>
-                        <!--<li class="{{(isset($active_page)) && $active_page=='order-status'?'active':''}}"><a href="{{url('/')}}/order-status">Order Status</a></li>
-                        <li class="{{(isset($active_page)) && $active_page=='rookies'?'active':''}}"><a href="{{url('/')}}/rookies">Rookie Requirements</a></li>
+                        <li class="{{(isset($active_page)) && $active_page=='order-lookup'?'active':''}}"><a href="{{url('/')}}/order-lookup">Order Lookup</a></li>
+                        <!--<li class="{{(isset($active_page)) && $active_page=='rookies'?'active':''}}"><a href="{{url('/')}}/rookies">Rookie Requirements</a></li>
                         @if(!\Auth::check())
                         <li><a href="#" data-toggle="modal" data-target="#loginModal">Log In</a></li>
                         @endif-->
-                    </ul>        
+                    </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>

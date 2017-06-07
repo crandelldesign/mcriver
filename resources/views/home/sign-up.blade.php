@@ -3,7 +3,7 @@
 <h1>McRiver Raid 2016</h1>
 
 <div class="row">
-	<div class="col-md-8">
+	<div class="col-md-8 col-lg-10">
 		<p>Out of courtesy and respect, please send your money as soon as you can so your order for McRiver gear can be placed! We can not wait to place your order at the last minute and your payment is needed to place the order... send the money ASAP!</p>
 
 		<!--Please fill this form out for each person that will be attending!-->
@@ -21,7 +21,7 @@
 		<form class="form-horizontal" method="post">
 		<h2>$53 per person for Fri &amp; Sat &quot;Camping Experience&quot;<br>
 			<small>Note: Additional days will be extra and due to the campground.</small></h2>
-		
+
 		<!--<p>Full Name : Please register each person individually! $53 per person *</p>-->
 
 		<div class="form-group">
@@ -57,7 +57,7 @@
 		  			@if(count($item->children) > 0)
 		  				<div class="row change-sizes">
 		  					@for($i = 1; $i <= 4; $i++)
-		  						<div class="col-sm-6 col-lg-4 hidden {{$i}}">Shirt #{{$i}} <?php count($item->children) ?><br>
+		  						<div class="col-lg-6 hidden {{$i}}">Choose Size for {{$item->name}}&nbsp;#{{$i}}<br>
 		  							<select class="form-control input-sm {{$item->slug.$i}}" name="{{$item->slug.$i}}" id="{{$item->slug.$i}}">
 		  								@foreach($item->children as $child)
 		  								<option value="{{$child->slug}}" data-value="{{$child->short_name}}-{{$child->price}}" data-size="{{$child->short_name}}" data-price="{{$child->price}}" {{(old($item->slug.$i) && old($item->slug.$i) == $child->slug)?'selected':''}}>{{$child->short_name}} - ${{$child->price}}</option>
@@ -69,7 +69,7 @@
 		  			@endif
 				</div>
 			</div>
-				
+
 			@endforeach
 		<hr>
 		@endforeach
@@ -139,7 +139,7 @@
 			});
 			$('.change-sizes .count select').each(function()
 			{
-		 		total+=parseFloat($(this).children('option:selected').data('price'));    
+		 		total+=parseFloat($(this).children('option:selected').data('price'));
 			});
 			$('.price-total').html(total);
 			$('#total').val(total);

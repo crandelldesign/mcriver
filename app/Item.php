@@ -3,9 +3,20 @@
 namespace mcriver;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Item extends Model
 {
+    use SoftDeletes;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
     /**
      * Get the category that owns the item.
      */
@@ -35,7 +46,7 @@ class Item extends Model
      */
     public function orders()
     {
-        return $this->belongsToMany('mcriver\Order');
+        return $this->belongsToMany('mcriver\Order')->withTimestamps();
     }
 
     /**

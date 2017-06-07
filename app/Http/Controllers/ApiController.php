@@ -32,7 +32,7 @@ class ApiController extends Controller
 
     public function getOrder($order_id)
     {
-        $order = Order::with('items')->find($order_id);
+        $order = Order::with('items')->with('persons')->find($order_id);
         return \Response::json($order);
     }
 }

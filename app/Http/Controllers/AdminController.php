@@ -9,7 +9,7 @@ use Mail;
 use mcriver\Category;
 use mcriver\Item;
 use mcriver\Order;
-use mcriver\Rookie;
+use mcriver\Person;
 
 class AdminController extends Controller
 {
@@ -71,8 +71,8 @@ class AdminController extends Controller
         $sign_up_total = 0;
         foreach ($orders as $order) {
             $names = explode(',',$order->name);
-            $order->person1 = $names[0];
-            $order->person_count = count($names);
+            $order->person1 = $names;
+            $order->person_count = count($order->persons);
             $sign_up_total = $sign_up_total + count($names);
         }
 
@@ -92,7 +92,7 @@ class AdminController extends Controller
             $meal->person1 = $names[0];
         }
 
-        $rookies = Rookie::where('year',date('Y'))->get();
+        $rookies = Person::where('year',date('Y'))->where('is_rookie',1)->get();
 
         $view = view('admin.signups');
         $view->active_page = 'sign-ups';

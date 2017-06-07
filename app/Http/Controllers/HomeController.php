@@ -8,7 +8,7 @@ use mcriver\Http\Controllers\Controller;
 use mcriver\Category;
 use mcriver\Item;
 use mcriver\Order;
-use mcriver\Rookie;
+use mcriver\Person;
 use mcriver\User;
 use \stdClass;
 use \Auth;
@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function getIndex()
     {
         $view = view('home.index');
-        $view->title = "McRiver Raid 2016";
+        $view->title = "McRiver Raid 2017";
         $view->description = "";
         $view->active_page = "home";
         return $view;
@@ -58,7 +58,7 @@ class HomeController extends Controller
     protected function signupStep1($step = null)
     {
         $view = view('home.sign-up');
-        $view->title = "McRiver Raid 2016";
+        $view->title = "McRiver Raid 2017";
         $view->description = "";
         $view->active_page = "sign-up";
         $categories = Category::orderBy('display_order')->get();
@@ -132,7 +132,7 @@ class HomeController extends Controller
             return redirect('/sign-up/3');
         }
         $view = view('home.sign-up2');
-        $view->title = "McRiver Raid 2016";
+        $view->title = "McRiver Raid 2017";
         $view->description = "";
         $view->active_page = "sign-up";
         $view->order = $request->session()->get('order');
@@ -156,7 +156,7 @@ class HomeController extends Controller
         }
 
         $view = view('home.sign-up3');
-        $view->title = "McRiver Raid 2016";
+        $view->title = "McRiver Raid 2017";
         $view->description = "";
         $view->active_page = "sign-up";
         $view->order = $request->session()->get('order');
@@ -225,9 +225,9 @@ class HomeController extends Controller
                 $token = $request->get('stripeToken');
 
                 $charge = \Stripe\Charge::create(array(
-                    'source' => $token, 
-                    'amount' => $order->total.'00', 
-                    'currency' => 'usd', 
+                    'source' => $token,
+                    'amount' => $order->total.'00',
+                    'currency' => 'usd',
                     'receipt_email' => $request->email
                 ));
                 //echo $charge;
@@ -254,21 +254,9 @@ class HomeController extends Controller
             return redirect('/sign-up/3')->with('stripe_errors', $error);
         } else {
 
-            $names = '';
-            for ($i = 1; $i <= $order->people; $i++) {
-                $names .= $request->get('person'.$i).',';
-                if ($request->get('is_rookie_person'.$i)) {
-                    $rookie = New Rookie;
-                    $rookie->name = $request->get('person'.$i);
-                    $rookie->year = date('Y');
-                    $rookie->save();
-                }
-            }
-            $names = rtrim($names, ',');
-
             $new_order = New Order;
             $new_order->email = $request->get('email');
-            $new_order->name = $names;
+            $new_order->name = $request->get('person1');
             $new_order->user_id = (isset($user))?$user->id:'';
             $new_order->year = date('Y');
             $new_order->total = $order->total;
@@ -277,12 +265,36 @@ class HomeController extends Controller
             $new_order->phone = $request->get('phone');
             $new_order->dish_day = ($request->get('dish_day'))?implode(',',$request->get('dish_day')):' ';
             $new_order->dish_description = ($request->get('dish_description'))?$request->get('dish_description'):' ';
+            // Generate a Friendly Order ID
+            while (true) {
+                $friendly_order_id = uniqid();
+                $orders_check = \DB::table('orders')->where('friendly_order_id',$friendly_order_id)->first();
+                if (!$orders_check){
+                    $new_order->friendly_order_id = $friendly_order_id;
+                    break;
+                }
+            }
             $new_order->save();
+
+            //$names = '';
+            for ($i = 1; $i <= $order->people; $i++) {
+                $person = New Person;
+                $person->name = $request->get('person'.$i);
+                $person->is_rookie = ($request->get('is_rookie_person'.$i))?1:0;
+                $person->year = date('Y');
+                $person->order_id = $new_order->id;
+                $person->save();
+                /*$names .= $request->get('person'.$i).',';
+                if ($request->get('is_rookie_person'.$i)) {
+
+                }*/
+            }
+            //$names = rtrim($names, ',');
 
             if(isset($order->items)) {
                 foreach ($order->items as $item) {
                     $item_order = \DB::table('item_order')->insertGetId(
-                        ['order_id' => $new_order->id, 'item_id' => $item->item_id]
+                        ['order_id' => $new_order->id, 'item_id' => $item->item_id, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
                     );
                 }
             }
@@ -327,7 +339,7 @@ class HomeController extends Controller
 
         if($request->order)
         {
-            $order = Order::with('items')->find($request->order);
+            $order = Order::with('items')->with('persons')->find($request->order);
         } elseif ($request->session()->has('new_order')) {
             $new_order = $request->session()->get('new_order');
             $order = Order::with('items')->find($new_order->id);
@@ -338,7 +350,7 @@ class HomeController extends Controller
         $names = explode(',',$order->name);
 
         $view = view('home.sign-up4');
-        $view->title = "McRiver Raid 2016";
+        $view->title = "McRiver Raid 2017";
         $view->description = "";
         $view->active_page = "sign-up";
         $view->order = $order;
@@ -403,9 +415,35 @@ class HomeController extends Controller
     public function getNotPermitted()
     {
         $view = view('home.not-permitted');
-        $view->title = "McRiver Raid 2016";
+        $view->title = "McRiver Raid 2017";
         $view->description = "";
         $view->active_page = "home";
+        return $view;
+    }
+
+    public function getOrderLookup(Request $request)
+    {
+
+        $view = view('home.order-lookup');
+        $view->title = "McRiver Raid 2017";
+        $view->description = "";
+        $view->active_page = "order-lookup";
+
+        $view->lookup_email = $request->email;
+        $view->lookup_order = $request->order;
+
+            $order = Order::with('items')->with('persons')->where('friendly_order_id',$request->order)->where('email',$request->email)->first();
+            if (!$order) {
+                //return redirect('/order-lookup')->with('error', 'Order Not Found!')->withInput();
+                if ($request->email || $request->order) {
+                    $view->error = 'Order Not Found';
+                }
+            } else {
+                $view->order = $order;
+                $view->lookup_email = $order->email;
+                $view->lookup_order = $order->friendly_order_id;
+            }
+
         return $view;
     }
 }

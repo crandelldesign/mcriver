@@ -2,7 +2,7 @@
 @section('content')
 <h1>Thank You for Your Order</h1>
 
-<p>Your Order Number: <strong>{{$order->id}}</strong></p>
+<p>Your Order Number: <strong>{{$order->friendly_order_id}}</strong></p>
 
 <p>You will receive an email with your order.</p>
 

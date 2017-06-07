@@ -216,7 +216,7 @@
                     <td style="text-align:left; padding-top: 15px;">
                     <br>
                     <strong>Name:</strong> {{$names[0]}}<br>
-                    <strong>Order Number:</strong> {{$order->id}}<br>
+                    <strong>Order Number:</strong> <a href="https://mcriver.net/order-lookup?email={{$order->email}}&order={{$order->friendly_order_id}}">{{$order->friendly_order_id}}</a><br>
                     <strong>Payment Method:</strong> {{ucwords($order->payment_method)}}<br><br>
                     @if(!$order->is_paid)
                     <strong>Your payment has not been recieved, please send a check or money order to:<br>
@@ -272,7 +272,7 @@
 
 
 
-              
+
 
 
                 <table cellspacing="0" cellpadding="0" bgcolor="#010101" class="force-full-width" style="width: 100%">

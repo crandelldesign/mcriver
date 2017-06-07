@@ -265,6 +265,15 @@ class HomeController extends Controller
             $new_order->phone = $request->get('phone');
             $new_order->dish_day = ($request->get('dish_day'))?implode(',',$request->get('dish_day')):' ';
             $new_order->dish_description = ($request->get('dish_description'))?$request->get('dish_description'):' ';
+            // Generate a Friendly Order ID
+            while (true) {
+                $friendly_order_id = uniqid();
+                $orders_check = \DB::table('orders')->where('friendly_order_id',$friendly_order_id)->first();
+                if (!$orders_check){
+                    $new_order->friendly_order_id = $friendly_order_id;
+                    break;
+                }
+            }
             $new_order->save();
 
             //$names = '';
@@ -409,6 +418,32 @@ class HomeController extends Controller
         $view->title = "McRiver Raid 2017";
         $view->description = "";
         $view->active_page = "home";
+        return $view;
+    }
+
+    public function getOrderLookup(Request $request)
+    {
+
+        $view = view('home.order-lookup');
+        $view->title = "McRiver Raid 2017";
+        $view->description = "";
+        $view->active_page = "order-lookup";
+
+        $view->lookup_email = $request->email;
+        $view->lookup_order = $request->order;
+
+            $order = Order::with('items')->with('persons')->where('friendly_order_id',$request->order)->where('email',$request->email)->first();
+            if (!$order) {
+                //return redirect('/order-lookup')->with('error', 'Order Not Found!')->withInput();
+                if ($request->email || $request->order) {
+                    $view->error = 'Order Not Found';
+                }
+            } else {
+                $view->order = $order;
+                $view->lookup_email = $order->email;
+                $view->lookup_order = $order->friendly_order_id;
+            }
+
         return $view;
     }
 }

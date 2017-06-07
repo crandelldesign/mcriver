@@ -216,7 +216,7 @@
                     <td style="text-align:left; padding-top: 15px;">
                     <br>
                     <strong>Name:</strong> {{$inputs['person1']}}<br>
-                    <strong>Order Number:</strong> {{$order->id}}<br><br>
+                    <strong>Order Number:</strong> <a href="https://mcriver.net/order-lookup?email={{$order->email}}&order={{$order->friendly_order_id}}">{{$order->friendly_order_id}}</a><br><br>
                     </td>
                   </tr>
                 </table>
@@ -266,7 +266,7 @@
 
 
 
-              
+
 
 
                 <table cellspacing="0" cellpadding="0" bgcolor="#010101" class="force-full-width" style="width: 100%">

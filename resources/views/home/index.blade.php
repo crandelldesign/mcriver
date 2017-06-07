@@ -2,13 +2,6 @@
 @section('content')
 <h1>McRiver Raid 2017</h1>
 
-<code>
-<?php
- echo uniqid();
-
-?>
-</code>
-
 <p class="text-center featured-img-container"><img src="{{url('/')}}/img/group-shot-2016.jpg" class="img-responsive center-block featured-img" alt="2016's Group"></p>
 
 <div class="row">

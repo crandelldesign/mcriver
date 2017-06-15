@@ -414,10 +414,25 @@ class HomeController extends Controller
 
     public function getNotPermitted()
     {
+        if (strpos(request()->headers->get('referer'), '/reset-password/') !== false) {
+            return redirect('/sign-up/2');
+        }
         $view = view('home.not-permitted');
         $view->title = "McRiver Raid 2017";
         $view->description = "";
         $view->active_page = "home";
+        return $view;
+    }
+
+    public function getResetPassword(Request $request, $token = null)
+    {
+        if (is_null($token)) {
+            return view('auth.passwords.email');
+        }
+        //return view('auth.passwords.reset')->with(compact('token', 'email'));
+        $view = view('account.reset-password');
+        $view->token = $token;
+        $view->email = $request->input('email');
         return $view;
     }
 

@@ -87,3 +87,46 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="forgot-password-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reset Password</h4>
+            </div>
+            <div class="modal-body">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                <div class="alert alert-danger" style="display: none">
+                </div>
+                <div class="alert alert-success" style="display: none">
+                </div>
+                <form id="forgot-password-modal-form" class="form" role="form" method="POST" action="{{ url('/api/reset-password') }}">
+                    {!! csrf_field() !!}
+
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <label class="control-label">E-Mail Address</label>
+                        <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                        <input type="hidden" name="url" value="{{ url()->current() }}">
+
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-btn fa-envelope"></i> Send Password Reset Link
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

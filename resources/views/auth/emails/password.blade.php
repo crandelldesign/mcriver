@@ -207,7 +207,11 @@
                 <table style="margin:0 auto; width: 80%;" cellspacing="0" cellpadding="0" class="force-width-80">
                   <tr>
                     <td style="text-align:left; padding-top: 15px;">
+                        @if($user->is_admin)
                         Click here to reset your password: <a href="{{ $link = url('password/reset', $token).'?email='.urlencode($user->getEmailForPasswordReset()) }}"> {{ $link }}</a><br><br>
+                        @else
+                        Click here to reset your password: <a href="{{ $link = url('/reset-password', $token).'?email='.urlencode($user->getEmailForPasswordReset()) }}"> {{ $link }}</a><br><br>
+                        @endif
                     </td>
                   </tr>
                 </table>

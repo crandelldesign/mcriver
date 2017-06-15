@@ -42,7 +42,8 @@ elixir(function(mix) {
     mix.scripts(
 		[
 	        'jquery-2.2.0.min.js',
-	        'bootstrap/bootstrap.js'
+	        'bootstrap/bootstrap.js',
+            'default.js'
 		],
 		'public/js/master.js'
     );

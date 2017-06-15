@@ -40,6 +40,7 @@ if (isset($demo) && $demo == true) {
         Route::auth();
 
         Route::controller('/admin', 'AdminController');
+        Route::controller('/password', 'Auth\PasswordController');
         Route::controller('/', 'HomeController');
     });
 }

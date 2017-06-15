@@ -44,6 +44,7 @@
                     <button type="submit" class="btn btn-primary btn-block">
                         Continue
                     </button>
+                    <a class="btn btn-link btn-block" href="#" data-toggle="modal" data-target="#forgot-password-modal">Forgot Your Password?</a>
                 </div>
             </div>
         </form>

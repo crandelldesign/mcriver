@@ -2,6 +2,9 @@
 
 namespace mcriver\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
+
+use mcriver\Http\Requests;
 use mcriver\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 

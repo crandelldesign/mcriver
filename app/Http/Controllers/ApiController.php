@@ -3,6 +3,9 @@
 namespace mcriver\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\PasswordBroker;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Password;
 
 use mcriver\Http\Requests;
 use mcriver\Http\Controllers\Controller;
@@ -34,5 +37,33 @@ class ApiController extends Controller
     {
         $order = Order::with('items')->with('persons')->find($order_id);
         return \Response::json($order);
+    }
+
+    public function postResetPassword(Request $request, PasswordBroker $passwords)
+    {
+        if( $request->ajax() )
+        {
+            $this->validate($request, ['email' => 'required|email']);
+
+            $response = Password::sendResetLink(['email'=>$request->only('email')], function($message) {
+                $message->subject('Your Password Reset Link');
+            });
+
+            switch ($response)
+            {
+                case PasswordBroker::RESET_LINK_SENT:
+                    return[
+                       'error' => false,
+                       'message' => 'A password link has been sent to your email address'
+                    ];
+
+                case PasswordBroker::INVALID_USER:
+                    return[
+                       'error' => true,
+                       'message' => 'We can\'t find a user with that email address'
+                    ];
+            }
+        }
+        return false;
     }
 }

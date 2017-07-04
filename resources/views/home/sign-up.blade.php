@@ -83,7 +83,7 @@
 
 		<hr>
 
-		<p>Do you agree to be fully paid before July 5th, 2016?<br>
+		<p>Do you agree to be fully paid before July 5th, 2017?<br>
 		<label class="checkbox-inline">
 			<input type="checkbox" id="agreement" name="agreement" value="yes"> Yes, I agree to be fully paid by the date given.
 		</label></p>

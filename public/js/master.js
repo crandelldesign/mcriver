@@ -2384,6 +2384,11 @@ if (typeof jQuery === 'undefined') {
 // Default Scripts
 $(document).ready(function() {
 
+    // Load Modal
+    if(window.location.href.indexOf('?login') != -1) {
+        $('#loginModal').modal('show');
+    }
+
     // Forgot Password
     $('#forgot-password-modal-form').on('submit', function(event) {
         event.preventDefault();
@@ -2393,7 +2398,6 @@ $(document).ready(function() {
             data: $(this).serialize(), // serializes the form's elements.
             success: function(data)
             {
-                console.log(data.error); // show response from the php script.
                 if (data.error) {
                     $('#forgot-password-modal').find('.alert-success').hide();
                     $('#forgot-password-modal').find('.alert-danger').show().html(data.message);

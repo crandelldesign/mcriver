@@ -461,4 +461,35 @@ class HomeController extends Controller
 
         return $view;
     }
+
+    public function getDishes(Request $request)
+    {
+        if (!\Auth::check()) {
+            return redirect('/?login');
+        } else {
+            $friday_meals = Order::where('year',date('Y'))->where('dish_day','like','%friday%')->get();
+            foreach ($friday_meals as $meal) {
+                $names = explode(',',$meal->name);
+                $meal->person1 = $names[0];
+            }
+            $saturday_meals = Order::where('year',date('Y'))->where('dish_day','like','%saturday%')->get();
+            foreach ($saturday_meals as $meal) {
+                $names = explode(',',$meal->name);
+                $meal->person1 = $names[0];
+            }
+            $sunday_meals = Order::where('year',date('Y'))->where('dish_day','like','%sunday%')->get();
+            foreach ($sunday_meals as $meal) {
+                $names = explode(',',$meal->name);
+                $meal->person1 = $names[0];
+            }
+
+            $view = view('home.dishes');
+            $view->active_page = 'dishes';
+            $view->friday_meals = $friday_meals;
+            $view->saturday_meals = $saturday_meals;
+            $view->sunday_meals = $sunday_meals;
+
+            return $view;
+        }
+    }
 }

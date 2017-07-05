@@ -22,10 +22,22 @@
                         <li class="{{(isset($active_page)) && $active_page=='home'?'active':''}}"><a href="{{url('/')}}">Home</a></li>
                         <li class="{{(isset($active_page)) && $active_page=='signup'?'active':''}}"><a href="{{url('/')}}/sign-up">Sign Up to Party</a></li>
                         <li class="{{(isset($active_page)) && $active_page=='order-lookup'?'active':''}}"><a href="{{url('/')}}/order-lookup">Order Lookup</a></li>
-                        <!--<li class="{{(isset($active_page)) && $active_page=='rookies'?'active':''}}"><a href="{{url('/')}}/rookies">Rookie Requirements</a></li>
+                        <!--<li class="{{(isset($active_page)) && $active_page=='rookies'?'active':''}}"><a href="{{url('/')}}/rookies">Rookie Requirements</a></li>-->
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
                         @if(!\Auth::check())
-                        <li><a href="#" data-toggle="modal" data-target="#loginModal">Log In</a></li>
-                        @endif-->
+                        <li><a href="#" data-toggle="modal" data-target="#loginModal">Sign In</a></li>
+                        @endif
+                        @if(\Auth::check())
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, {{\Auth::user()->name}} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="{{(isset($active_page)) && $active_page=='dishes'?'active':''}}"><a href="{{url('/dishes')}}">Dishes for {{date('Y')}}</a></li>
+                                <li><a href="{{url('/')}}/logout">Sign out</a></li>
+                            </ul>
+                        </li>
+                        @endif
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

@@ -113,9 +113,9 @@
                                 @foreach($friday_meals as $meal)
                                 <tr>
                                     <td>{{$meal->person1}}</td>
-                                    <td>{{$meal->dish_description}}</td>
+                                    <td>{{(strlen($meal->dish_description) > 0)?$meal->dish_description:'N/A'}}</td>
                                 </tr>
-                                @endforeach    
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -134,9 +134,9 @@
                                 @foreach($saturday_meals as $meal)
                                 <tr>
                                     <td>{{$meal->person1}}</td>
-                                    <td>{{$meal->dish_description}}</td>
+                                    <td>{{(strlen($meal->dish_description) > 0)?$meal->dish_description:'N/A'}}</td>
                                 </tr>
-                                @endforeach    
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -155,9 +155,9 @@
                                 @foreach($sunday_meals as $meal)
                                 <tr>
                                     <td>{{$meal->person1}}</td>
-                                    <td>{{$meal->dish_description}}</td>
+                                    <td>{{(strlen($meal->dish_description) > 0)?$meal->dish_description:'N/A'}}</td>
                                 </tr>
-                                @endforeach    
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

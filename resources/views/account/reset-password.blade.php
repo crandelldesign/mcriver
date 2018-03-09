@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<h1>McRiver Raid 2017</h1>
+<h1>McRiver Raid 2018</h1>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="reset-password-modal">
     <div class="modal-dialog" role="document">

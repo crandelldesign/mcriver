@@ -2,7 +2,7 @@
 $(document).ready(function() {
 
     // Load Modal
-    if(window.location.href.indexOf('?login') != -1) {
+    if((window.location.href.indexOf('?login') != -1) && (typeof loggedin === 'undefined')) {
         $('#loginModal').modal('show');
     }
 

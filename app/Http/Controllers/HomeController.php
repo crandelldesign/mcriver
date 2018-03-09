@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function getIndex()
     {
         $view = view('home.index');
-        $view->title = "McRiver Raid 2017";
+        $view->title = "McRiver Raid 2018";
         $view->description = "";
         $view->active_page = "home";
         return $view;
@@ -58,7 +58,7 @@ class HomeController extends Controller
     protected function signupStep1($step = null)
     {
         $view = view('home.sign-up');
-        $view->title = "McRiver Raid 2017";
+        $view->title = "McRiver Raid 2018";
         $view->description = "";
         $view->active_page = "sign-up";
         $categories = Category::orderBy('display_order')->get();
@@ -132,7 +132,7 @@ class HomeController extends Controller
             return redirect('/sign-up/3');
         }
         $view = view('home.sign-up2');
-        $view->title = "McRiver Raid 2017";
+        $view->title = "McRiver Raid 2018";
         $view->description = "";
         $view->active_page = "sign-up";
         $view->order = $request->session()->get('order');
@@ -156,7 +156,7 @@ class HomeController extends Controller
         }
 
         $view = view('home.sign-up3');
-        $view->title = "McRiver Raid 2017";
+        $view->title = "McRiver Raid 2018";
         $view->description = "";
         $view->active_page = "sign-up";
         $view->order = $request->session()->get('order');
@@ -350,7 +350,7 @@ class HomeController extends Controller
         $names = explode(',',$order->name);
 
         $view = view('home.sign-up4');
-        $view->title = "McRiver Raid 2017";
+        $view->title = "McRiver Raid 2018";
         $view->description = "";
         $view->active_page = "sign-up";
         $view->order = $order;
@@ -418,7 +418,7 @@ class HomeController extends Controller
             return redirect('/sign-up/2');
         }
         $view = view('home.not-permitted');
-        $view->title = "McRiver Raid 2017";
+        $view->title = "McRiver Raid 2018";
         $view->description = "";
         $view->active_page = "home";
         return $view;
@@ -440,7 +440,7 @@ class HomeController extends Controller
     {
 
         $view = view('home.order-lookup');
-        $view->title = "McRiver Raid 2017";
+        $view->title = "McRiver Raid 2018";
         $view->description = "";
         $view->active_page = "order-lookup";
 

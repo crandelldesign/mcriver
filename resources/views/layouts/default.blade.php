@@ -9,9 +9,14 @@
         @yield('content')
         @include('layouts.footer')
 
+        @if(\Auth::check())
+        <script>
+            var loggedin = true;
+        </script>
+        @endif
         <script type="text/javascript" src="{{ elixir('js/master.js') }}"></script>
-        
+
         @yield('scripts')
     </body>
-    
+
 </html>

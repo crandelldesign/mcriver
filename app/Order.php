@@ -1,6 +1,6 @@
 <?php
 
-namespace mcriver;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,7 +22,7 @@ class Order extends Model
      */
     public function user()
     {
-        return $this->belongsTo('mcriver\User');
+        return $this->belongsTo('App\User');
     }
 
     /**
@@ -30,7 +30,7 @@ class Order extends Model
      */
     public function items()
     {
-        return $this->belongsToMany('mcriver\Item')->withTimestamps();
+        return $this->belongsToMany('App\Item')->withTimestamps();
     }
 
     /**
@@ -38,7 +38,7 @@ class Order extends Model
      */
     public function persons()
     {
-        return $this->hasMany('mcriver\Person');
+        return $this->hasMany('App\Person');
     }
 
     /**

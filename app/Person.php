@@ -1,6 +1,6 @@
 <?php
 
-namespace mcriver;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ class Person extends Model
      */
     public function order()
     {
-        return $this->belongsTo('mcriver\Order');
+        return $this->belongsTo('App\Order');
     }
 
     /**

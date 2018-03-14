@@ -1,6 +1,6 @@
 <?php
 
-namespace mcriver;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class Category extends Model
      */
     public function items()
     {
-        return $this->hasMany('mcriver\Item');
+        return $this->hasMany('App\Item');
     }
 }

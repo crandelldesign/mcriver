@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Validator, DB, Hash, Mail, Illuminate\Support\Facades\Password;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class AuthController extends Controller
 {
@@ -16,7 +17,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        $this->middleware('auth:api', ['except' => ['login','register','refresh']]);
     }
 
     /**
@@ -45,7 +46,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $credentials = $request->only('name', 'email', 'password');
+        $credentials = $request->only('name', 'email', 'password', 'password_confirmation');
         $rules = [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -58,7 +59,14 @@ class AuthController extends Controller
         $name = $request->name;
         $email = $request->email;
         $password = $request->password;
-        User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
+        //User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password), 'phone' => '']);
+        $user = new User;
+        $user->name = $name;
+        $user->email = $email;
+        $user->password = Hash::make($password);
+        $user->phone = '';
+        $user->is_admin = 0;
+        $user->save();
 
         return $this->login($request);
     }
@@ -92,7 +100,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh());
+        return $this->respondWithToken(auth('api')->refresh());
     }
 
     /**
@@ -105,6 +113,7 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         return response()->json([
+            'success' => true,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60

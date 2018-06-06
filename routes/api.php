@@ -30,4 +30,5 @@ Route::group([
 
 Route::apiResources([
     'categories' => 'API\CategoryController',
+    'order' => 'API\OrderController',
 ]);

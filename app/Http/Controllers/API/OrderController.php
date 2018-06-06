@@ -40,7 +40,6 @@ class OrderController extends Controller
             \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
 
             //$myCard = \Stripe\Token::create(array("card" => array('number' => $request->card_number, 'exp_month' => $request->expiry_month, 'exp_year' => $request->expiry_year, 'name' => $request->card_holder_name, 'cvc' => $request->cvc)));
-            $token = $request->get('stripeToken');
 
             $charge = \Stripe\Charge::create(array(
                 'source' => $request->input('token'),

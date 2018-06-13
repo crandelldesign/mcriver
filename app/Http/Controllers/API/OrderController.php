@@ -6,6 +6,8 @@ use App\Item;
 use App\Person;
 use App\Order;
 use App\User;
+use App\Mail\OrderConfirm;
+use Mail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -123,7 +125,14 @@ class OrderController extends Controller
                 }
             }
 
-            $order = Order::with('items')->find($order->id);
+            //$order = Order::with('items')->find($order->id);
+
+            $mail = Mail::to($order->email);
+            $admins = User::admin()->get();
+            foreach ($admins as $admin) {
+                $mail->bcc($admin->email);
+            }
+            $mail->send(new OrderConfirm($order));
 
             return response()->json($order);
         }
@@ -137,7 +146,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::where('friendly_order_id',$id)->with('items')->with('persons')->first();
+        return response()->json($order);
     }
 
     /**

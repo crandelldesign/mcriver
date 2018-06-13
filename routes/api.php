@@ -28,6 +28,12 @@ Route::group([
 
 });
 
+Route::get('/mailable', function () {
+    $order = App\Order::find(102);
+
+    return new App\Mail\OrderConfirm($order);
+});
+
 Route::apiResources([
     'categories' => 'API\CategoryController',
     'order' => 'API\OrderController',

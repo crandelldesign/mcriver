@@ -12,13 +12,15 @@ class CreateItemOrderTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('item_order', function(Blueprint $table)
-		{
-			$table->timestamps();
-			$table->increments('id');
-			$table->integer('item_id');
-			$table->integer('order_id');
-		});
+		if (!Schema::hasTable('item_order')) {
+			Schema::create('item_order', function(Blueprint $table)
+			{
+				$table->timestamps();
+				$table->increments('id');
+				$table->integer('item_id');
+				$table->integer('order_id');
+			});
+		}
 	}
 
 
@@ -29,7 +31,7 @@ class CreateItemOrderTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('item_order');
+		Schema::dropIfExists('item_order');
 	}
 
 }

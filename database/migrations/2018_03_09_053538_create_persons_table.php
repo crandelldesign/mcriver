@@ -12,16 +12,18 @@ class CreatePersonsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('persons', function(Blueprint $table)
-		{
-			$table->timestamps();
-			$table->increments('id');
-			$table->string('name');
-			$table->integer('year');
-			$table->boolean('is_rookie')->default(0);
-			$table->boolean('is_active')->default(1);
-			$table->integer('order_id')->unsigned()->nullable()->index('persons_order_id_foreign');
-		});
+		if (!Schema::hasTable('persons')) {
+			Schema::create('persons', function(Blueprint $table)
+			{
+				$table->timestamps();
+				$table->increments('id');
+				$table->string('name');
+				$table->integer('year');
+				$table->boolean('is_rookie')->default(0);
+				$table->boolean('is_active')->default(1);
+				$table->integer('order_id')->unsigned()->nullable()->index('persons_order_id_foreign');
+			});
+		}
 	}
 
 
@@ -32,7 +34,7 @@ class CreatePersonsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('persons');
+		Schema::dropIfExists('persons');
 	}
 
 }

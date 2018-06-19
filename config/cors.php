@@ -13,7 +13,7 @@ return [
     */
 
     'supportsCredentials' => false,
-    'allowedOrigins' => ['http://localhost:4200','https://www.mcriver.net','https://mcriver.net','https://dev.mcriver.net'],
+    'allowedOrigins' => ['http://localhost:4200','*.mcriver.net'],
     'allowedOriginsPatterns' => [],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],

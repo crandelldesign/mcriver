@@ -216,7 +216,7 @@
                     <td style="text-align:left; padding-top: 15px;">
                     <br>
                     <strong>Name:</strong> {{$order->name}}<br>
-                    <strong>Order Number:</strong> <a href="https://mcriver.net/order-lookup?email={{$order->email}}&order={{$order->friendly_order_id}}">{{$order->friendly_order_id}}</a><br><br>
+                    <strong>Order Number:</strong> <a href="https://mcriver.net/order-lookup?order={{$order->friendly_order_id}}">{{$order->friendly_order_id}}</a><br><br>
                     </td>
                   </tr>
                 </table>

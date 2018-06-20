@@ -82,7 +82,7 @@ class OrderController extends Controller
 
             $order = New Order;
             $order->email = $request->input('order.email');
-            $order->name = $request->input('order.persons.0.name');
+            $order->name = $request->input('order.name');
             $order->user_id = $request->input('order.user.id');
             $order->year = date('Y');
             $order->total = $request->input('order.total');
@@ -110,10 +110,7 @@ class OrderController extends Controller
                 $person->year = date('Y');
                 $person->order_id = $order->id;
                 $person->save();
-                /*$names .= $request->get('person'.$i).',';
-                if ($request->get('is_rookie_person'.$i)) {
-
-                }*/
+                
             }
 
             for ($i = 0; $i < count($request->input('order.items')); $i++) {
@@ -125,7 +122,12 @@ class OrderController extends Controller
                 }
             }
 
-            //$order = Order::with('items')->find($order->id);
+            $camping = $order->items->where('slug','camping-people-in-group')->first();
+            if ($camping) {
+                foreach ($order->persons as $person) {
+                    $person->price = $camping->price;
+                }
+            }
 
             $mail = Mail::to($order->email);
             $admins = User::admin()->get();
@@ -147,6 +149,14 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::where('friendly_order_id',$id)->with('items')->with('persons')->first();
+        if ($order) {
+            $camping = $order->items->where('slug','camping-people-in-group')->first();
+            if ($camping) {
+                foreach ($order->persons as $person) {
+                    $person->price = $camping->price;
+                }
+            }
+        }
         return response()->json($order);
     }
 

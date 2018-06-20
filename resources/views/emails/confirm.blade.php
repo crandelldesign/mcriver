@@ -215,7 +215,7 @@
                   <tr>
                     <td style="text-align:left; padding-top: 15px;">
                     <br>
-                    <strong>Name:</strong> {{$order->persons[0]->name}}<br>
+                    <strong>Name:</strong> {{$order->name}}<br>
                     <strong>Order Number:</strong> <a href="https://mcriver.net/order-lookup?email={{$order->email}}&order={{$order->friendly_order_id}}">{{$order->friendly_order_id}}</a><br><br>
                     </td>
                   </tr>
@@ -229,13 +229,10 @@
 						</tr>
 					</thead>
 					<tbody>
-            <?php
-              $camping = $order->items->where('slug','camping-people-in-group')->first();
-            ?>
             @foreach($order->persons as $person)
               <tr>
                 <td style="border-bottom:1px solid #e3e3e3; padding: 5px;">{{$person->name}}</td>
-                <td style="border-bottom:1px solid #e3e3e3; padding: 5px;">{{($camping)?'$'.$camping->price:'$53'}}</td>
+                <td style="border-bottom:1px solid #e3e3e3; padding: 5px;">${{$person->price}}</td>
               </tr>
             @endforeach
             @if (isset($order->items))

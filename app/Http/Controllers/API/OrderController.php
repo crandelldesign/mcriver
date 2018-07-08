@@ -25,7 +25,7 @@ class OrderController extends Controller
         $order = Order::with(['persons' => function ($query) use($request) {
         }]);
         if ($request->input('camping')) {
-            $order = $order->has('items');
+            $order = $order->has('persons');
         }
         $order = $order->with(['items' => function ($query) use($request) {
             if ($request->input('camping')) {

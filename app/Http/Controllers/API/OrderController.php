@@ -18,9 +18,27 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //return response()->json($request->all());
+
+        $order = Order::with(['persons' => function ($query) use($request) {
+        }]);
+        if ($request->input('camping')) {
+            $order = $order->has('items');
+        }
+        $order = $order->with(['items' => function ($query) use($request) {
+            if ($request->input('camping')) {
+                $query->where('slug','camping-people-in-group');
+            }
+        }]);
+        if ($request->input('year')) {
+            $order = $order->where('year', $request->input('year'));
+        }
+        $order = $order->get();
+
+        return response()->json($order);
+
     }
 
     /**

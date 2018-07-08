@@ -169,7 +169,7 @@
           <table style="margin:0 auto;" cellspacing="0" cellpadding="0" width="100%">
             <tr>
               <td style="text-align: center; padding: 15px; background-color: #010101">
-                <a href="{{url('/')}}"><img class="w320" width="320" height="69" src="http://www.mcriver.net/img/logo-default-gold.png" alt="McRiver" /></a>
+                <a href="{{url('/')}}"><img class="w320" width="320" height="69" src="http://www.mcriver.net/assets/img/logo-default-gold.png" alt="McRiver" /></a>
               </td>
             </tr>
           </table>

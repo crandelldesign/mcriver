@@ -28,17 +28,25 @@ class OrderController extends Controller
             $orders = $orders->has('persons');
         }
         $orders = $orders->with(['items' => function ($query) use($request) {
-            if ($request->input('camping')) {
+            /*if ($request->input('camping')) {
                 $query->where('slug','camping-people-in-group');
-            }
+            }*/
         }]);
         if ($request->input('year')) {
             $orders = $orders->where('year', $request->input('year'));
         }
         $orders = $orders->get();
+        $camping = Item::where('slug','camping-people-in-group')->first();
         foreach ($orders as $order) {
             $order->person_count = count($order->persons);
             $order->item_count = count($order->items);
+            
+            if ($camping) {
+                foreach ($order->persons as $person) {
+                    $person->price = $camping->price;
+                }
+            }
+            
         }
 
         return response()->json($orders);

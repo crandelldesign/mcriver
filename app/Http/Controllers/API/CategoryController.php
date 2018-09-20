@@ -13,13 +13,17 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $categories = Category::orderBy('display_order')->get();
         foreach ($categories as $category) {
-            $category->items = $category->items()->where('parent_id',0)->orderBy('display_order')->get();
-            foreach ($category->items as $item) {
-                $item->children = $item->children()->orderBy('display_order')->get();
+            if ($request->input('flatChildren')) {
+                $category->items = $category->items()->orderBy('display_order')->get();
+            } else {
+                $category->items = $category->items()->where('parent_id',0)->orderBy('display_order')->get();
+                foreach ($category->items as $item) {
+                    $item->children = $item->children()->orderBy('display_order')->get();
+                }
             }
         }
         return response()->json($categories);

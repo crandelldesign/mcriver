@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::orderBy('display_order')->get();
+        $categories = Category::orderBy('display_orders')->get();
         foreach ($categories as $category) {
             if ($request->input('flatChildren')) {
                 $category->items = $category->items()->orderBy('display_order')->get();

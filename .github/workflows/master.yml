@@ -1,0 +1,35 @@
+name: Deploy Prod
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.PUSH_TOKEN }}
+#    - name: Set up Node
+#      uses: actions/setup-node@v1
+#      with:
+#        node-version: '12.x'
+#    - run: npm install
+#    - run: npm run production
+#    - name: Commit built assets
+#      run: |
+#        git config --local user.email "action@github.com"
+#        git config --local user.name "GitHub Action"
+#        git checkout -B deploy
+#        git add -f public/
+#        git commit -m "Build front-end assets"
+#        git push -f origin deploy
+    - name: Deploy to production
+      uses: appleboy/ssh-action@master
+      with:
+        username: ${{ secrets.SSH_USERNAME }}
+        host: 64.4.160.12
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: 7822
+        script: 'cd /var/www/mcriver/api-prod && chmod +x server_deploy.sh && ./server_deploy.sh'

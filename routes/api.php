@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('/', function () {
+    return response()->json(true);
+});
+
+Route::get('/status', function () {
+    return response()->json(true);
+});
+
 Route::group([
 
     'middleware' => 'api',
